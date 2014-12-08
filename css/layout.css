@@ -1,0 +1,239 @@
+/*
+    GPL licence.
+*/
+/* 
+    Created on : 25.02.2014, 14:01:06
+    Author     : Максим
+*/
+
+
+/**
+* Body block
+*/
+
+
+body
+{
+    color: #a1522c;
+}
+
+a, a:hover
+{
+    color: #8e6137;
+}
+
+/**
+* Colors block
+*/
+
+.color_light_brown, .color_light_brown:hover
+{
+    color: #d5b898;
+}
+
+.color_light_pink, .color_light_pink:hover
+{
+    color: #ffa69f;
+}
+
+/**
+* Headers block
+*/
+
+header
+{
+    width: 100%;
+    height: 160px;
+
+    display: block;
+    
+    position: relative;
+}
+
+.logotype
+{
+    width: 550px;
+    height: 155px;
+    
+    display: block;
+    
+    position: absolute;
+    
+    top:10px;
+    left: 30px;
+}
+
+.nav-bar
+{
+    width: 380px;
+    height: 155px;
+    
+    display: block;
+    
+    position: absolute;
+
+    top: 40px;
+    right: 30px;
+}
+
+.nav-bar .navbar_link
+{
+    margin-left: 38px;
+}
+
+.navbar_link .separator
+{
+    color: #d5b898;
+    font-size: 13pt;
+}
+
+.link, .link:hover
+{
+
+    text-decoration: underline;
+}
+
+.nav-bar .navbar-menu
+{
+    margin: 50px 0 0 40px;
+}
+
+.list-unstyled, list-inline, .list-unstyled > li, list-inline > li
+{
+    list-style: none;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/**
+* Buttons block
+*/
+
+
+.btn
+{
+    padding: 7px 12px;
+    margin: -2px;
+    
+    background-color: #ae6c38;
+    border-color: #db935b;
+    border-radius: 0;
+    
+    color: #fff;
+}
+
+.btn:hover,
+a.btn:hover
+{
+    color: #fff;
+    text-decoration: underline;
+}
+
+.btn:active,
+.btn.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btn-border-right
+{
+    border-right: solid 1px #db935b;
+}
+
+
+.btn-tomain
+{
+    width: auto;
+    float: left;
+    
+    display: block;
+    
+    margin: 40px 0 50px 140px;
+}
+
+
+/**
+* Main block
+*/
+
+main
+{
+    width: 95.5%;
+    margin: 0 auto;
+    
+    margin-top: 20px;
+    
+    padding-top: 10px;
+    
+    background: url(../img/main/background.png) top repeat-x;
+    
+    border-top: solid 1px #a1522c;      
+}
+
+.carousel-caption h1
+{
+    margin: 20px 0 30px 0;
+    
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.carousel-caption .caption-button
+{
+    width: 20%;
+    height: 30px;
+    
+    float: left;
+    
+    display: block;
+    
+    margin: 50px 0 0 5px;
+}
+
+.carousel-caption #caption-carts
+{
+    width: 160px;
+    height: 120px;
+    
+    float: left;
+    
+    display: block;
+    
+    margin: 30px 0 0 130px;
+}
+
+/**
+* Footers block
+*/
+
+footer
+{
+    width: 95.5%;
+    margin: 30px auto 0 auto;
+    
+    display: block;
+    
+    position: relative;
+    
+    border-top: solid 1px #a1522c;
+}
+
+.list-unstyled
+{
+    margin-top: 15px;
+}
+
+.footer-text
+{
+    margin: 0;
+    padding: 0;
+}
+
+
+/**
+ * Addidition methods.
+ *
+ */
