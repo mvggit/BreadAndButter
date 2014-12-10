@@ -19,19 +19,22 @@ class AddToCarts {
     
     // $id, $product, $storage, $count, $price, $stored = 0, $date = "now()"
     
-    function addOneElement( $param ) {
+    function addOneElement( array $params ) {
         
-        self::$_Db -> fetch( self::$_Db -> select( "INSERT INTO carts VALUE ( $id, "
-                                                                           . "$product, "
-                                                                           . "$idstorage, "
-                                                                           . "$count,  "
-                                                                           . "$price, "
-                                                                           . "$storedcarts, "
-                                                                           . "$date ,"
-                                                                           . ")" ) );
+        self::$_Db -> fetch( self::$_Db -> select( "INSERT INTO carts VALUE ( ".$params['id']. ",
+                                                                            " .$params['product'] .", 
+                                                                            " .$params['idstorage'] .", 
+                                                                            " .$params['count'] .", 
+                                                                            " .$params['price'] .", 
+                                                                            " .$params['storedcarts'] .", 
+                                                                            " .$params['$date'] .", 
+                                                                            )" ) );
         
     }
 
+    
+    // ТУДУ: модифицировать трешэвое решение в addListElement
+    
     function addListElement( $params ) {
         
         $p = "";
