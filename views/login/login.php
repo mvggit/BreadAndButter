@@ -34,14 +34,15 @@
                 <nav class="navbar_link">
                     <a href="?action=login" class="link color_light_brown">Войти</a>
                     <span class="separator">&nbsp;|&nbsp;</span>
-                    <a href="?action=registration" class="link color_light_pink">Зарегистрироваться</a>                
+                    <a href="?action=registration" class="link color_light_pink">Зарегистрироваться</a>
                 </nav>
                 
                 <nav class="navbar-menu">
                     <ul class="list-unstyled list-inline">
-                        <li><a href="?action=catalog" class="btn btn-border-right active">Ассортимент</a></li>
+                        <li><a href="?action=selection" class="btn btn-border-right active">Ассортимент</a></li>
                         <li><a href="?action=carts" class="btn btn-border-right active">Корзина</a></li>
-                        <li><a href="?action=about" class="btn active">О магазине</a></li>                    </ul>
+                        <li><a href="/aboutproject" class="btn active">О магазине</a></li>
+                    </ul>
                 </nav>
             </section>
         </header>
@@ -49,16 +50,15 @@
             <div class="container">
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
-        
                         <div class="item active">
-                            &nbsp;
+                            <img src="tmp/img/wheats/bran_bread.png" alt="Хлеб Отрубной" />
                             <div class="carousel-caption">
                                 <form action="" method="post">
                                     <table>
                                         <tr>
                                             <td colspan="2">
                                                 <h3>
-                                                    Введите контактную информацию:
+                                                    Пожалуйста авторизуйтесь:
                                                 </h3>
                                             </td>
                                         </tr>
@@ -89,8 +89,8 @@
                         </div>
                         
                     </div>
-                    <a class="left carousel-control" href="?action=login" data-slide="prev"><img src="img/carousel/left.png" alt="" /></a>
-                <!--    <a class="right carousel-control" href="#myCarousel" data-slide="next"><img src="img/carousel/right.png" alt="" /></a> !-->
+                <!--    <a class="left carousel-control" href="#myCarousel" data-slide="prev"><img src="img/carousel/left.png" alt="" /></a> !-->
+                    <a class="right carousel-control" href="?action=registration" data-slide="next"><img src="img/carousel/right.png" alt="" /></a>
                 </div>
             </div>
         </main>
