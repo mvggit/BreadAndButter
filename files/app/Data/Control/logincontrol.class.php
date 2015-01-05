@@ -10,12 +10,15 @@
 namespace Data\Control;
 
 //TODO Check actuality Session and Cookie classes here.
+use Service\Session;
 
 use Service\Check;
+use Service\Post;
 
 
 class LoginControl {
     use Check;
+    use Post;
     
     public $view = array();
     
@@ -23,14 +26,21 @@ class LoginControl {
         
         Check::$_db = $db;
 
-        //TODO: compleate Check and Get trait function's
+        if ($this->isSend()) {
         
-        if (Check::checkHash() && Check::checkBlocked()) {
+            $hash = md5($this->login.$this->password);
+            
+            if (Check::checkHash($hash) && Check::checkBlocked($hash)) {
 
-            $type = 'logined';
+                Session::set('info', $hash);
+                Session::set('name', $this->login);
+                
+                $type = 'logined';
+            }
+            
         }
-        
-        $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $object ."/". $type .".php";        
+            
+        $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $object ."/". $type .".php";
     }
 
     

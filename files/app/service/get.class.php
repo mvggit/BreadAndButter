@@ -9,35 +9,21 @@
  * on authorization section
  */
 
-use Service\Session;
-use Service\Cookie;
-
 namespace Service;
 
 trait Get {
     
-    private $session;
-    private $cookie;
-    
     public static $_db;
     
-    function get( $hash = '' ) {
+    function get( $field, $from, $where, $limit = 1, $order = "true" ) {
         
-        if (empty($hash)) {
-            
-            $hash = md5('maximvg@gmail.com' . '123456789');
-        }
+        $result = self :: $_db -> fetch(
+                self :: $_db -> select( $field, $from, $where , $order, $limit)
+        );
         
-        $logindata = self :: $_db -> fetch( self :: $_db -> select( 'fname, lname, sname', 'auth, uin', 'hash = \'' . $hash . '\'' . ' AND idauth = iduin', 'idauth ASC', 1 ) );
-        
-        if ( empty($logindata) ) {
-            throw new \Exception('Authentification falied');
-        }
-
-        Session :: set( 'logined', implode(' ', $logindata[0]) );
-        Cookie :: set('data', $hash);        
-        
-        return $logindata;
+        $return = empty($result[0]['hash']) ? false : $result[0]['hash'];
+    
+        return $return;
     }    
     
     

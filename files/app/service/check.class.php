@@ -11,28 +11,29 @@
  */
 
 namespace Service;
+use Service\Get;
 
 trait Check {
+    use Get;
     
     public static $_db;
     
-    static function checkHash( $hash = '' ) {
+    public function checkHash( $hash = '' ) {
         
-        //TODO: static :: $_db is a temp construction
+        Get :: $_db = self :: $_db;
+        $_hash = Get :: get('hash', 'auth', 'hash = \'' . $hash . '\'');
+        return ($_hash == $hash) ? true : false;
         
-        self :: $_db -> select( 'hash', 'auth', 'hash = \'' . $hash . '\'');
-        return true;
+        
     }
 
-    static function checkBlocked( $hash = '' ) {
+    public function checkBlocked( $hash = '' ) {
         
-        return true;
+        $blocked = Get :: get('blocked', 'auth', 'hash = \'' . $hash . '\'');
+        return $blocked ? false : true;
+
+        
     }    
     
-    static function checkSession( $hash = '' ) {
-        
-        return false;
-    }     
-
     
 }

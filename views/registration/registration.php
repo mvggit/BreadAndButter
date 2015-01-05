@@ -53,15 +53,12 @@
                         <div class="item active">
                             &nbsp;
                             <div class="carousel-caption">
-                                <form action="" method="post">
+                                <form action="" method="post" style="height:400px; overflow-y:scroll">
+                                    <h3>
+                                        Введите контактную <br />информацию:
+                                    </h3>
+                                    <br /><br />
                                     <table>
-                                        <tr>
-                                            <td colspan="2">
-                                                <h3>
-                                                    Введите контактную информацию:
-                                                </h3>
-                                            </td>
-                                        </tr>
                                         <tr>
                                             <td>
                                                 <label>
@@ -69,9 +66,10 @@
                                                 </label>
                                             </td>
                                             <td>
-                                                <input type="text"/>
+                                                <input type="text" name="login" />
                                             </td>
                                         </tr>
+                                        <tr><td>&nbsp;</td></tr>
                                         <tr>
                                             <td>
                                                 <label>
@@ -79,12 +77,68 @@
                                                 </label>
                                             </td>
                                             <td>
-                                                <input type="password"/>
+                                                <input type="password" name="password"/>
                                             </td>
                                         </tr>                                    
+                                        <tr>
+                                            <td>
+                                                <label>
+                                                    Повторите пароль:
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <input type="password" name="reply-password"/>
+                                            </td>
+                                        </tr>
+
+                                        <tr><td>&nbsp;</td></tr>
+                                        <tr>
+                                            <td>
+                                                <label>
+                                                    Отображаемое имя:
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="nic"/>
+                                            </td>
+                                        </tr>                                    
+                                        
+                                        <tr><td>&nbsp;</td></tr>                                        
+                                        
+                                        <tr>
+                                            <td>
+                                                <label>
+                                                    Имя:
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label>
+                                                    Фамилия:
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="so_name"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <label>
+                                                    Отчество:
+                                                </label>
+                                            </td>
+                                            <td>
+                                                <input type="text" name="last_name"/>
+                                            </td>
+                                        </tr>
+                                        
                                     </table>
+                                    <span class="caption-button"><input type="image" src="img/main/more_button.png" alt="" /></span>
                                 </form>
-                                <span class="caption-button"><a class="active" href="#" role="button"><img src="img/main/more_button.png" alt="" /></a></span>
                             </div>
                         </div>
                         

@@ -28,6 +28,9 @@ class MySQLi implements DataBaseInterface {
     
     function select( $items, $from, $where, $orderby = 'id ASC', $limit = 1000 ) {
 
+        //Test trash!!!
+        //echo "SELECT DISTINCT $items FROM $from WHERE $where ORDER BY $orderby LIMIT $limit";
+        
         return $sql = "SELECT DISTINCT $items FROM $from WHERE $where ORDER BY $orderby LIMIT $limit";
     }
     
@@ -71,15 +74,17 @@ class MySQLi implements DataBaseInterface {
     
     function run( $method ) {
         
-        echo $method;
-        /*/*$this->MySQLi->query($method);
+        echo $method."<br />";
+        $this->MySQLi->query($method);
         
-        if ($this->MySQLi->errorno) {
+        echo $this->MySQLi->error."<br />";
+        
+        if ($this->MySQLi->errno) {
             
             return false;
         }
-        */
-        return true;
+        
+        return empty($last_insert_id = $this->MySQLi->insert_id) ? true : $last_insert_id;
 
         
     }

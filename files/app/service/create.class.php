@@ -9,17 +9,13 @@
  * past information in auth Db.
  */
 
-namespace Data\Auth\Control;
+namespace Service;
 
-class Create {
+trait Create {
     
-    private $_Db;
+    public static $_db;
     
-    function __construct($db) {
-        
-        $this -> _Db = $db;
-    }
-    
+
     function create( $table, $params ) {
         
         if (empty($params)) {
@@ -27,7 +23,7 @@ class Create {
             throw new \Exception(' Undefined data to past in Db');
         }
         
-        $insert = $this -> _Db -> run( $this -> _Db -> insert( $table, $params));
+        $insert = self :: $_db -> run( self :: $_db -> insert( $table, $params));
         
         return $insert;        
     }

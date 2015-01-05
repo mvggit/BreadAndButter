@@ -25,9 +25,9 @@ class Session {
      * 
      */
     
-    static function get( $key ){
+    public static function get( $name ){
         
-        return array_key_exists( $key, self::$session) ? self::$session[ $key ] : NULL;
+        return array_key_exists( $name, self::$session) ? self::$session[ $name ] : NULL;
     }
 
     /**

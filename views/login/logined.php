@@ -1,3 +1,9 @@
+<?php
+
+    namespace Main;
+    use Service\Session;
+    
+?>
 <!DOCTYPE html>
 <!--
     Open-source project to present skils in today.
@@ -32,9 +38,22 @@
             </section>
             <section class="nav-bar">
                 <nav class="navbar_link">
-                    <a href="?action=login" class="link color_light_brown">Войти</a>
+                    <?php
+                        if (empty(Session::get('info'))) :
+                    ?>
+                    <a href=\"?action=login\" class=\"link color_light_brown\">Войти</a>
                     <span class="separator">&nbsp;|&nbsp;</span>
-                    <a href="?action=registration" class="link color_light_pink">Зарегистрироваться</a>                
+                    <a href="?action=registration" class="link color_light_pink">Зарегистрироваться</a>
+                    
+                    <?php
+                        else:
+                    ?>
+                    <span class="link color_light_brown"><?php echo "Привет, ".substr(Session::get('name'), 0, strpos(Session::get('name'), "@"))?></span>
+                    <span class="separator">&nbsp;|&nbsp;</span>
+                    <a href="?action=logout" class="link color_light_pink">Выйти</a>
+                    <?php
+                        endif;
+                    ?>
                 </nav>
                 
                 <nav class="navbar-menu">
@@ -53,38 +72,7 @@
                         <div class="item active">
                             &nbsp;
                             <div class="carousel-caption">
-                                <form action="" method="post">
-                                    <table>
-                                        <tr>
-                                            <td colspan="2">
-                                                <h3>
-                                                    Для входа введите логин и пароль:
-                                                </h3>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    Имя пользователя:
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <input type="text"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    Пароль:
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <input type="password"/>
-                                            </td>
-                                        </tr>                                    
-                                    </table>
-                                </form>
-                                <span class="caption-button"><a class="active" href="#" role="button"><img src="img/main/more_button.png" alt="" /></a></span>
+                                <h1>You wandeful!</h1>
                             </div>
                         </div>
                         

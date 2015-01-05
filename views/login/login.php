@@ -69,7 +69,7 @@
                                                 </label>
                                             </td>
                                             <td>
-                                                <input type="text"/>
+                                                <input type="text" name="login" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -79,12 +79,12 @@
                                                 </label>
                                             </td>
                                             <td>
-                                                <input type="password"/>
+                                                <input type="password" name="password" />
                                             </td>
                                         </tr>                                    
                                     </table>
+                                    <span class="caption-button"><input type="image" src="img/main/more_button.png" alt="" /></span>
                                 </form>
-                                <span class="caption-button"><a class="active" href="#" role="button"><img src="img/main/more_button.png" alt="" /></a></span>
                             </div>
                         </div>
                         

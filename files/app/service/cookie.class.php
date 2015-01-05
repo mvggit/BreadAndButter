@@ -11,13 +11,9 @@
 
 namespace Service;
 
-class Cookie {
+trait Cookie {
     
     protected static $cookie = array();
-    
-    function __construct() {
-        ;
-    }
     
     /**
      * Get elemets $_COOKIE array.
