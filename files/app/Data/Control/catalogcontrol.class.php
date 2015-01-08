@@ -10,52 +10,27 @@
 
 namespace Data\Control;
 
-use Service\Session;
-use Service\Check;
-
-use Data\Catalog\PaginationCatalog;
+//use Service\Session;
+use Data\Catalog\ViewCatalog;
 
 class CatalogControl {
-    use Check;
     
-    private $_Db;
-    public $view = array();
+//    private $_db;
     
-    function __construct($db, $object = 'catalog', $type = 'catalog') {
+    public $view;
+       
+    public function __construct( $db, $object = 'catalog', $type = 'catalog', $pagination = true) {
         
-        $this -> _Db = $db;
-        Check::$_db = $db;
-        
-        $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $object ."/". $type .".php";
-        
-        if (Check::checkHash() && Check::checkBlocked()) {
-
-            ;
-        }
-        
-        Session::set( 'pagination', $this -> PaginationCatalog( 20 ) );
-        
+        $this->view = $this->ViewCatalog( $db, $object, $type, $pagination );
     }
 
-    function ViewCatalog() {
+    public function ViewCatalog( $db, $object, $type, $pagination ) {
         
-        new ViewCatalog();
-    }
-    
-    function SortCatalog() {
-        
-        new SortCatalog();
-    }
-    
-    function QuickSort() {
-        
-        new QuickSortCatalog();
-    }
-    
-    function PaginationCatalog( $limit ) {
-        
-        $list = new PaginationCatalog( $this -> _Db );
-        return $list -> get( $limit );
+        //$pagination = false;
+        $view = new ViewCatalog( $db, $object, $type );
+        return $pagination
+            ? $view -> PaginationCatalogList( )
+            : $view -> CatalogList( );
     }
 
     

@@ -26,12 +26,19 @@ class MySQLi implements DataBaseInterface {
         return $this->MySQLi = new \mysqli( $host, $uname, $upass, $udbname );
     }
     
-    function select( $items, $from, $where, $orderby = 'id ASC', $limit = 1000 ) {
+    function select( $items, $from, $where, $orderby = 'id ASC', $limit = '100' ) {
 
         //Test trash!!!
         //echo "SELECT DISTINCT $items FROM $from WHERE $where ORDER BY $orderby LIMIT $limit";
         
-        return $sql = "SELECT DISTINCT $items FROM $from WHERE $where ORDER BY $orderby LIMIT $limit";
+        $sql = "";
+        $sql .= (!$items || !$from || !$where) ? "" : " SELECT DISTINCT $items FROM $from WHERE $where ";
+        $sql .= (!empty($sql) && $orderby) ? " ORDER BY $orderby " : "";
+        $sql .= (!empty($sql) && $limit) ? " LIMIT $limit" : "";
+        
+        //echo $sql;
+        
+        return $sql;
     }
     
     function insert( $table, $items ) {
@@ -55,7 +62,7 @@ class MySQLi implements DataBaseInterface {
     function fetch( $method ) {
         
         $fetch = $this -> MySQLi -> query($method);
-        
+
         if (empty($fetch)) {
             
             return false;

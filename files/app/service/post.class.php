@@ -15,10 +15,7 @@ namespace Service;
 trait Post {
     
     /**
-     * isPosted:
-     * check defifnition superglobal
-     * array $_POST
-     * 
+     * isSend
      * @return boolean
      */
     public function isSend() {
@@ -27,18 +24,14 @@ trait Post {
     }
     
     /**
-     * __get
-     * magic get to get value 
-     * _POST array.
-     * 
-     * @param string $name
-     * 
-     * @return string $_name
+     * magic __get
+     * @name string $name
+     * @return mixed $value
      */
     public function __get($name){
         
-        $_name = filter_input(INPUT_POST, $name);
-        return $_name;
+        $value = filter_input(INPUT_POST, $name);
+        return $value;
     }
     
     

@@ -77,16 +77,11 @@
 
                 <?php
 
-                    //TODO: create echo table use 
-                    //      variable $cataloglist.
+                    $_cataloglists = Session::get( 'cataloglist' );
+                    $cataloglists = isset($_cataloglists)
+                            ? $_cataloglists
+                            : array();
 
-                    $cataloglists = Session::get( 'pagination' );
-
-                    //TODO This trash can be moved!!!
-                    $item = 1;
-                    
-                    
-                    
                     foreach ($cataloglists as $key=>$cataloglist):
                         
                 ?>
@@ -114,10 +109,9 @@
                         
                <?php
                         
-                    //TODO This trash can be moved!!! 
-                    if ($item >= 5) { echo "<br clear='both'/>"; $item = 1; } else { $item++; }
-                    
                     endforeach;
+                    
+                    if (Session::get( 'pagination' )) echo "<br clear=both /><p>Pagination</p>";
                 ?>
 
             </div>
