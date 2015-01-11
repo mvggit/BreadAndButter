@@ -2,6 +2,7 @@
 
 /* 
  * Class AuthControl.
+ * must be small refactoring
  */
 
 namespace Data\Control;
@@ -31,7 +32,7 @@ class Control {
         if (!empty( $this -> classname['action']) ) {
             $class = 'Data\Control\\' . ucfirst( $this->classname['action'] ) . ucfirst( "control" );
             $data = array_key_exists('do', $this -> classname)
-                        ? new $class( $this -> _db, $this->classname['action'], $this -> classname['do'] )
+                        ? new $class( $this -> _db, $this->classname['action'], $this -> classname )
                         : new $class( $this -> _db );
             $view = new View( $data -> view );            
         }

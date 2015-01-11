@@ -56,7 +56,7 @@
                     <?php
                         if (empty(Session::get('info'))) :
                     ?>
-                    <a href="?action=auth&do=login" class=\"link color_light_brown\">Войти</a>
+                    <a href="?action=auth&do=login" class="link color_light_brown">Войти</a>
                     <span class="separator">&nbsp;|&nbsp;</span>
                     <a href="?action=auth&do=registration" class="link color_light_pink">Зарегистрироваться</a>
                     
@@ -73,7 +73,7 @@
                 
                 <nav class="navbar-menu">
                     <ul class="list-unstyled list-inline">
-                        <li><a href="?action=catalog" class="btn btn-border-right active">Ассортимент</a></li>
+                        <li><a href="?action=catalog&do=group" class="btn btn-border-right active">Ассортимент</a></li>
                         <li><a href="?action=carts" class="btn btn-border-right active">Корзина</a></li>
                         <li><a href="?action=about" class="btn active">О магазине</a></li>                    
                     </ul>
@@ -85,10 +85,13 @@
 
                 <?php
 
-                    //CatalogGroup
-                
-                    $_cataloglists = Session::get( 'cataloglist' );
-                    $cataloglists = isset($_cataloglists)
+                    $_cataloglists = Session::search( 'cataloggroup' ) 
+                            ? Session::get( 'cataloggroup' )
+                            : Session::get( 'cataloglist' );
+                    
+                    //var_dump($_cataloglists);
+                    
+                    $cataloglists = is_array($_cataloglists)
                             ? $_cataloglists
                             : array();
 
@@ -104,22 +107,26 @@
                                 />
                             </span>
                             <span class="name">
-                                <h5>
+                                <a href="http://localhost/?action=catalog&do=list&group=<?php echo $cataloglist['title'];?>">
                                     <?php echo $cataloglist['title'];?>
-                                </h5>
+                                </a>
                             </span>
+                            <!--
                             <span class="short_description">
                                 <?php echo $cataloglist['description'];?>
                             </span>
                             <span class="price">
                                 
                             </span>
-                            
+                            !-->
                         </div>
                         
                <?php
                         
                     endforeach;
+                    
+                    Session::destroy( 'cataloglist' );
+                    Session::destroy( 'cataloggroup' );
                     
                     if (Session::get( 'pagination' )) echo "<br clear=both /><p>Pagination</p>";
                 ?>

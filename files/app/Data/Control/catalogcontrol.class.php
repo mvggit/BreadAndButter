@@ -2,7 +2,7 @@
 
 /* 
  * CatalogControl.
- * 
+ * must be refactoring
  */
 
 namespace Data\Control;
@@ -14,18 +14,20 @@ class CatalogControl {
     
     public $view;
        
-    public function __construct( $db, $object = 'catalog', $type = 'group', $pagination = true) {
+    public function __construct( $db, $object = 'catalog', $type = 'group', $pagination = false) {
         
-        $this->view = $this->ViewCatalog( $db, $object, $type, $pagination );
+        $this->view = array_key_exists('group', $type)
+                ? $this->ViewCatalog( $db, $object, $type['do'], $type['group'], $pagination )
+                : $this->ViewCatalog( $db, $object, $type['do'], $pagination );
         
     }
 
-    public function ViewCatalog( $db, $object, $type, $pagination ) {
+    public function ViewCatalog( $db, $object, $type, $group = '', $pagination = false ) {
         
         $PaginationCatalog = 'PaginationCatalog' . ucfirst($type);
         $Catalog = 'Catalog' . ucfirst($type);
         
-        $view = new ViewCatalog( $db, $object, 'catalog' );
+        $view = new ViewCatalog( $db, $object, 'catalog', $group );
         return $pagination
             ? $view -> $PaginationCatalog( )
             : $view -> $Catalog( );

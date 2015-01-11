@@ -5,6 +5,8 @@
  * Connection to MySQL 
  * class and implements methods
  * to escape data from Db.
+ * 
+  * must be refactoring
  */
 
 namespace Db;

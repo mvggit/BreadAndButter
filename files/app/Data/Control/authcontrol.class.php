@@ -2,9 +2,7 @@
 
 /* 
  * Class LoginControl.
- * is concrete product
- * Abstract Fabrics.
- * 
+ * must be refactoring
  */
 
 namespace Data\Control;
@@ -27,17 +25,17 @@ class AuthControl {
         
         if ($this->isSend()) {
         
-            $class = 'Data\Auth\\' . ucfirst( $type) . ucfirst( "control" );
+            $class = 'Data\Auth\\' . ucfirst( $type['do'] ) . ucfirst( "control" );
             $auth = new $class( $db );
             
-            if ($auth -> $type( $this->post )) {
+            if ($auth -> $type['do']( $this->post )) {
             
-                $type .= 'ed';
+                $type['do'] .= 'ed';
             }
             
         }
         
-        $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $object ."/". $type .".php";
+        $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $object ."/". $type['do'] .".php";
         
     }
 

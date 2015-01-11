@@ -3,7 +3,7 @@
 
 /**
  * Description of AddTocarts
- * 
+ * this class must be refactoring
  */
 
 namespace Data\Catalog;
@@ -13,10 +13,12 @@ class ViewCatalog {
     
     private $view = array();
     private $_db;
+    private $group;
     
-    public function __construct( $db, $object = 'catalog', $type = 'catalog', $pagination = true ) {
+    public function __construct( $db, $object = 'catalog', $type = 'catalog', $group = '', $pagination = true ) {
         
-        $this->_db = $db;
+        $this -> _db = $db;
+        $this -> group = $group;
         $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $object ."/". $type .".php";
     }
     
@@ -36,11 +38,13 @@ class ViewCatalog {
     private function makeCatalogList( $sort, $start = 0, $pagination_limit = 0) {
         
         return $this -> _db -> fetch( 
-                                $this -> _db -> select( 'idproduct as article,'
+                                $this -> _db -> select( 'product.idproduct as article,'
                                                       . 'nameproduct as title,'
                                                       . 'descproduct as description'
-                                                      , 'product'
-                                                      , '1'
+                                                      , 'product, storage, groupproduct'
+                                                      , 'namegroupproduct = \'' . $this -> group . '\' '
+                                                      . 'AND product.idproduct = storage.idproduct '
+                                                      . 'AND storage.idgroupproduct = groupproduct.idgroupproduct '
                                                       , 'title '.$sort
                                                       , (!empty($pagination_limit)) ? "$start, $pagination_limit" : ""
                                                       ) 
@@ -63,11 +67,12 @@ class ViewCatalog {
     private function makeCatalogGroup( $sort ) {
         
         return $this -> _db -> fetch( 
-                                $this -> _db -> select( 'idgroupproduct as group_article,'
-                                                      . 'namegroupproduct as group_title'
+                                $this -> _db -> select( 'idgroupproduct as article,'
+                                                      . 'namegroupproduct as title, '
+                                                      . 'descgroupproduct as description'
                                                       , 'groupproduct'
                                                       , '1'
-                                                      , 'group_title '.$sort
+                                                      , 'title '.$sort
                                                       , ""
                                                       ) 
                                  );        
