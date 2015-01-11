@@ -3,55 +3,58 @@
 /* 
  * Class CartsControl.
  * is concrete product
- * Abstract Fabrics.
- * 
  */
 
 namespace Data\Control;
 
 use Service\Check;
 use Service\Session;
+use Service\Get;
 
 use Data\Carts\ExtractFromCarts;
 
 class CartsControl {
+    use Check;
     
-    private $_Db;
+    public $_db;
     public $view = array();
-    public $data = array();
-    
-    //TODO: конструктор не должен содержать визуализации так, как
-    //      класс может быть инициализирован с/для вызовом методов.
+    public $cart;
     
     function __construct($db, $object = 'carts', $type = 'carts') {
         
-        $this -> _Db = $db;
-        Check::$_db = $db;
+        $this->_db = $db;
         
-        if (Check::checkHash() && Check::checkBlocked()) {
+        if ($hash = Session::get('info')) {
 
-            ;
+            $this -> cart = Get::get( 'identifiercarts', 'carts, auth', 'hash = \''.$hash.'\' AND auth.idauth = carts.idauth', $limit = 1);
+
         }
         
-        $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $object ."/". $type .".php";
+        $this -> view['filename'] = $this -> ViewCart( $object, $type);
+        Session::set( 'carts', $this->Extract() );
+
+    }
+
+    function ViewCart( $object = 'carts', $type = 'carts' ){
         
-        Session::set( 'carts', $this->extract() );
+        return dirname(__FILE__) . "/../../../../views/". $object ."/". $type .".php";
     }
     
-    function add($param = array()) {
+    function Add($param = array()) {
         
         new AddToCarts($param);
     }
     
-    function move($param = array()) {
+    function Move($param = array()) {
         
         new MoveFromCarts($param);
     }
 
-    function extract( $param = array() ) {
+    function Extract( $param = array() ) {
         
-        $carts = new ExtractFromCarts( $this->_Db );
-        return $carts -> extractListInstance( );
+        $carts = new ExtractFromCarts( $this->_db );
+        
+        return $carts -> ListInstance( $this -> cart );
     }
     
     

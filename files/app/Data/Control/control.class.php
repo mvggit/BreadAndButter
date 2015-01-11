@@ -2,11 +2,6 @@
 
 /* 
  * Class AuthControl.
- * Adapter pattern.
- * 
- * AuthControl adaptee
- * auth operation.
- * 
  */
 
 namespace Data\Control;
@@ -14,7 +9,7 @@ use View\View;
 
 class Control {
     
-    private $_Db;
+    private $_db;
     private $classname;
     
     /*
@@ -25,8 +20,8 @@ class Control {
     
     function __construct($db, $object) {
         
-        $this -> _Db = $db;
-        $this -> classname = $object; 
+        $this -> _db = $db;
+        $this -> classname = $object;
         
         $this -> loadClass();
     }
@@ -35,16 +30,20 @@ class Control {
         
         if (!empty( $this -> classname['action']) ) {
             $class = 'Data\Control\\' . ucfirst( $this->classname['action'] ) . ucfirst( "control" );
-            $data = new $class( $this -> _Db );
+            $data = array_key_exists('do', $this -> classname)
+                        ? new $class( $this -> _db, $this->classname['action'], $this -> classname['do'] )
+                        : new $class( $this -> _db );
             $view = new View( $data -> view );            
         }
         else {
             $view = new View( );
         }
         
-
         $view -> render(); 
+        
+        
     }
+    
     
     
 }

@@ -14,13 +14,21 @@ namespace Service;
  */
 trait Post {
     
+    protected $post;
+    
+    
+    function __construct() {
+        
+        $this -> post = &$_POST;
+    }
+    
     /**
      * isSend
      * @return boolean
      */
     public function isSend() {
         
-        return ($count = count($_POST)) ? $count : false;
+        return ($count = count( $this -> post )) ? $count : false;
     }
     
     /**

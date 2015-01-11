@@ -1,3 +1,9 @@
+<?php
+
+    namespace Main;
+    use Service\Session;
+    
+?>
 <!DOCTYPE html>
 <!--
     Open-source project to present skils in today.
@@ -32,9 +38,22 @@
             </section>
             <section class="nav-bar">
                 <nav class="navbar_link">
-                    <a href="?action=login" class="link color_light_brown">Войти</a>
+                    <?php
+                        if (empty(Session::get('info'))) :
+                    ?>
+                    <a href="?action=auth&do=login" class=\"link color_light_brown\">Войти</a>
                     <span class="separator">&nbsp;|&nbsp;</span>
-                    <a href="?action=registration" class="link color_light_pink">Зарегистрироваться</a>                
+                    <a href="?action=auth&do=registration" class="link color_light_pink">Зарегистрироваться</a>
+                    
+                    <?php
+                        else:
+                    ?>
+                    <span class="link color_light_brown"><?php echo Session::get('name')?></span>
+                    <span class="separator">&nbsp;|&nbsp;</span>
+                    <a href="?action=logout" class="link color_light_pink">Выйти</a>
+                    <?php
+                        endif;
+                    ?>
                 </nav>
                 
                 <nav class="navbar-menu">

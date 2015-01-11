@@ -16,13 +16,11 @@ use Service\Get;
 trait Check {
     use Get;
     
-    public static $_db;
+    //public static $_db;
     
     public function checkHash( $hash = '' ) {
         
-        Get :: $_db = self :: $_db;
-        $_hash = Get :: get('hash', 'auth', 'hash = \'' . $hash . '\'');
-        return ($_hash == $hash) ? true : false;
+        return (Get :: get('hash', 'auth', 'hash = \'' . $hash . '\'') == $hash) ? true : false;
         
         
     }

@@ -15,7 +15,7 @@ use Request\Request;
 
 final class App {
     
-    public static $_Db;
+    public static $_db;
     public static $_request;
     
     private static $instance;
@@ -29,7 +29,7 @@ final class App {
         self::$_request = &$_request->handle();
         
         Database::instance();
-        self::$_Db = Database::connection();
+        self::$_db = Database::connection();
     }
     
     public static function instance() {
@@ -47,7 +47,7 @@ final class App {
         try {
             
             self::instance();
-            new Control(self::$_Db, self::$_request);
+            new Control(self::$_db, self::$_request);
         } 
         catch (Exception $e){
             

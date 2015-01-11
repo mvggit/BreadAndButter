@@ -9,55 +9,52 @@
 
 namespace Data\Control;
 
+use Service\Session;
 use Service\Check;
-use Service\Post;
 use service\Create;
 
 
 class RegistrationControl {
     use Check;
-    use Post;
     use Create;
     
     public $view = array();
+    public $_db;
+            
+    function __construct( $db ) {
+  
+         $this -> _db = $db;
+
+        
+    }
     
-    function __construct($db, $object = 'registration', $type = 'registration') {
+    function registration( $form ) {
         
-        Check::$_db = $db;
-        Create::$_db = $db;
+        if (!Check::checkHash( md5($form['login'].$form['password']) ) && !Session::get('info')) {
 
-        if ($this->isSend()) {
-        
-            $hash = md5($this->login.$this->password);
+            $auth = array(
+                        'email'=>"'".$form['login']."'", 'password'=>"'".$form['password']."'",
+                        'hash'=>"'".md5($form['login'].$form['password'])."'", 'blocked'=>0
+                         );
+
+            $id = Create::create('auth', $auth);
+
+            $uin = array(
+                        'iduin' =>$id, 'nicname'=>"'".$form['nic']."'", 'fname'=>"'".$form['name']."'",
+                        'sname'=>"'".$form['so_name']."'", 'lname'=>"'".$form['last_name']."'"
+                         );                
+
+            Create::create('uin', $uin);
             
-            if (!Check::checkHash($hash)) {
-
-                $auth = array(
-                            'email'=>"'".$this->login."'", 
-                            'password'=>"'".$this->password."'",
-                            'hash'=>"'".md5($this->login.$this->password)."'",
-                            'blocked'=>0
-                             );
-
-                $id = Create::create('auth', $auth);
-                
-                $uin = array(
-                            'iduin' =>$id,
-                            'nicname'=>"'".$this->nic."'", 
-                            'fname'=>"'".$this->name."'",
-                            'sname'=>"'".$this->so_name."'",
-                            'lname'=>"'".$this->last_name."'"
-                             );                
-                
-                Create::create('uin', $uin);
-                
-                $object = $type = 'login';
-            }
+            Session::set('info', md5($form['login'].$form['password']));
+            Session::set('name', $form['login']);
             
+            return true;
         }
-        
-        $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $object ."/". $type .".php";        
+
+        return false;
     }
 
+ 
     
 }

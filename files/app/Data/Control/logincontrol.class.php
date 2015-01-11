@@ -9,39 +9,38 @@
 
 namespace Data\Control;
 
-//TODO Check actuality Session and Cookie classes here.
 use Service\Session;
 
 use Service\Check;
-use Service\Post;
 
 
 class LoginControl {
     use Check;
-    use Post;
     
-    public $view = array();
+    public $_db;
     
-    function __construct($db, $object = 'login', $type = 'login') {
+    function __construct( $db ) {
         
-        Check::$_db = $db;
+        $this -> _db = $db;
 
-        if ($this->isSend()) {
         
-            $hash = md5($this->login.$this->password);
-            
-            if (Check::checkHash($hash) && Check::checkBlocked($hash)) {
-
-                Session::set('info', $hash);
-                Session::set('name', $this->login);
-                
-                $type = 'logined';
-            }
-            
-        }
-            
-        $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $object ."/". $type .".php";
     }
 
-    
+    public function login( $form ){
+        
+        $hash = md5($form['login'].$form['password']);
+            
+        if (Check::checkHash($hash) && Check::checkBlocked($hash)) {
+
+            Session::set('info', $hash);
+            Session::set('name', $form['login']);
+
+            return true;
+
+        }
+
+        return false;
+        
+        
+    }
 }

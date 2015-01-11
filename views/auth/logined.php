@@ -41,14 +41,14 @@
                     <?php
                         if (empty(Session::get('info'))) :
                     ?>
-                    <a href=\"?action=login\" class=\"link color_light_brown\">Войти</a>
+                    <a href="?action=auth&do=login" class=\"link color_light_brown\">Войти</a>
                     <span class="separator">&nbsp;|&nbsp;</span>
-                    <a href="?action=registration" class="link color_light_pink">Зарегистрироваться</a>
+                    <a href="?action=auth&do=registration" class="link color_light_pink">Зарегистрироваться</a>
                     
                     <?php
                         else:
                     ?>
-                    <span class="link color_light_brown"><?php echo "Привет, ".substr(Session::get('name'), 0, strpos(Session::get('name'), "@"))?></span>
+                    <span class="link color_light_brown"><?php echo Session::get('name')?></span>
                     <span class="separator">&nbsp;|&nbsp;</span>
                     <a href="?action=logout" class="link color_light_pink">Выйти</a>
                     <?php

@@ -13,15 +13,15 @@ namespace Service;
 
 trait Get {
     
-    public static $_db;
+//    public static $_db;
     
     function get( $field, $from, $where, $limit = 1, $order = "true" ) {
         
-        $result = self :: $_db -> fetch(
-                self :: $_db -> select( $field, $from, $where , $order, $limit)
+        $result = $this -> _db -> fetch(
+                $this -> _db -> select( $field, $from, $where , $order, $limit)
         );
         
-        $return = empty($result[0]['hash']) ? false : $result[0]['hash'];
+        $return = empty($result[0][$field]) ? false : $result[0][$field];
     
         return $return;
     }    

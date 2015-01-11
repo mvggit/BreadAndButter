@@ -1,10 +1,7 @@
 <?php
 
 /* 
- * Class CatalogControl.
- * is concrete product
- * Abstract Fabrics
- * with builder.
+ * CatalogControl.
  * 
  */
 
@@ -15,22 +12,23 @@ use Data\Catalog\ViewCatalog;
 
 class CatalogControl {
     
-//    private $_db;
-    
     public $view;
        
-    public function __construct( $db, $object = 'catalog', $type = 'catalog', $pagination = true) {
+    public function __construct( $db, $object = 'catalog', $type = 'group', $pagination = true) {
         
         $this->view = $this->ViewCatalog( $db, $object, $type, $pagination );
+        
     }
 
     public function ViewCatalog( $db, $object, $type, $pagination ) {
         
-        //$pagination = false;
-        $view = new ViewCatalog( $db, $object, $type );
+        $PaginationCatalog = 'PaginationCatalog' . ucfirst($type);
+        $Catalog = 'Catalog' . ucfirst($type);
+        
+        $view = new ViewCatalog( $db, $object, 'catalog' );
         return $pagination
-            ? $view -> PaginationCatalogList( )
-            : $view -> CatalogList( );
+            ? $view -> $PaginationCatalog( )
+            : $view -> $Catalog( );
     }
 
     

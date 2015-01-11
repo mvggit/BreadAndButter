@@ -13,7 +13,7 @@ namespace Service;
 
 trait Create {
     
-    public static $_db;
+//    public static $_db;
     
 
     function create( $table, $params ) {
@@ -23,7 +23,7 @@ trait Create {
             throw new \Exception(' Undefined data to past in Db');
         }
         
-        $insert = self :: $_db -> run( self :: $_db -> insert( $table, $params));
+        $insert = $this -> _db -> run( $this -> _db -> insert( $table, $params));
         
         return $insert;        
     }

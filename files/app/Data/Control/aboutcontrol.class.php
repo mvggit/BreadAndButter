@@ -2,18 +2,10 @@
 
 /* 
  * Class LoginControl.
- * is concrete product
- * Abstract Fabrics.
  * 
  */
 
 namespace Data\Control;
-
-use Service\Session;
-use Service\Cookie;
-
-use Service\Check;
-use Service\Get;
 
 
 class AboutControl {

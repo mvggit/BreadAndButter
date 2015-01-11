@@ -47,7 +47,31 @@ class ViewCatalog {
                                  );        
         
     }
+
+    public function CatalogGroup( $sort = 'asc' ){
+        
+        Session::set( 'cataloggroup', $this -> makeCatalogGroup( $sort ) );
+        return $this->view;
+    }
     
     
+    public function PaginationCatalogGroup( $sort = "asc" ) {
+    
+        return $this->CatalogGroup();
+    }
+    
+    private function makeCatalogGroup( $sort ) {
+        
+        return $this -> _db -> fetch( 
+                                $this -> _db -> select( 'idgroupproduct as group_article,'
+                                                      . 'namegroupproduct as group_title'
+                                                      , 'groupproduct'
+                                                      , '1'
+                                                      , 'group_title '.$sort
+                                                      , ""
+                                                      ) 
+                                 );        
+        
+    }    
     
 }

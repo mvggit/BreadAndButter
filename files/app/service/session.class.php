@@ -27,7 +27,7 @@ class Session {
     
     public static function get( $name ){
         
-        return array_key_exists( $name, self::$session) ? self::$session[ $name ] : NULL;
+        return array_key_exists( $name, $_SESSION) ? $_SESSION[ $name ] : NULL;
     }
 
     /**
@@ -37,10 +37,12 @@ class Session {
      * 
      */    
     
-    static function set( $name, $value ) {
+    public static function set( $name, $value ) {
         
-        self::$session[ $name ] = $value;
+        $_SESSION[$name] = $value;
     }
     
-    
+    public static function destroy( $name ) {
+        unset($_SESSION[ $name ]);
+    }
 }
