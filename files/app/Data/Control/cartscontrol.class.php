@@ -2,19 +2,17 @@
 
 /* 
  * Class CartsControl.
- * is concrete product
  */
 
 namespace Data\Control;
 
-use Service\Check;
-use Service\Session;
 use Service\Get;
+use Service\Session;
 
 use Data\Carts\ExtractFromCarts;
 
 class CartsControl {
-    use Check;
+    use Get;
     
     public $_db;
     public $view = array();
@@ -42,20 +40,20 @@ class CartsControl {
     
     function Add($param = array()) {
         
-        new AddToCarts($param);
+//        new AddToCarts($param);
     }
     
     function Move($param = array()) {
         
-        new MoveFromCarts($param);
+//        new MoveFromCarts($param);
     }
 
     function Extract( $param = array() ) {
         
         $carts = new ExtractFromCarts( $this->_db );
-        
         return $carts -> ListInstance( $this -> cart );
     }
+
     
     
 }

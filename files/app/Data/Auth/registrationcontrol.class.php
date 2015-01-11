@@ -7,7 +7,7 @@
  * 
  */
 
-namespace Data\Control;
+namespace Data\Auth;
 
 use Service\Session;
 use Service\Check;
