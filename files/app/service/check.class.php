@@ -16,18 +16,17 @@ use Service\Get;
 trait Check {
     use Get;
     
-    //public static $_db;
-    
     public function checkHash( $hash = '' ) {
         
-        return (Get :: get('hash', 'auth', 'hash = \'' . $hash . '\'') == $hash) ? true : false;
+        $gethash = Get :: get('hash', 'auth', 'hash = \'' . $hash . '\'')[0]['hash'];
+        return ( $gethash == $hash) ? true : false;
         
         
     }
 
     public function checkBlocked( $hash = '' ) {
         
-        $blocked = Get :: get('blocked', 'auth', 'hash = \'' . $hash . '\'');
+        $blocked = Get :: get('blocked', 'auth', 'hash = \'' . $hash . '\'')[0]['blocked'];
         return $blocked ? false : true;
 
         

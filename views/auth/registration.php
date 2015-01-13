@@ -162,7 +162,7 @@
                         </div>
                         
                     </div>
-                    <a class="left carousel-control" href="?action=login" data-slide="prev"><img src="img/carousel/left.png" alt="" /></a>
+                    <a class="left carousel-control" href="?action=auth&do=login" data-slide="prev"><img src="img/carousel/left.png" alt="" /></a>
                 <!--    <a class="right carousel-control" href="#myCarousel" data-slide="next"><img src="img/carousel/right.png" alt="" /></a> !-->
                 </div>
             </div>

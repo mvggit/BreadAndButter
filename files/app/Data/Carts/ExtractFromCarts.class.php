@@ -7,14 +7,16 @@
 namespace Data\Carts;
 
 use Service\Session;
+use service\Get;
 
 class ExtractFromCarts {
+    use Get;
     
-    static private $db;
+    public $_db;
     
     function __construct($db) {
         
-        self::$db = $db;
+        $this -> _db = $db;
     }
     
     function OneInstance( $identifiercarts ) {
@@ -24,15 +26,14 @@ class ExtractFromCarts {
     
     function ListInstance( $identifiercarts, $limit = 20 ) {
         
-        return self::$db -> fetch( self::$db -> select( 'idproductincarts as article, '
-                                                       . '(select nameproduct from product where idproduct = idproductincarts) as title,'
-                                                        . '(select descproduct from product where idproduct = idproductincarts) as description,'
-                                                        . '(select priceproduct from product where idproduct = idproductincarts) as price'
-                                                        , 'carts'
-                                                        , 'identifiercarts = \''.$identifiercarts.'\''
-                                                        , 'idproductincarts ASC'
-                                                        , $limit 
-                                                       ) 
-                                 );
+        return Get::get( 'idproductincarts as article, '
+                       . '(select nameproduct from product where idproduct = idproductincarts) as title,'
+                       . '(select descproduct from product where idproduct = idproductincarts) as description,'
+                       . '(select priceproduct from product where idproduct = idproductincarts) as price'
+                       , 'carts'
+                       , 'identifiercarts = \''.$identifiercarts.'\''
+                       , 'idproductincarts ASC'
+                       , $limit 
+                        );
     }
 }

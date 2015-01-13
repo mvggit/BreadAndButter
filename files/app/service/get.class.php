@@ -15,16 +15,17 @@ trait Get {
     
 //    public static $_db;
     
-    function get( $field, $from, $where, $limit = 1, $order = "true" ) {
+    function get( $field, $from, $where, $order = "true", $limit = "" ) {
         
         $result = $this -> _db -> fetch(
                 $this -> _db -> select( $field, $from, $where , $order, $limit)
         );
         
-        $return = empty($result[0][$field]) ? false : $result[0][$field];
+        $return = empty($result) ? false : $result;
     
         return $return;
     }    
+
     
     
 }

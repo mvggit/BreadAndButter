@@ -85,11 +85,9 @@ class MySQLi implements DataBaseInterface {
         
         $this->MySQLi->query($method);
         
-        echo $this->MySQLi->error."<br />";
-        
         if ($this->MySQLi->errno) {
             
-            return false;
+            throw new Exception( $this->MySQLi->error."<br />" );
         }
         
         return empty($last_insert_id = $this->MySQLi->insert_id) ? true : $last_insert_id;

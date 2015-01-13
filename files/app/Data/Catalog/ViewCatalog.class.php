@@ -7,19 +7,24 @@
  */
 
 namespace Data\Catalog;
+
 use Service\Session;
+use Service\Get;
 
 class ViewCatalog {
+    use Get;
     
     private $view = array();
-    private $_db;
     private $group;
     
-    public function __construct( $db, $object = 'catalog', $type = 'catalog', $group = '', $pagination = true ) {
+    public $_db;    
+    
+    public function __construct( $db, $request = array(), $pagination = true ) {
         
         $this -> _db = $db;
-        $this -> group = $group;
-        $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $object ."/". $type .".php";
+        $this -> group = array_key_exists('group', $request) ? $request['group'] : 'group';
+        $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $request['action'] ."/catalog.php";
+
     }
     
     public function CatalogList( $sort = 'asc' ){
@@ -37,8 +42,7 @@ class ViewCatalog {
 
     private function makeCatalogList( $sort, $start = 0, $pagination_limit = 0) {
         
-        return $this -> _db -> fetch( 
-                                $this -> _db -> select( 'product.idproduct as article,'
+        return Get::get ( 'product.idproduct as article,'
                                                       . 'nameproduct as title,'
                                                       . 'descproduct as description'
                                                       , 'product, storage, groupproduct'
@@ -47,7 +51,6 @@ class ViewCatalog {
                                                       . 'AND storage.idgroupproduct = groupproduct.idgroupproduct '
                                                       , 'title '.$sort
                                                       , (!empty($pagination_limit)) ? "$start, $pagination_limit" : ""
-                                                      ) 
                                  );        
         
     }
@@ -66,17 +69,17 @@ class ViewCatalog {
     
     private function makeCatalogGroup( $sort ) {
         
-        return $this -> _db -> fetch( 
-                                $this -> _db -> select( 'idgroupproduct as article,'
+        return Get::get ( 'idgroupproduct as article,'
                                                       . 'namegroupproduct as title, '
                                                       . 'descgroupproduct as description'
                                                       , 'groupproduct'
                                                       , '1'
                                                       , 'title '.$sort
                                                       , ""
-                                                      ) 
                                  );        
         
     }    
+    
+    
     
 }

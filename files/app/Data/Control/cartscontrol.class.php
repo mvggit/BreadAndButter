@@ -24,7 +24,7 @@ class CartsControl {
         
         if ($hash = Session::get('info')) {
 
-            $this -> cart = Get::get( 'identifiercarts', 'carts, auth', 'hash = \''.$hash.'\' AND auth.idauth = carts.idauth', $limit = 1);
+            $this -> cart = Get::get( 'identifiercarts', 'carts, auth', 'hash = \''.$hash.'\' AND auth.idauth = carts.idauth', $limit = 1)[0]['identifiercarts'];
 
         }
         

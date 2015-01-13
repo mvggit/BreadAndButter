@@ -11,7 +11,7 @@ use View\View;
 class Control {
     
     private $_db;
-    private $classname;
+    private $requestcontents;
     
     /*
      * Control->__construct
@@ -19,25 +19,33 @@ class Control {
      * @param $type set views file
      */
     
-    function __construct($db, $object) {
+    function __construct($db, $request) {
         
         $this -> _db = $db;
-        $this -> classname = $object;
+        $this -> requestcontents = $request;
+        
+        
         
         $this -> loadClass();
     }
 
     function loadClass() {
         
-        if (!empty( $this -> classname['action']) ) {
-            $class = 'Data\Control\\' . ucfirst( $this->classname['action'] ) . ucfirst( "control" );
-            $data = array_key_exists('do', $this -> classname)
-                        ? new $class( $this -> _db, $this->classname['action'], $this -> classname )
+        if (!empty( $this -> requestcontents['action']) ) {
+            
+            $class = 'Data\Control\\' . ucfirst( $this -> requestcontents['action'] ) . ucfirst( "control" );
+            
+            $data = ( (int) count( $this -> requestcontents ) > 1 )
+                        ? new $class( $this -> _db, $this -> requestcontents )
                         : new $class( $this -> _db );
-            $view = new View( $data -> view );            
+            
+            $view = new View( $data -> view );
+            
         }
         else {
+            
             $view = new View( );
+            
         }
         
         $view -> render(); 

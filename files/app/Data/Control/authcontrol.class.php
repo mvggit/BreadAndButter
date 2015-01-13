@@ -18,24 +18,24 @@ class AuthControl {
     public $view = array();
     protected $_db;
     
-    function __construct($db, $object = 'login', $type = 'login') {
+    function __construct($db, $request = array()) {
         
         $this -> PostConstructor();
         $this ->_db = $db;
         
         if ($this->isSend()) {
         
-            $class = 'Data\Auth\\' . ucfirst( $type['do'] ) . ucfirst( "control" );
+            $class = 'Data\Auth\\' . ucfirst( $request['do'] ) . ucfirst( "control" );
             $auth = new $class( $db );
             
-            if ($auth -> $type['do']( $this->post )) {
+            if ($auth -> $request['do']( $this->post )) {
             
-                $type['do'] .= 'ed';
+                $request['do'] .= 'ed';
             }
             
         }
         
-        $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $object ."/". $type['do'] .".php";
+        $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $request['action'] ."/". $request['do'] .".php";
         
     }
 

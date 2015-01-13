@@ -109,7 +109,7 @@
                         
                     </div>
                 <!--    <a class="left carousel-control" href="#myCarousel" data-slide="prev"><img src="img/carousel/left.png" alt="" /></a> !-->
-                    <a class="right carousel-control" href="?action=registration" data-slide="next"><img src="img/carousel/right.png" alt="" /></a>
+                    <a class="right carousel-control" href="?action=auth&do=registration" data-slide="next"><img src="img/carousel/right.png" alt="" /></a>
                 </div>
             </div>
         </main>
