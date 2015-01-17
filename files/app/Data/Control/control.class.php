@@ -25,8 +25,10 @@ class Control {
         $this -> requestcontents = $request;
         
         
-        
         $this -> loadClass();
+        
+        
+        
     }
 
     function loadClass() {

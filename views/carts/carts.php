@@ -55,7 +55,7 @@
                 <nav class="navbar-menu">
                     <ul class="list-unstyled list-inline">
                         <li><a href="?action=catalog&do=group" class="btn btn-border-right active">Ассортимент</a></li>
-                        <li><a href="?action=carts" class="btn btn-border-right active">Корзина</a></li>
+                        <li><a href="?action=carts&do=extract" class="btn btn-border-right active">Корзина</a></li>
                         <li><a href="?action=about" class="btn active">О магазине</a></li>                    
                     </ul>
                 </nav>
@@ -77,9 +77,9 @@
                                 Наименование
                             </p>
                         </td>
-                        <td class="description">
+                        <td class="count">
                             <p>
-                                Описание
+                                Количество
                             </p>
                         </td>
                         <td class="price">
@@ -94,7 +94,10 @@
                         //TODO: create echo table use 
                         //      variable $cartslist.
 
-                        $cartslists = Session::get( 'carts' );
+                        $_cartslists = Session::get( 'carts' );
+                        $cartslists = empty($_cartslists) 
+                                ? array() 
+                                : $_cartslists;
 
 
                         foreach ($cartslists as $cartslist):
@@ -113,12 +116,12 @@
                             </td>
                             <td class="description">
                                 <?php
-                                    echo $cartslist['description'];
+                                    echo $cartslist['count'];
                                 ?>
                             </td>
                             <td class="price">
                                 <?php
-                                    echo $cartslist['price'];
+                                    echo round($cartslist['price'], 2);
                                 ?>
                             </td>
                         </tr>

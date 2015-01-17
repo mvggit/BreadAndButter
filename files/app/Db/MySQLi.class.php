@@ -6,7 +6,7 @@
  * class and implements methods
  * to escape data from Db.
  * 
-  * must be refactoring
+  * Trash code must be refactoring
  */
 
 namespace Db;
@@ -38,7 +38,7 @@ class MySQLi implements DataBaseInterface {
         $sql .= (!empty($sql) && $orderby) ? " ORDER BY $orderby " : "";
         $sql .= (!empty($sql) && $limit) ? " LIMIT $limit" : "";
         
-        //echo $sql;
+        //echo $sql . "<br /><br />";
         
         return $sql;
     }
@@ -60,6 +60,12 @@ class MySQLi implements DataBaseInterface {
         
         return $sql = "UPDATE $table SET $itemstoset WHERE $where";
     }
+
+    function delete( $table, $where = 1 ) {
+        
+        return $sql = "DELETE FROM $table WHERE $where";
+    }
+    
     
     function fetch( $method ) {
         
@@ -83,11 +89,13 @@ class MySQLi implements DataBaseInterface {
     
     function run( $method ) {
         
+        //echo $method;
+        
         $this->MySQLi->query($method);
         
         if ($this->MySQLi->errno) {
             
-            throw new Exception( $this->MySQLi->error."<br />" );
+            throw new \Exception( $this->MySQLi->error."<br />" );
         }
         
         return empty($last_insert_id = $this->MySQLi->insert_id) ? true : $last_insert_id;

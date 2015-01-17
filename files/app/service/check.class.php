@@ -11,10 +11,8 @@
  */
 
 namespace Service;
-use Service\Get;
 
 trait Check {
-    use Get;
     
     public function checkHash( $hash = '' ) {
         

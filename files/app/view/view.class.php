@@ -40,7 +40,7 @@ class View {
         
         if ( empty($view = $this->makeView()) ) {
             
-            throw new Exception("Ошибка чтения шаблона");
+            throw new \Exception("Ошибка чтения шаблона");
             
             
         } else {

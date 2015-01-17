@@ -2,8 +2,6 @@
 
 /* 
  * Class LoginControl.
- * is concrete product
- * Abstract Fabrics.
  * 
  */
 
@@ -12,10 +10,12 @@ namespace Data\Auth;
 use Service\Session;
 
 use Service\Check;
+use Service\Get;
 
 
 class LoginControl {
     use Check;
+    use Get;
     
     public $_db;
     

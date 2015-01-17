@@ -13,9 +13,6 @@ namespace Service;
 
 trait Create {
     
-//    public static $_db;
-    
-
     function create( $table, $params ) {
         
         if (empty($params)) {

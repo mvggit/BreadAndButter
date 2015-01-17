@@ -9,6 +9,8 @@ namespace Data\Control;
 use Service\Get;
 use Service\Session;
 
+use Data\Carts\AddToCarts;
+use Data\Carts\MoveFromCarts;
 use Data\Carts\ExtractFromCarts;
 
 class CartsControl {
@@ -16,9 +18,9 @@ class CartsControl {
     
     public $_db;
     public $view = array();
-    public $cart;
+    public $cart = NULL;
     
-    function __construct($db, $object = 'carts', $type = 'carts') {
+    public function __construct($db, $request) {
         
         $this->_db = $db;
         
@@ -28,30 +30,58 @@ class CartsControl {
 
         }
         
-        $this -> view['filename'] = $this -> ViewCart( $object, $type);
-        Session::set( 'carts', $this->Extract() );
+        $this -> $request['do']( $request );
 
     }
 
-    function ViewCart( $object = 'carts', $type = 'carts' ){
+    private function ViewCart( $request ){
         
-        return dirname(__FILE__) . "/../../../../views/". $object ."/". $type .".php";
+        $catalog = $filename = ($request['action'] !== NULL) ? $request['action'] : 'null';
+        return ($this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $catalog ."/". $filename .".php");
     }
     
-    function Add($param = array()) {
+    protected function Add( $request ) {
         
-//        new AddToCarts($param);
+        new AddToCarts( $this->_db, $request['param'] );
+        Session::set(
+                'countproducts', 
+                Get::get( 
+                        'countincarts', 
+                        'carts', 
+                        'idproductincarts = '. $request['param'][3] . ' '
+                        . 'AND identifiercarts = \''. $request['param'][1] . '\''
+                        . '', $limit = 1)[0]['countincarts']
+                );
+        
+        $this -> ViewCart( NULL );
+        
     }
     
-    function Move($param = array()) {
+    protected function Move( $request ) {
         
-//        new MoveFromCarts($param);
+        new MoveFromCarts( $this->_db, $request['param'] );
+        Session::set(
+                'countproducts', 
+                Get::get( 
+                        'countincarts', 
+                        'carts', 
+                        'idproductincarts = '. $request['param'][3] . ' '
+                        . 'AND identifiercarts = \''. $request['param'][1] . '\''
+                        . '', $limit = 1)[0]['countincarts']
+                );
+        
+        $this -> ViewCart( NULL );
+                
     }
 
-    function Extract( $param = array() ) {
+    protected function Extract( $request ) {
         
-        $carts = new ExtractFromCarts( $this->_db );
-        return $carts -> ListInstance( $this -> cart );
+        $Extract = new ExtractFromCarts( $this->_db );
+        Session::set( 'carts', $Extract -> ListInstance( $this -> cart ) );
+        
+        $this -> ViewCart( $request );
+        
+        return true;
     }
 
     

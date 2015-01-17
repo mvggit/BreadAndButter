@@ -11,11 +11,13 @@ namespace Data\Auth;
 
 use Service\Session;
 use Service\Check;
+use Service\Get;
 use service\Create;
 
 
 class RegistrationControl {
     use Check;
+    use Get;
     use Create;
     
     public $view = array();

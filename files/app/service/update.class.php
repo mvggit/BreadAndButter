@@ -1,29 +1,25 @@
 <?php
 
 /* 
- * Class Create.
- * Adaptee class.
- * 
- * Functionality:
- * Create implements operation's
- * past information in auth Db.
+ * Class Update.
  */
 
 namespace Service;
 
 trait Update {
     
-    private $_db;
-    
-    static function updateAuth( ) {
+    function set( $table, $params, $where ) {
         
+        if (empty($params)) {
+            
+            throw new \Exception(' Undefined data to past in Db');
+        }
         
-    }
-    
-    static function updateDelivery( ) {
+        $update = $this -> _db -> run( $this -> _db -> update( $table, $params, $where ));
         
-        
-    }
+        return $update;        
+    }    
+
     
     
 }

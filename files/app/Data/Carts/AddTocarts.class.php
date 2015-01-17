@@ -2,61 +2,64 @@
 
 
 /**
- * Description of AddTocarts
- * 
+ * AddTocarts
+ * must be refactoring
  */
 
 namespace Data\Carts;
 
+use Service\Create;
+use Service\Get;
+use Service\Update;
+
 class AddToCarts {
+    use Create;
+    use Update;
+    use Get;
     
-    private static $_Db;
+    public $_db;
     
-    function __construct( $db ) {
+    function __construct( $db, $request ) {
         
-        self::$_Db = $db;
+        $this -> _db = $db;
+        $this -> {"add" . $request[0]}( $request );
     }
     
-    // $id, $product, $storage, $count, $price, $stored = 0, $date = "now()"
-    
-    function addOneElement( array $params ) {
+    function addOne( array $param ) {
+
+        if ( empty($param) || (count($param) < 4) )
+            return false;
         
-        self::$_Db -> fetch( self::$_Db -> select( "INSERT INTO carts VALUE ( ".$params['id']. ",
-                                                                            " .$params['product'] .", 
-                                                                            " .$params['idstorage'] .", 
-                                                                            " .$params['count'] .", 
-                                                                            " .$params['price'] .", 
-                                                                            " .$params['storedcarts'] .", 
-                                                                            " .$params['$date'] .", 
-                                                                            )" ) );
+        $count = ($count = Get::get( 'countincarts', 'carts', 'idproductincarts = '. $param[3] . ' AND identifiercarts = \''. $param[1] . '\'', $limit = 1)[0]['countincarts']) ? $count : 0;
+        
+        if ( !$count ) {
+            
+            $element['idauth'] = $param[2];
+            $element['identifiercarts'] = "'".$param[1]."'";
+            $element['idproductincarts'] = $param[3]; 
+            $element['idstorageincarts'] = Get::get( 'idstorage', 'storage', 'idproduct = '.$param[3], $limit = 1)[0]['idstorage'];
+            $element['countincarts'] = $count + 1;
+            $element['priceincarts'] = Get::get( 'priceproduct', 'product', 'idproduct = '.$param[3], $limit = 1)[0]['priceproduct'];
+            $element['storedcarts'] = '0';
+            $element['savedate'] = 'now()';
+            
+            Create::create( 'carts', $element );
+            
+        } else {
+
+            $element['countincarts'] = $count + 1;
+            Update::set( 'carts', $element, 'idauth = '. $param[2] .' AND idproductincarts = '. $param[3] . ' AND identifiercarts = \''. $param[1] . '\'' );
+            
+        }
+        
         
     }
 
-    
-    // ТУДУ: модифицировать трешэвое решение в addListElement
-    
-    function addListElement( $params ) {
+    function addList( array $param ) {
         
-        $p = "";
-        
-        foreach ( $params as $param ) {
-            
-           $p .= "(" . $param['id'] . ", "
-                     . $param['product'] . ", "
-                     . $param['idstorage'] . ", "
-                     . $param['count'] . ", "
-                     . $param['price'] . ", "
-                     . $param['storedcarts'] . ", "
-                     . $param['date'] . 
-                 ")";
-           
-           (current($p) == end($p)) ? $p .= ", " : false;
-        
-        };
-        
-        self::$_Db -> fetch( self::$_Db -> select( "INSERT INTO carts VALUES $p" ) );
-        
+        ;
     }    
+
 
     
 }

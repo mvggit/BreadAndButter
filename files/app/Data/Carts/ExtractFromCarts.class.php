@@ -1,39 +1,49 @@
 <?php
 
 /**
- * Description of ExtractFromCarts
+ * ExtractFromCarts
  */
 
 namespace Data\Carts;
 
+use Service\Get;
 use Service\Session;
-use service\Get;
 
 class ExtractFromCarts {
     use Get;
     
     public $_db;
     
-    function __construct($db) {
+    public function __construct( $db ) {
         
         $this -> _db = $db;
     }
     
-    function OneInstance( $identifiercarts ) {
+    public function OneInstance( $identifiercarts ) {
         
-        return $this->ListInstance($identifiercarts, 1);
+        return $this->MakeInstance($identifiercarts, 1);
     }
     
-    function ListInstance( $identifiercarts, $limit = 20 ) {
+    public function ListInstance( $identifiercarts, $limit = '' ) {
         
+        return $this->MakeInstance($identifiercarts, '');
+    }
+    
+    private function MakeInstance( $identifiercarts, $limit ){
+
         return Get::get( 'idproductincarts as article, '
                        . '(select nameproduct from product where idproduct = idproductincarts) as title,'
-                       . '(select descproduct from product where idproduct = idproductincarts) as description,'
-                       . '(select priceproduct from product where idproduct = idproductincarts) as price'
+                       . 'countincarts as count,'
+                       . 'priceincarts as price'
                        , 'carts'
                        , 'identifiercarts = \''.$identifiercarts.'\''
                        , 'idproductincarts ASC'
                        , $limit 
-                        );
+                    );
+        
+        
     }
+    
+    
+    
 }
