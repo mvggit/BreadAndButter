@@ -23,7 +23,7 @@ class ViewCatalog {
         
         $this -> _db = $db;
         $this -> group = array_key_exists('group', $request) ? $request['group'] : 'group';
-        $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $request['action'] ."/catalog.php";
+        $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $request['action'] ."/". $request['do'] .".php";
 
     }
     
@@ -43,15 +43,16 @@ class ViewCatalog {
     private function makeCatalogList( $sort, $start = 0, $pagination_limit = 0) {
         
         return Get::get ( 'product.idproduct as article,'
-                                                      . 'nameproduct as title,'
-                                                      . 'descproduct as description'
-                                                      , 'product, storage, groupproduct'
-                                                      , 'namegroupproduct = \'' . $this -> group . '\' '
-                                                      . 'AND product.idproduct = storage.idproduct '
-                                                      . 'AND storage.idgroupproduct = groupproduct.idgroupproduct '
-                                                      , 'title '.$sort
-                                                      , (!empty($pagination_limit)) ? "$start, $pagination_limit" : ""
-                                 );        
+                          . 'nameproduct as title,'
+                          . 'namegroupproduct as namegroup,'
+                          . 'descproduct as description'
+                          , 'product, storage, groupproduct'
+                          , 'namegroupproduct = \'' . $this -> group . '\' '
+                          . 'AND product.idproduct = storage.idproduct '
+                          . 'AND storage.idgroupproduct = groupproduct.idgroupproduct '
+                          , 'title '.$sort
+                          , (!empty($pagination_limit)) ? "$start, $pagination_limit" : ""
+                        );        
         
     }
 

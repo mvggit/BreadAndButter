@@ -35,7 +35,7 @@
                 
                 margin:20px;
                 
-                border: solid 1px #000;
+                border: solid 0px #000;
             }
             
             .productimage {
@@ -101,7 +101,7 @@
                 
                         <div class="product">
                             <span class="icon">
-                                <img src="<?php echo "../img/product/rye//".$cataloglist['title'].".png";?>" 
+                                <img src="<?php echo "../img/product/".$cataloglist['namegroup']."/".$cataloglist['title'].".png";?>" 
                                      alt="<?php echo $cataloglist['title'];?>"
                                      class="productimage"
                                 />
@@ -111,14 +111,6 @@
                                     <?php echo $cataloglist['title'];?>
                                 </a>
                             </span>
-                            <!--
-                            <span class="short_description">
-                                <?php echo $cataloglist['description'];?>
-                            </span>
-                            <span class="price">
-                                
-                            </span>
-                            !-->
                         </div>
                         
                <?php
@@ -127,8 +119,6 @@
                     
                     Session::destroy( 'cataloglist' );
                     Session::destroy( 'cataloggroup' );
-                    
-                    if (Session::get( 'pagination' )) echo "<br clear=both /><p>Pagination</p>";
                 ?>
 
             </div>
