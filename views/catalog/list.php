@@ -23,24 +23,92 @@
         <link rel="stylesheet" href="./css/layout.css" />
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            $( document ).ready( function(){
+                $('.add').click( function(){
+                    $.ajax({
+                        type: "GET",
+                        url: "localhost/?action=carts&do=add",
+                        data: { param[]: 'One', param[]: 1},
+                        .done( function( data ) {
+                            $(this).attr('style') = { 
+                                                        line-height: 1.9; 
+                                                        font-size: 12;
+                                                    }
+                            $(this).html = 10;
+                        });
+                    });
+                } );
+            } );
+        </script>
         
         <style type="text/css">
             
             .product {
-                width: 120px;
-                height: 120px;
+                width: 260px;
+                height: 125px;
                 
                 float: left;
                 
                 margin:20px;
                 
-                border: solid 0px #000;
+                border-right: solid 1px #eee;
+            }
+            
+            .icon {
+                width: 120px;
+                height:120px;
+                
+                float: left;
+                
+                margin: 5px;
             }
             
             .productimage {
                 width:95%;
                 margin:2.5%;
+            }
+            
+            .name, .price {
+                width: 110px;
+                height:50px;
+                
+                display: block;
+                
+                float: left;
+                
+                margin: 5px;
+            }
+            
+            .price {
+                height: 20px;
+                padding-left: 5px;
+
+                color:white;
+                background-color: #db935b;
+
+            }
+            
+            .add {
+                height: 30px;
+                width: 30px;
+                
+                margin: -5px 10px auto auto;
+                padding: 0 auto 5px auto;
+                
+                float: right;
+                
+                background-color: #0e0;
+                
+                border-radius: 15px;
+                
+                font-weight: bold;
+                font-size: 24pt;
+                line-height: 0.955;
+                
+                text-align: center;
+                
+                cursor: pointer;
             }
         </style>
     </head>
@@ -110,6 +178,12 @@
                                 <a href="http://localhost/?action=catalog&do=list&group=<?php echo $cataloglist['title'];?>">
                                     <?php echo $cataloglist['title'];?>
                                 </a>
+                            </span>
+                            <span class="price">
+                                <?php echo $cataloglist['price'];?> грн
+                                <span class="add">
+                                    +
+                                </span>
                             </span>
                         </div>
                         
