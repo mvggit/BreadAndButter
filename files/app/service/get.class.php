@@ -2,20 +2,16 @@
 
 /* 
  * Class Get.
- * Adaptee class.
- * 
- * Functionality :
- * class to get information from Db 
- * on authorization section
+ * think about this class
  */
 
 namespace Service;
 
 trait Get {
     
-//    public static $_db;
-    
     function get( $field, $from, $where, $order = "true", $limit = "" ) {
+        
+        //TODO: think about check function param
         
         $result = $this -> _db -> fetch(
                 $this -> _db -> select( $field, $from, $where , $order, $limit)

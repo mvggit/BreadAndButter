@@ -32,6 +32,8 @@ class AddToCarts {
         
         $count = ($count = Get::get( 'countincarts', 'carts', 'idproductincarts = '. $param[3] . ' AND identifiercarts = \''. $param[1] . '\'', $limit = 1)[0]['countincarts']) ? $count : 0;
         
+        //TODO: things to create query generator. 
+        
         if ( !$count ) {
             
             $element['idauth'] = $param[2];

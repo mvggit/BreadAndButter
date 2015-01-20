@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * Класс реализующий интерфейс вывода страницы
+ * View класс реализующий интерфейс вывода страницы
  * html в браузер.
  */
 
@@ -32,7 +32,6 @@ class View {
         include_once $this->filename;
         
         return ob_get_clean();
-
         
     }
     
@@ -42,16 +41,15 @@ class View {
             
             throw new \Exception("Ошибка чтения шаблона");
             
-            
         } else {
             
             echo $view;
-            
-            
+                    
         }
         
         
     }    
     
+
     
 }

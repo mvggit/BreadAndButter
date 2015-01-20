@@ -2,11 +2,6 @@
 
 /**
  * Class Cookie
- * service class
- * implements functions
- * for _COOKIE 
- * connetctions
- * 
  */
 
 namespace Service;
@@ -23,9 +18,9 @@ trait Cookie {
      * 
      */
     
-    static function get( $param ) {
+    static function get( $cookie ) {
         
-        return array_key_exists( $param, self::$cookie ) ? self::$cookie[ $param ] : NULL;
+        return array_key_exists( $cookie, $_COOKIE ) ? $_COOKIE[ $cookie ] : NULL;
     }
 
     /**
@@ -37,6 +32,7 @@ trait Cookie {
     
     static function set( $name, $value ) {
         
+        //TODO: use function setcookie
         return self::$cookie[$name] = $value;
     }
 

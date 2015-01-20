@@ -2,14 +2,6 @@
 
 /* 
  * Request class.
- * 
- * Parse data request from browser.
- * 
- * namespace Main\Request as Request;
- * 
- * @var $_request array(array('request param'=>'request value');
- * 
- * @method public handle dump request url;
  */
 
 namespace Request;
@@ -36,4 +28,5 @@ class Request {
     }
 
 
+    
 }

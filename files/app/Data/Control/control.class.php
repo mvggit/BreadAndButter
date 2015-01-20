@@ -15,8 +15,8 @@ class Control {
     
     /*
      * Control->__construct
-     * @param $object set views folder.
-     * @param $type set views file
+     * @param $db link to database connection.
+     * @param $request link to get request param
      */
     
     function __construct($db, $request) {

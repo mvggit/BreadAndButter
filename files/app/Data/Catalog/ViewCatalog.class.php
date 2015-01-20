@@ -26,6 +26,9 @@ class ViewCatalog {
         $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $request['action'] ."/". $request['do'] .".php";
 
     }
+
+    
+    //TODO: create addition class to pagination and make function's
     
     public function CatalogList( $sort = 'asc' ){
         

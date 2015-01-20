@@ -2,12 +2,12 @@
 
 /**
  * ExtractFromCarts
+ * must refactoring
  */
 
 namespace Data\Carts;
 
 use Service\Get;
-use Service\Session;
 
 class ExtractFromCarts {
     use Get;
@@ -18,6 +18,8 @@ class ExtractFromCarts {
         
         $this -> _db = $db;
     }
+    
+    //TODO: think about this class
     
     public function OneInstance( $identifiercarts ) {
         

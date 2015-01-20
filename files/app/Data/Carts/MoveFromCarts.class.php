@@ -12,6 +12,7 @@ use Service\Delete;
 use Service\Get;
 use Service\Update;
 
+
 class MoveFromCarts {
     use Delete;
     use Update;
@@ -19,16 +20,18 @@ class MoveFromCarts {
     
     public $_db;
     
-    function __construct( $db, $request ) {
+    public function __construct( $db, $request ) {
         
         $this -> _db = $db;
         $this -> {"move" . $request[0]}( $request );
     }
     
-    function moveOne( array $param ) {
+    public function moveOne( array $param ) {
 
         if ( empty($param) || (count($param) < 4) )
             return false;
+
+        //TODO: find another method
         
         $count = ($count = Get::get( 'countincarts', 'carts', 'idproductincarts = '. $param[3] . ' AND identifiercarts = \''. $param[1] . '\'', $limit = 1)[0]['countincarts']) ? $count : 0;
         $count -= 1;
@@ -48,10 +51,11 @@ class MoveFromCarts {
     }
 
     
-    function moveList( array $param ) {
+    public function moveList( array $param ) {
         
         ;
     }    
 
+    
     
 }

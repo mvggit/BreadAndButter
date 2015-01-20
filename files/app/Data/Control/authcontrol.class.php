@@ -2,7 +2,6 @@
 
 /* 
  * Class LoginControl.
- * must be refactoring
  */
 
 namespace Data\Control;

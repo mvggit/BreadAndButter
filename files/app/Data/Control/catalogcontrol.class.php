@@ -3,6 +3,10 @@
 /* 
  * CatalogControl.
  * must be refactoring
+ * 
+ * Pagination is the class questions!
+ * think to make anothe configuration's
+ * in class.
  */
 
 namespace Data\Control;

@@ -10,6 +10,7 @@
 
 
 namespace Db;
+
 use Db\MySQLi;
 use Db\PDO;
 

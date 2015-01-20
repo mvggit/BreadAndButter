@@ -18,7 +18,7 @@ trait ImplodeArray {
         $string[] = implode(',', array_values($array));
     }
     
-    // Implode assoc array use paattern type $value1 $pattern $value2
+    // Сомневаюсь в дизайне кода этой функции
     
     function implplodeAssocArrayWithPattern( $array, &$string, $pattern = '', $separator = ',' ) {
         

@@ -2,7 +2,8 @@
 
 /* 
  * Class LoginControl.
- * 
+ * Things to create makeView class
+ * who's create html's file path.
  */
 
 namespace Data\Control;

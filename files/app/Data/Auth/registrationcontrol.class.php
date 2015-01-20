@@ -1,10 +1,8 @@
 <?php
 
 /* 
- * Class LoginControl.
- * is concrete product
- * Abstract Fabrics.
- * 
+ * Class RegistrationControl.
+ * must refactoring.
  */
 
 namespace Data\Auth;
@@ -34,16 +32,20 @@ class RegistrationControl {
         
         if (!Check::checkHash( md5($form['login'].$form['password']) ) && !Session::get('info')) {
 
+            //TODO: add validation form array's
+            
             $auth = array(
-                        'email'=>"'".$form['login']."'", 'password'=>"'".$form['password']."'",
-                        'hash'=>"'".md5($form['login'].$form['password'])."'", 'blocked'=>0
+                        'email' => "'".$form['login']."'", 'password' => "'".$form['password']."'",
+                        'hash' => "'".md5($form['login'].$form['password'])."'", 'blocked' => 0
                          );
 
             $id = Create::create('auth', $auth);
 
+            //TODO: add validation form array's
+            
             $uin = array(
-                        'iduin' =>$id, 'nicname'=>"'".$form['nic']."'", 'fname'=>"'".$form['name']."'",
-                        'sname'=>"'".$form['so_name']."'", 'lname'=>"'".$form['last_name']."'"
+                        'iduin' => $id, 'nicname' => "'".$form['nic']."'", 'fname' => "'".$form['name']."'",
+                        'sname' => "'".$form['so_name']."'", 'lname' => "'".$form['last_name']."'"
                          );                
 
             Create::create('uin', $uin);

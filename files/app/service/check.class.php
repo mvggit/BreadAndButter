@@ -2,12 +2,6 @@
 
 /* 
  * Class Check.
- * Adaptee class.
- * 
- * Functionality:
- * Check implements operation's
- * check information in auth Db.
- * 
  */
 
 namespace Service;
@@ -19,7 +13,6 @@ trait Check {
         $gethash = Get :: get('hash', 'auth', 'hash = \'' . $hash . '\'')[0]['hash'];
         return ( $gethash == $hash) ? true : false;
         
-        
     }
 
     public function checkBlocked( $hash = '' ) {
@@ -27,8 +20,8 @@ trait Check {
         $blocked = Get :: get('blocked', 'auth', 'hash = \'' . $hash . '\'')[0]['blocked'];
         return $blocked ? false : true;
 
-        
     }    
+
     
     
 }
