@@ -23,11 +23,59 @@
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script>
-            $(document).ready(function(){
-                $("#myCarousel").carousel();
-            });
-        </script>
+        <style type="text/css">
+            .authorization, .registration {
+
+                width: 45%;
+                margin: 7% 0 0 4%;
+
+                float:right;
+            }
+
+            .registration h1 {
+
+                font-weight: normal;
+                margin-bottom: 30px;
+            }
+
+            .registration .field, .registration .send {
+
+                width: 100%;
+                display: block;
+
+                margin-top: 15px;
+
+            }
+
+            .registration .send {
+
+                margin: 10% 0 0 10%;
+            }
+
+            .registration .field label {
+
+                font-weight: normal;
+            }
+
+            .registration .field input {
+
+                width: 70%;
+            }
+
+            .authorization .link {
+
+                width: 100px;
+                height: 200px;
+                
+                float:left;
+
+                display: block;
+                
+                margin: 5.8% 0 0 25%;
+                
+                text-align: center;
+            }            
+        </style>
     </head>
     <body>
         <header>
@@ -66,106 +114,77 @@
         </header>
         <main>
             <div class="container">
-                <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-        
-                        <div class="item active">
-                            &nbsp;
-                            <div class="carousel-caption">
-                                <form action="" method="post" style="height:400px; overflow-y:scroll">
-                                    <h3>
-                                        Введите контактную <br />информацию:
-                                    </h3>
-                                    <br /><br />
-                                    <table>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    Имя пользователя:
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <input type="text" name="login" />
-                                            </td>
-                                        </tr>
-                                        <tr><td>&nbsp;</td></tr>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    Пароль:
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <input type="password" name="password"/>
-                                            </td>
-                                        </tr>                                    
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    Повторите пароль:
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <input type="password" name="reply-password"/>
-                                            </td>
-                                        </tr>
-
-                                        <tr><td>&nbsp;</td></tr>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    Отображаемое имя:
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <input type="text" name="nic"/>
-                                            </td>
-                                        </tr>                                    
-                                        
-                                        <tr><td>&nbsp;</td></tr>                                        
-                                        
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    Имя:
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <input type="text" name="name"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    Фамилия:
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <input type="text" name="so_name"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    Отчество:
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <input type="text" name="last_name"/>
-                                            </td>
-                                        </tr>
-                                        
-                                    </table>
-                                    <span class="caption-button"><input type="image" src="img/main/more_button.png" alt="" /></span>
-                                </form>
-                            </div>
-                        </div>
+                <div class="registration">
+                    <form action="" method="post">
+                        <h1>
+                            Регистрационная информация:
+                        </h1>
+                        <span class="field">
+                            <label>
+                                Имя пользователя:
+                            </label>
+                            <br />
+                            <input type="text" name="login" />
+                        </span>
+                        <span class="field">
+                            <label>
+                                Пароль:
+                            </label>
+                            <br />
+                            <input type="password" name="password"/>
+                        </span>
+                        <span class="field">
+                            <label>
+                                Повторите пароль:
+                            </label>
+                            <br />
+                            <input type="password" name="reply-password"/>
+                        </span>
+                        <br />
+                        <span class="field">
+                            <label>
+                                Отображаемое имя:
+                            </label>
+                            <br />                            
+                            <input type="text" name="nic"/>
+                        </span>
+                        <br />
+                        <span class="field">
+                            <label>
+                                Имя:
+                            </label>
+                            <br />
+                            <input type="text" name="name"/>
+                        </span>
+                        <span class="field">
+                            <label>
+                                Фамилия:
+                            </label>
+                            <br />
+                            <input type="text" name="so_name"/>
+                        </span>
+                        <span class="field">
+                            <label>
+                                Отчество:
+                            </label>
+                            <br />
+                            <input type="text" name="last_name"/>
+                        </span>
                         
-                    </div>
-                    <a class="left carousel-control" href="?action=auth&do=login" data-slide="prev"><img src="img/carousel/left.png" alt="" /></a>
-                <!--    <a class="right carousel-control" href="#myCarousel" data-slide="next"><img src="img/carousel/right.png" alt="" /></a> !-->
+                        <span class="send">
+                            <input type="image" src="img/main/registration_button.png" alt="" />
+                        </span>
+                    </form>                        
                 </div>
-            </div>
+                
+                <div class="authorization">                    
+                    <span class="link">
+                        <a class="underline" href="?action=auth&do=authorization">Войти</a>
+                        <br />
+                        <a style="display: block; margin-top: 15px;" href="?action=auth&do=login"><img src="img/carousel/left.png" alt="" /></a>
+                    </span>
+                </div>
+            </div>                
         </main>
         <footer>
             <ul class="list-unstyled">

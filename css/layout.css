@@ -1,16 +1,11 @@
-/*
-    GPL licence.
-*/
 /* 
     Created on : 25.02.2014, 14:01:06
     Author     : Максим
 */
 
-
 /**
 * Body block
 */
-
 
 body
 {
@@ -21,6 +16,7 @@ a, a:hover
 {
     color: #8e6137;
 }
+
 
 /**
 * Colors block
@@ -35,6 +31,7 @@ a, a:hover
 {
     color: #ffa69f;
 }
+
 
 /**
 * Headers block
@@ -106,10 +103,10 @@ header
     margin: 0;
 }
 
+
 /**
 * Buttons block
 */
-
 
 .btn
 {
@@ -156,8 +153,8 @@ a.btn:hover
 
 
 /**
-* Main block
-*/
+ * Main block
+ */
 
 main
 {
@@ -172,6 +169,10 @@ main
     
     border-top: solid 1px #a1522c;      
 }
+
+/**
+ * Caorusel block
+ */
 
 .carousel-caption h1
 {
@@ -206,8 +207,55 @@ main
 }
 
 /**
-* Footers block
-*/
+ * Form's block
+ */
+
+.authorization, .registration {
+    
+    width: 45%;
+    margin: 7% 0 0 4%;
+    
+    float:left;
+}
+
+.authorization h1 {
+    
+    font-weight: normal;
+    margin-bottom: 30px;
+}
+
+.authorization .field, .authorization .send {
+    width: 100%;
+    display: block;
+    
+    margin-top: 15px;
+    
+}
+
+.authorization .send {
+    margin-left: 10%;
+}
+
+.authorization .field label {
+
+    font-weight: normal;
+}
+
+.authorization .field input {
+    width: 70%;
+}
+
+.registration .link {
+    
+    text-align: center;
+    margin-top: 5.8%;
+    
+    display: block;
+}
+
+/**
+ * Footers block
+ */
 
 footer
 {
@@ -237,3 +285,8 @@ footer
  * Addidition methods.
  *
  */
+
+.gray {
+
+    background: #eee;
+}

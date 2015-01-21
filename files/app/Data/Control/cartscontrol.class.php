@@ -37,8 +37,8 @@ class CartsControl {
 
     private function ViewCart( $request ){
         
-        $catalog = $filename = ($request['action'] !== NULL) ? $request['action'] : 'null';
-        return ($this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $catalog ."/". $filename .".php");
+        //$catalog = $filename = ($request['action'] !== NULL) ? $request['action'] : 'null';
+        return ($this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $request['action'] ."/". $request['do'] .".php");
     }
     
     protected function Add( $request ) {
@@ -85,6 +85,9 @@ class CartsControl {
         return true;
     }
 
-    
+    protected function Delivery( $request ) {
+        
+        $this -> ViewCart( $request );
+    }
     
 }

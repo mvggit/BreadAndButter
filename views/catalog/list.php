@@ -25,18 +25,18 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script type="text/javascript">
             $( document ).ready( function(){
-                $('.add').click( function(){
+                $('.add').on('click', function(){
+                var obj = $(this);
                     $.ajax({
                         type: "GET",
-                        url: "localhost/?action=carts&do=add",
-                        data: { param[]: 'One', param[]: 1},
-                        .done( function( data ) {
-                            $(this).attr('style') = { 
-                                                        line-height: 1.9; 
-                                                        font-size: 12;
-                                                    }
-                            $(this).html = 10;
-                        });
+                        url: "http://localhost",
+                        success : function( data ) {
+                            obj.css({ 
+                                "line-height": "1.95", 
+                                "font-size": "12pt"
+                            });
+                            obj.html("10");
+                        }
                     });
                 } );
             } );

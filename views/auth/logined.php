@@ -20,14 +20,6 @@
         
         <link rel="stylesheet" href="./css/bootstrap.css" />
         <link rel="stylesheet" href="./css/layout.css" />
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script>
-            $(document).ready(function(){
-                $("#myCarousel").carousel();
-            });
-        </script>
     </head>
     <body>
         <header>
@@ -66,19 +58,11 @@
         </header>
         <main>
             <div class="container">
-                <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-        
-                        <div class="item active">
-                            &nbsp;
-                            <div class="carousel-caption">
-                                <h1>You wandeful!</h1>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <!-- <a class="left carousel-control" href="?action=login" data-slide="prev"><img src="img/carousel/left.png" alt="" /></a> !-->
-                    <a class="right carousel-control" href="?action=registration" data-slide="next"><img src="img/carousel/right.png" alt="" /></a>
+                <div class="authorization">
+                    <h3>
+                        Все получилось, спасибо!
+                    </h3>
+                    <a href="http://localhost/" class="btn-tomain"><img src="/img/main/tomain_button.png" alt="" /></a>
                 </div>
             </div>
         </main>

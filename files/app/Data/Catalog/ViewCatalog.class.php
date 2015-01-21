@@ -4,7 +4,13 @@
 /**
  * Description of AddTocarts
  * this class must be refactoring
+ * 
+ * TODO: add view product description
+ * on modal window who is opened 
+ * after click to product name linik.
  */
+
+
 
 namespace Data\Catalog;
 

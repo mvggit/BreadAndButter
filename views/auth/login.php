@@ -25,7 +25,7 @@
         <script src="js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function(){
-                $("#myCarousel").carousel();
+                ;
             });
         </script>
     </head>
@@ -67,49 +67,40 @@
         </header>
         <main>
             <div class="container">
-                <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="item active">
-                            <img src="tmp/img/wheats/bran_bread.png" alt="Хлеб Отрубной" />
-                            <div class="carousel-caption">
-                                <form action="" method="post">
-                                    <table>
-                                        <tr>
-                                            <td colspan="2">
-                                                <h3>
-                                                    Пожалуйста авторизуйтесь:
-                                                </h3>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    Имя пользователя:
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <input type="text" name="login" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <label>
-                                                    Пароль:
-                                                </label>
-                                            </td>
-                                            <td>
-                                                <input type="password" name="password" />
-                                            </td>
-                                        </tr>                                    
-                                    </table>
-                                    <span class="caption-button"><input type="image" src="img/main/more_button.png" alt="" /></span>
-                                </form>
-                            </div>
-                        </div>
+                <div class="authorization">
+                    <form action="" method="post">
+                        <h1>
+                            Вход в личный кабинет:
+                        </h1>
+                        <span class="field">
+                            <label>
+                                Имя пользователя:
+                            </label>
+                            <br />
+                            <input type="text" name="login" />
+                        </span>
+                        <span class="field">
+                            <label>
+                                Пароль:
+                            </label>
+                            <br />
+                            <input type="password" name="password" />
+                        </span>
                         
-                    </div>
-                <!--    <a class="left carousel-control" href="#myCarousel" data-slide="prev"><img src="img/carousel/left.png" alt="" /></a> !-->
-                    <a class="right carousel-control" href="?action=auth&do=registration" data-slide="next"><img src="img/carousel/right.png" alt="" /></a>
+                        <br />
+                        
+                        <span class="send">
+                            <input type="image" src="img/main/enter_button.png" alt="" />
+                        </span>
+                    </form>                        
+                </div>
+                
+                <div class="registration">                    
+                    <span class="link">
+                        <a class="underline" href="?action=auth&do=registration">Зарегистрироваться</a>
+                        <br />
+                        <a class="link" href="?action=auth&do=registration"><img src="img/carousel/right.png" alt="" /></a>
+                    </span>
                 </div>
             </div>
         </main>
