@@ -7,34 +7,32 @@
 namespace Service;
 
 trait Cookie {
-    
-    protected static $cookie = array();
-    
+
     /**
-     * Get elemets $_COOKIE array.
-     * When elements not exists
-     * functions get
-     * return NULL.
+     * function get
      * 
+     * @param type $cookie
+     * @return boolean
      */
     
     static function get( $cookie ) {
-        
-        return array_key_exists( $cookie, $_COOKIE ) ? $_COOKIE[ $cookie ] : NULL;
+
+        return filter_input(INPUT_COOKIE, $cookie);
     }
 
     /**
-     * Set elemets to $_COOKIE array.
-     * When set's failed
-     * set return false.
+     * function set
      * 
+     * @param type $name
+     * @param type $value
+     * @return boolean
      */
     
     static function set( $name, $value ) {
         
-        //TODO: use function setcookie
-        return self::$cookie[$name] = $value;
+        return setcookie ( $name , $value , $expire = time() * 3600 * 24 );
     }
 
+    
     
 }

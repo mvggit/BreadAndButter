@@ -10,15 +10,14 @@ trait Create {
     
     function create( $table, $params ) {
         
-        if (empty($params)) {
+        if ( empty( $this -> _db ) ) {
             
-            throw new \Exception(' Undefined data to past in Db');
+            throw new \Exception( 'Database exception: undefined database identifier' );
         }
         
-        $insert = $this -> _db -> run( $this -> _db -> insert( $table, $params));
-        
-        return $insert;        
+        return $this -> _db -> run( $this -> _db -> insert( $table, $params ) );        
     }
+
     
     
 }

@@ -2,7 +2,7 @@
 
 /**
  * Session class to implements
- * functions for session
+ * session operation
  * 
  */
 
@@ -23,8 +23,8 @@ class Session {
      */
     
     public static function get( $name ){
-        
-        return array_key_exists( $name, $_SESSION) ? $_SESSION[ $name ] : NULL;
+
+        return filter_input( INPUT_SESSION, $name );
     }
 
     /**
@@ -35,7 +35,7 @@ class Session {
     
     public static function set( $name, $value ) {
         
-        $_SESSION[$name] = $value;
+        $_SESSION[ $name ] = $value;
     }
     
     /**
@@ -46,14 +46,19 @@ class Session {
     
     public static function search( $name ) {
         
-        return array_key_exists( $name, $_SESSION);
+        return array_key_exists( $name, $_SESSION );
     }
+    
     /**
      * function destroy
      * @param type $name
      */
     
     public static function destroy( $name ) {
-        unset($_SESSION[ $name ]);
+        
+        unset( $_SESSION[ $name ] );
     }
+    
+    
+    
 }

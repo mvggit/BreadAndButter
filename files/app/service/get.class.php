@@ -11,15 +11,16 @@ trait Get {
     
     function get( $field, $from, $where, $order = "true", $limit = "" ) {
         
-        //TODO: think about check function param
+        if ( empty( $this -> _db ) ) {
+            
+            throw new \Exception( 'Database exception: undefined database identifier' );
+        }
         
         $result = $this -> _db -> fetch(
-                $this -> _db -> select( $field, $from, $where , $order, $limit)
+                $this -> _db -> select( $field, $from, $where , $order, $limit )
         );
         
-        $return = empty($result) ? false : $result;
-    
-        return $return;
+        return empty( $result ) ? false : $result;
     }    
 
     

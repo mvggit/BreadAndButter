@@ -18,21 +18,23 @@ trait ImplodeArray {
         $string[] = implode(',', array_values($array));
     }
     
-    // Сомневаюсь в дизайне кода этой функции
+    // Look on design this function
     
     function implplodeAssocArrayWithPattern( $array, &$string, $pattern = '', $separator = ',' ) {
         
         $keys = array_keys($array);
         $values = array_values($array);
-        $iteration = 1;
-       
-        foreach ($keys as $key) {
+        
+        for ( $iteration = 1; $iteration < ( $count = count($keys) ); $iteration++ ) {
             
-            $string .= $key . $pattern . current($values);
-            next($values);
-            ($iteration++ < count($keys) ) ? $string .= $separator : false;
+            $string .= $keys[ $iteration ] . $pattern . $values[ $iteration ];
+            if ( $iteration < ( $count - 1 ) ) {
+                
+                $string .= $separator;
+            }
         }
-    }    
+    }
+
     
     
 }

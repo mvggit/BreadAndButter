@@ -10,12 +10,12 @@ trait Update {
     
     function set( $table, $params, $where ) {
         
-        if (empty($params)) {
+        if ( empty( $this -> _db ) ) {
             
-            throw new \Exception(' Undefined data to past in Db');
+            throw new \Exception( 'Database exception: undefined database identifier' );
         }
         
-        $update = $this -> _db -> run( $this -> _db -> update( $table, $params, $where ));
+        $update = $this -> _db -> run( $this -> _db -> update( $table, $params, $where ) );
         
         return $update;        
     }    

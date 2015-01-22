@@ -10,11 +10,12 @@ trait Delete {
     
     function delete( $table, $where = true ) {
         
-        //TODO: think about this class
+        if ( empty( $this -> _db ) ) {
+            
+            throw new \Exception( 'Database exception: undefined database identifier' );
+        }
         
-        $delete = $this -> _db -> run( $this -> _db -> delete( $table, $where ));
-        return $delete;        
-        
+        return $this -> _db -> run( $this -> _db -> delete( $table, $where ) );
     }    
 
     

@@ -26,9 +26,10 @@ trait Post {
      * isSend
      * @return boolean
      */
+
     public function isSend() {
         
-        return ($count = count( $this -> post )) ? $count : false;
+        return ( !empty( $this -> post ) ) ? true : false;
     }
     
     /**
@@ -36,9 +37,10 @@ trait Post {
      * @name string $name
      * @return mixed $value
      */
-    public function __get($name){
+
+    public function __get( $name ){
         
-        $value = filter_input(INPUT_POST, $name);
+        $value = filter_input( INPUT_POST, $name );
         return $value;
     }
     
