@@ -25,7 +25,7 @@ trait ImplodeArray {
         $keys = array_keys($array);
         $values = array_values($array);
         
-        for ( $iteration = 1; $iteration < ( $count = count($keys) ); $iteration++ ) {
+        for ( $iteration = 0; $iteration < ( $count = count($keys) ); $iteration++ ) {
             
             $string .= $keys[ $iteration ] . $pattern . $values[ $iteration ];
             if ( $iteration < ( $count - 1 ) ) {

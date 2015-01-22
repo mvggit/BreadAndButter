@@ -2,7 +2,6 @@
 
 /* 
  * Class CartsControl.
- * must refactoring
  */
 
 namespace Data\Control;
@@ -12,7 +11,9 @@ use Service\Session;
 
 use Data\Carts\AddToCarts;
 use Data\Carts\MoveFromCarts;
-use Data\Carts\ExtractFromCarts;
+use Data\Carts\ExtractCarts;
+
+use Data\Carts\DeliveryCarts;
 
 class CartsControl {
     use Get;
@@ -37,8 +38,11 @@ class CartsControl {
 
     private function ViewCart( $request ){
         
-        //$catalog = $filename = ($request['action'] !== NULL) ? $request['action'] : 'null';
-        return ($this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $request['action'] ."/". $request['do'] .".php");
+        $catalog = ($request !== NULL) ? $request['action'] : 'null';
+        $filename = ($request !== NULL) ? $request['do'] : 'null';
+        
+        return ($this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $catalog ."/". $filename .".php");
+        
     }
     
     protected function Add( $request ) {
@@ -50,8 +54,9 @@ class CartsControl {
                         'countincarts', 
                         'carts', 
                         'idproductincarts = '. $request['param'][3] . ' '
-                        . 'AND identifiercarts = \''. $request['param'][1] . '\''
-                        . '', $limit = 1)[0]['countincarts']
+                      . 'AND identifiercarts = \''. $request['param'][1] . '\''
+                      . '', $limit = 1
+                    )[0]['countincarts']
                 );
         
         $this -> ViewCart( NULL );
@@ -64,11 +69,13 @@ class CartsControl {
         Session::set(
                 'countproducts', 
                 Get::get( 
-                        'countincarts', 
+                        'countincarts',
                         'carts', 
                         'idproductincarts = '. $request['param'][3] . ' '
-                        . 'AND identifiercarts = \''. $request['param'][1] . '\''
-                        . '', $limit = 1)[0]['countincarts']
+                      . 'AND identifiercarts = \''. $request['param'][1] . '\''
+                      . '', 
+                        $limit = 1
+                    )[0]['countincarts']
                 );
         
         $this -> ViewCart( NULL );
@@ -77,17 +84,25 @@ class CartsControl {
 
     protected function Extract( $request ) {
         
-        $Extract = new ExtractFromCarts( $this->_db );
-        Session::set( 'carts', $Extract -> ListInstance( $this -> cart ) );
+        $extract = new ExtractCarts( $this->_db );
+        Session::set( 'carts', $extract -> extractList( $this -> cart ) );
         
         $this -> ViewCart( $request );
         
         return true;
+        
     }
 
     protected function Delivery( $request ) {
+    
+        $delivery = array();
+        new DeliveryCarts( $this -> _db, $delivery, $this -> cart );
+        Session::set( 'delivery', $delivery );
         
         $this -> ViewCart( $request );
+        
     }
+
+    
     
 }

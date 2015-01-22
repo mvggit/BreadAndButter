@@ -15,9 +15,7 @@ trait Update {
             throw new \Exception( 'Database exception: undefined database identifier' );
         }
         
-        $update = $this -> _db -> run( $this -> _db -> update( $table, $params, $where ) );
-        
-        return $update;        
+        return $this -> _db -> run( $this -> _db -> update( $table, $params, $where ) );
     }    
 
     

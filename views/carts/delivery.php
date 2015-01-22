@@ -33,7 +33,7 @@
                 margin-top: 3%;
             }
             
-            .delivery {
+            .cart {
                 
                 width: 15%;
                 float: left;
@@ -43,7 +43,7 @@
                 margin: 7% 0 0 5%;
             }
             
-            div.cart {
+            div.delivery {
                 
                 width: 45%;
                 float: left;
@@ -51,38 +51,20 @@
                 margin: 7% 0 0 5%;
             }
             
-            div.cart h2 {
+            div.delivery h2 {
                 
                 margin: 0 0 20px 0;
                 padding: 0;
             }
             
-            table.cart {
+            table.delivery {
                 
                 width: 95%;
+                padding: 0;
+                line-height: 0.8;
                 
-                padding: 5px;
-                
-                border-top: solid 1px #ddd;
-                border-bottom: solid 1px #ddd;
             }
             
-            .cart .title {
-                
-                width: 50%;
-                text-indent: 10px;
-                
-                border-right: solid 1px #ddd;
-                border-left: solid 1px #ddd;
-            }
-
-            .cart .count, .cart .price {
-                
-                width: 25%;
-                text-align: center;
-                
-                border-right: solid 1px #ddd;
-            }
         </style>
     </head>
     <body>
@@ -128,81 +110,103 @@
                     <img src="/img/main/block_user.png" alt="" />
                 </div>
                 
-                <div class="delivery">
+                <div class="cart">
                     <span class="link">
                         <a class="underline" href="?action=carts&do=extract">Товары в корзине</a>
                         <a style="display: block; margin-top: 15px;" href="?action=carts&do=extract"><img src="img/carousel/left.png" alt="" /></a>
                     </span>
                 </div>
                 
-                <div class="cart">
+                <div class="delivery">
                     
                     <h2>Адрес доставки:</h2>
                     
-                    <!--
-                    <table class="cart" cellpadding="2" cellspacing="2">
+                    <table class="delivery">
 
-                        <tr class="gray">
-                            <td class="title">
+                        <?php
+                        
+                            if ( !empty( $deliverylist = Session::get( 'delivery' ) ) ) :
+                        ?>
+                        
+                        <tr>
+                            <td class="description">
                                 <p>
-                                    Наименование
+                                    Индекс
                                 </p>
                             </td>
-                            <td class="count">
+                            <td class="descriptionvalue">
                                 <p>
-                                    Количество
-                                </p>
-                            </td>
-                            <td class="price">
-                                <p>
-                                    Цена
+                                    <?php echo $deliverylist[0]['postalzip']; ?>
                                 </p>
                             </td>
                         </tr>
-
+                        <tr>
+                            <td class="description">
+                                <p>
+                                    Город
+                                </p>
+                            </td>
+                            <td class="descriptionvalue">
+                                <p>
+                                    <?php echo $deliverylist[0]['city']; ?>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="description">
+                                <p>
+                                    Улица
+                                </p>
+                            </td>
+                            <td class="descriptionvalue">
+                                <p>
+                                    <?php echo $deliverylist[0]['street']; ?>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="description">
+                                <p>
+                                    Дом
+                                </p>
+                            </td>
+                            <td class="descriptionvalue">
+                                <p>
+                                    <?php echo $deliverylist[0]['house']; ?>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>                            
+                            <td class="description">
+                                <p>
+                                    Блок
+                                </p>
+                            </td>
+                            <td class="descriptionvalue">
+                                <p>
+                                    <?php echo $deliverylist[0]['houseblock']; ?>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>                            
+                            <td class="description">
+                                <p>
+                                    Квартира
+                                </p>
+                            </td>
+                            <td class="descriptionvalue">
+                                <p>
+                                    <?php echo $deliverylist[0]['houseroom']; ?>
+                                </p>
+                            </td>
+                        </tr>    
                         <?php
 
-                            //TODO: create echo table use 
-                            //      variable $cartslist.
-
-                            $_cartslists = Session::get( 'carts' );
-                            $cartslists = empty($_cartslists) 
-                                    ? array() 
-                                    : $_cartslists;
-
-                            $odd = 0;
-
-                            foreach ($cartslists as $cartslist):
-                        ?>
-
-                            <tr class="<?php echo ($odd % 2) ? "gray" : "";?>">
-                                <td class="title">
-                                    <?php
-                                        echo $cartslist['title'];
-                                    ?>
-                                </td>
-                                <td class="count">
-                                    <?php
-                                        echo $cartslist['count'];
-                                    ?>
-                                </td>
-                                <td class="price">
-                                    <?php
-                                        echo round($cartslist['price'], 2);
-                                    ?>
-                                </td>
-                            </tr>
-
-                        <?php
-
-                            $odd++;
-
-                            endforeach;
+                            endif;
                         ?>
 
                     </table>      
                     
-                    !-->
                     
                     <a href="http://localhost/" class="btn-tomain"><img src="/img/main/tomain_button.png" alt="" /></a>
                     

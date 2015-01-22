@@ -2,8 +2,7 @@
 
 
 /**
- * AddTocarts
- * must be refactoring
+ * MoveFromcarts
  */
 
 namespace Data\Carts;
@@ -12,8 +11,9 @@ use Service\Delete;
 use Service\Get;
 use Service\Update;
 
+use Data\Storage\Storage;
 
-class MoveFromCarts {
+class MoveFromCarts extends Storage{
     use Delete;
     use Update;
     use Get;
@@ -22,38 +22,45 @@ class MoveFromCarts {
     
     public function __construct( $db, $request ) {
         
+        parent::__construct( $db );
+        
         $this -> _db = $db;
         $this -> {"move" . $request[0]}( $request );
     }
     
     public function moveOne( array $param ) {
 
-        if ( empty($param) || (count($param) < 4) )
-            return false;
+        if ( !$this -> isInStorage( $param[3] ) ){
 
-        //TODO: find another method
-        
-        $count = ($count = Get::get( 'countincarts', 'carts', 'idproductincarts = '. $param[3] . ' AND identifiercarts = \''. $param[1] . '\'', $limit = 1)[0]['countincarts']) ? $count : 0;
+            return false;
+        }
+
+        $count = ( $count = Get::get( 'countincarts', 'carts', 'idproductincarts = ' . $param[3] . ' AND identifiercarts = \'' . $param[1] . '\'', $limit = 1 )[0]['countincarts'] ) ? $count : 0;
         $count -= 1;
+        $this -> setCountProduct( $param[3], 
+                                  ( $this ->getCountProduct( $param[3] ) + 1 ) 
+                                );
                 
         if ( !$count ) {
             
-            Delete::delete( 'carts', 'idauth = '. $param[2] .' AND idproductincarts = '. $param[3] . ' AND identifiercarts = \''. $param[1] . '\'' );
+            $return = Delete::delete( 'carts', 'idauth = ' . $param[2] . ' AND idproductincarts = ' . $param[3] . ' AND identifiercarts = \'' . $param[1] . '\'' );
             
         } else {
 
-            $element['countincarts'] = $count;
-            Update::set( 'carts', $element, 'idauth = '. $param[2] .' AND idproductincarts = '. $param[3] . ' AND identifiercarts = \''. $param[1] . '\'' );
+            $return = Update::set( 'carts', 
+                                     array( 'countincarts' => $count ), 
+                                     'idauth = '. $param[2] . ' AND idproductincarts = ' . $param[3] . ' AND identifiercarts = \'' . $param[1] . '\'' 
+                                 );
             
         }
         
+        return $return;
         
     }
 
-    
-    public function moveList( array $param ) {
+    public function moveCarts( array $param ) {
         
-        ;
+        return Delete::delete( 'carts', 'idauth = ' . $param[2] . ' AND identifiercarts = \'' . $param[1] . '\'' );
     }    
 
     

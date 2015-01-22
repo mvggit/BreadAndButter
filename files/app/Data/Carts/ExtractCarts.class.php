@@ -9,7 +9,7 @@ namespace Data\Carts;
 
 use Service\Get;
 
-class ExtractFromCarts {
+class ExtractCarts {
     use Get;
     
     public $_db;
@@ -19,20 +19,22 @@ class ExtractFromCarts {
         $this -> _db = $db;
     }
     
-    //TODO: think about this class
+    //Разные списки параметров в функциях.
     
-    public function OneInstance( $identifiercarts ) {
+    public function extractOne( $identifiercarts ) {
         
-        return $this->MakeInstance($identifiercarts, 1);
+        return Get::get( '(select nameproduct from product where idproduct = idproductincarts) as title,'
+                       . 'countincarts as count,'
+                       . 'priceincarts as price'
+                       , 'carts'
+                       , 'identifiercarts = \''.$identifiercarts.'\''
+                       , 'idproductincarts ASC'
+                       , 1
+                    );
     }
     
-    public function ListInstance( $identifiercarts, $limit = '' ) {
+    public function extractList( $identifiercarts, $limit = '' ) {
         
-        return $this->MakeInstance($identifiercarts, '');
-    }
-    
-    private function MakeInstance( $identifiercarts, $limit ){
-
         return Get::get( 'idproductincarts as article, '
                        . '(select nameproduct from product where idproduct = idproductincarts) as title,'
                        . 'countincarts as count,'
@@ -42,10 +44,8 @@ class ExtractFromCarts {
                        , 'idproductincarts ASC'
                        , $limit 
                     );
-        
-        
     }
     
     
-    
+
 }
