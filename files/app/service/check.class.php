@@ -18,7 +18,7 @@ trait Check {
     public function checkBlocked( $hash = '' ) {
         
         $blocked = Get :: get('blocked', 'auth', 'hash = \'' . $hash . '\'')[0]['blocked'];
-        return $blocked;
+        return $blocked ? false : true;;
 
     }    
 

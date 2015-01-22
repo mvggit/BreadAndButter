@@ -24,7 +24,6 @@ class RegistrationControl {
     function __construct( $db ) {
   
          $this -> _db = $db;
-
         
     }
     
@@ -32,28 +31,22 @@ class RegistrationControl {
         
         if (!Check::checkHash( md5($form['login'].$form['password']) ) && !Session::get('info')) {
 
-            //TODO: add validation form array's
-            
-            $auth = array(
-                        'email' => "'".$form['login']."'", 'password' => "'".$form['password']."'",
-                        'hash' => "'".md5($form['login'].$form['password'])."'", 'blocked' => 0
-                         );
+            $id = Create::create('auth', array(
+                                            'email' => "'".$form['login']."'", 
+                                            'password' => "'".$form['password']."'",
+                                            'hash' => "'".md5($form['login'].$form['password'])."'", 
+                                            'blocked' => 0
+                                         ));
 
-            $id = Create::create('auth', $auth);
-
-            //TODO: add validation form array's
+            $uin = Create::create('uin', array(
+                                            'iduin' => $id, 
+                                            'nicname' => "'".$form['nic']."'", 
+                                            'fname' => "'".$form['name']."'",
+                                            'sname' => "'".$form['so_name']."'", 
+                                            'lname' => "'".$form['last_name']."'"
+                                          ));
             
-            $uin = array(
-                        'iduin' => $id, 'nicname' => "'".$form['nic']."'", 'fname' => "'".$form['name']."'",
-                        'sname' => "'".$form['so_name']."'", 'lname' => "'".$form['last_name']."'"
-                         );                
-
-            Create::create('uin', $uin);
-            
-            Session::set('info', md5($form['login'].$form['password']));
-            Session::set('name', $form['login']);
-            
-            return true;
+            return ( $id && $uin );
         }
 
         return false;

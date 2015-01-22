@@ -22,7 +22,6 @@ class LoginControl {
     function __construct( $db ) {
         
         $this -> _db = $db;
-
         
     }
 

@@ -24,7 +24,8 @@ class Session {
     
     public static function get( $name ){
 
-        return filter_input( INPUT_SESSION, $name );
+        $variable = ( array_key_exists( $name, $_SESSION ) );
+        return $variable ? $_SESSION[ $name ] : false;
     }
 
     /**
