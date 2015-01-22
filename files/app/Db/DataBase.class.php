@@ -2,8 +2,6 @@
 
 /* 
  * Main DataBase class.
- * This class have factory method
- * who is returned Db connection class. 
  */
     
 //TODO read and undestend namespace;
@@ -46,4 +44,7 @@ class Database {
     public function PDO( $dsn = '', $uname = 'root', $upass = '1111', $options = '' ) {
         return new PDO($dsn, $uname, $upass, $options);
     }
+    
+    
+    
 }
