@@ -103,29 +103,24 @@
 
                 <?php
 
-                    $_cataloglists = Session::search( 'cataloggroup' ) 
-                            ? Session::get( 'cataloggroup' )
-                            : Session::get( 'cataloglist' );
-                    
-                    //var_dump($_cataloglists);
-                    
-                    $cataloglists = is_array($_cataloglists)
-                            ? $_cataloglists
-                            : array();
+                    $catalog = Session::get( 'catalog' ); 
+                    $cataloglists = is_array( $catalog )
+                        ? $catalog
+                        : array();
 
-                    foreach ($cataloglists as $key=>$cataloglist):
+                    foreach ($cataloglists as $key => $list):
                         
                 ?>
                 
                         <div class="product">
                             <div class="icon">
-                                <img src="<?php echo "../img/product/" . $cataloglist['title'] ."/". $cataloglist['title'].".png";?>" 
-                                     alt="<?php echo $cataloglist['title'];?>"
+                                <img src="<?php echo "../img/product/" . $list['grouptitle'] ."/". $list['grouptitle'].".png";?>" 
+                                     alt="<?php echo $list['grouptitle'];?>"
                                      class="icon"
                                 />
                                 <span class="name">
-                                    <a href="http://localhost/?action=catalog&do=list&group=<?php echo $cataloglist['title'];?>">
-                                        <?php echo $cataloglist['title'];?>
+                                    <a href="http://localhost/?action=catalog&do=list&group=<?php echo $list['grouptitle'];?>">
+                                        <?php echo $list['grouptitle'];?>
                                     </a>
                                 </span>
                             </div>

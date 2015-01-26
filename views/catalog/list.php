@@ -153,34 +153,29 @@
 
                 <?php
 
-                    $_cataloglists = Session::search( 'cataloggroup' ) 
-                            ? Session::get( 'cataloggroup' )
-                            : Session::get( 'cataloglist' );
-                    
-                    //var_dump($_cataloglists);
-                    
-                    $cataloglists = is_array($_cataloglists)
-                            ? $_cataloglists
-                            : array();
+                    $catalog = Session::get( 'catalog' );
+                    $cataloglists = is_array( $catalog )
+                        ? $catalog
+                        : array();
 
-                    foreach ($cataloglists as $key=>$cataloglist):
+                    foreach ($cataloglists as $key => $list):
                         
                 ?>
                 
                         <div class="product">
                             <span class="icon">
-                                <img src="<?php echo "../img/product/".$cataloglist['namegroup']."/".$cataloglist['title'].".png";?>" 
-                                     alt="<?php echo $cataloglist['title'];?>"
+                                <img src="<?php echo "../img/product/".$list['grouptitle']."/".$list['title'].".png";?>" 
+                                     alt="<?php echo $list['title'];?>"
                                      class="productimage"
                                 />
                             </span>
                             <span class="name">
-                                <a href="http://localhost/?action=catalog&do=list&group=<?php echo $cataloglist['title'];?>">
-                                    <?php echo $cataloglist['title'];?>
+                                <a href="http://localhost/?action=catalog&do=list&group=<?php echo $list['grouptitle'];?>&product=<?php echo $list['title'];?>">
+                                    <?php echo $list['title'];?>
                                 </a>
                             </span>
                             <span class="price">
-                                <?php echo $cataloglist['price'];?> грн
+                                <?php echo $list['price'];?> грн
                                 <span class="add">
                                     +
                                 </span>

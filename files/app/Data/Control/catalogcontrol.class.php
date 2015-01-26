@@ -2,38 +2,46 @@
 
 /* 
  * CatalogControl.
- * must be refactoring
- * 
- * Pagination is the class questions!
- * think to make anothe configuration's
- * in class.
  */
 
 namespace Data\Control;
 
-//use Service\Session;
-use Data\Catalog\ViewCatalog;
+use Service\Session;
+
+use Data\Catalog\SortCatalog;
+use Data\Catalog\PaginationCatalog;
 
 class CatalogControl {
     
     public $view;
-       
-    public function __construct( $db, $request = array(), $pagination = false) {
+    public $_db;
+
+    public function __construct( $db, $request = array()) {
         
-        $this -> view = $this -> ViewCatalog( $db, $request, $pagination );
+        $this -> _db = $db;
+        
+        $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $request['action'] ."/". $request['do'] .".php";
+        
+        ( array_key_exists( 'page', $request ) ) 
+            ? $this -> PaginationCatalog( $request )
+            : $this -> SortCatalog( $request );
         
     }
 
-    public function ViewCatalog( $db, $request = array(), $pagination = false ) {
+    public function SortCatalog( $request ){
         
-        $PaginationCatalog = 'PaginationCatalog' . ucfirst($request['do']);
-        $Catalog = 'Catalog' . ucfirst($request['do']);
+        $catalog = new SortCatalog( $this -> _db, $request );
+        Session::set( 'catalog', $catalog -> Catalog( ) );
         
-        $view = new ViewCatalog( $db, $request);
-        return $pagination
-                ? $view -> $PaginationCatalog( )
-                : $view -> $Catalog( );
     }
-
     
+    public function PaginationCatalog( $request ){
+        
+        $catalog = new PaginationCatalog( $this -> _db, $request );
+        Session::set( 'catalog', $catalog -> Catalog() );
+        
+    }
+    
+
+
 }
