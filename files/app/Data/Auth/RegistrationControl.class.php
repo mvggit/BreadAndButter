@@ -6,6 +6,8 @@
 
 namespace Data\Auth;
 
+use Service\Session;
+
 use Service\Check;
 use service\Create;
 
@@ -14,7 +16,8 @@ class RegistrationControl {
     use Check;
     use Create;
     
-    public $view = array();
+    public $auth;
+    public $iduin;
     public $_db;
             
     function __construct( $db ) {
@@ -27,25 +30,28 @@ class RegistrationControl {
         
         if (!Check::checkHash( md5($form['login'].$form['password']) ) && !Session::get('info')) {
 
-            $id = Create::create('auth', array(
-                                            'email' => "'".$form['login']."'", 
-                                            'password' => "'".$form['password']."'",
-                                            'hash' => "'".md5($form['login'].$form['password'])."'", 
-                                            'blocked' => 0
-                                         ));
+            $id = $this
+                    -> unsetparam()
+                    -> setparam( 'email', $form['login'])
+                    -> setparam( 'password', $form['password'])
+                    -> setparam( 'hash', md5($form['login'].$form['password']))
+                    -> setparam( 'blocked', (int)0)
+                    -> create('auth');
 
-            $uin = Create::create('uin', array(
-                                            'iduin' => $id, 
-                                            'nicname' => "'".$form['nic']."'", 
-                                            'fname' => "'".$form['name']."'",
-                                            'sname' => "'".$form['so_name']."'", 
-                                            'lname' => "'".$form['last_name']."'"
-                                          ));
+            $uin = $this
+                    -> unsetparam()
+                    -> setparam( 'iduin', $id)
+                    -> setparam( 'nicname', $form['nic'])
+                    -> setparam( 'fname', $form['name'])
+                    -> setparam( 'sname', $form['so_name'])
+                    -> setparam( 'lname', $form['last_name'])
+                    -> create('uin');            
             
             return ( $id && $uin );
         }
 
         return false;
+        
     }
 
  

@@ -13,9 +13,15 @@ trait ImplodeArray {
     // Explode array to two arrays: array keys and array values
     
     function explodeAssocArray( $array, &$string = array() ) {
+
+        foreach ($array as $key => $value) {
+            
+            $array[ $key ] = is_string( $value ) ? "'$value'" : $value;
+        }        
         
         $string[] = implode(',', array_keys($array));
         $string[] = implode(',', array_values($array));
+        
     }
     
     // Look on design this function

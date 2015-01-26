@@ -89,7 +89,7 @@ class MySQLi implements DataBaseInterface {
     
     function run( $method ) {
         
-        //echo $method;
+        //echo $method."<br />";
         
         $this->MySQLi->query($method);
         
