@@ -110,6 +110,22 @@
                 
                 cursor: pointer;
             }
+
+            .container {
+                
+                min-height: 400px;
+            }
+            
+            .pagination-control {
+                position: absolute;
+                display: block;
+                
+                top: 50%;
+                right: 3%;
+                width: 5%;
+                height: 19%;
+                text-align: center;
+            }
         </style>
     </head>
     <body>
@@ -185,11 +201,23 @@
                <?php
                         
                     endforeach;
+
+                    if ( Session::get( 'paginationlimit' ) * Session::get( 'paginationpage' ) < Session::get( 'paginationcount' ) ):
+                        if ( !empty($cataloglists) ):
+                ?>
+                            <a class="right pagination-control" 
+                               href="http://localhost/?action=catalog&do=list&group=<?php echo $cataloglists[0]['grouptitle'];?>&page=<?php echo ( Session::get( 'paginationpage' ) + 1 );?>">
+                                <img src="img/carousel/right.png" alt="" />
+                            </a>
+               <?php
+                        endif;
+                    endif;
                     
                     Session::destroy( 'cataloglist' );
                     Session::destroy( 'cataloggroup' );
+                    
                 ?>
-
+                
             </div>
         </main>
         <footer>

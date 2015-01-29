@@ -41,18 +41,19 @@ class AddToCarts extends Storage {
         //TODO: things to create query generator. 
         
         if ( !$count ) {
-            
-            Create::create( 'carts', array(  
-                                        'idauth' => $param[2],
-                                        'identifiercarts' => "'".$param[1]."'",
-                                        'idproductincarts' => $param[3], 
-                                        'idstorageincarts' => Get::get( 'idstorage', 'storage', 'idproduct = '.$param[3], $limit = 1)[0]['idstorage'],
-                                        'countincarts' => $count + 1,
-                                        'priceincarts' => Get::get( 'priceproduct', 'product', 'idproduct = '.$param[3], $limit = 1)[0]['priceproduct'],
-                                        'storedcarts' => '0',
-                                        'savedate' => 'now()'
-                            ) );
 
+            $this 
+                -> unsetparam()
+                -> setparam( 'idauth', $param[2] )
+                -> setparam( 'identifiercarts', "'" . $param[1] . "'" )
+                -> setparam( 'idproductincarts', $param[3] )
+                -> setparam( 'idstorageincarts', Get::get( 'idstorage', 'storage', 'idproduct = '.$param[3], $limit = 1)[0]['idstorage'] )
+                -> setparam( 'countincarts', $count + 1 )
+                -> setparam( 'priceincarts', Get::get( 'priceproduct', 'product', 'idproduct = '.$param[3], $limit = 1)[0]['priceproduct'] )
+                -> setparam( 'storedcarts', '0' )
+                -> setparam( 'savedate', 'now()' )
+                -> create( 'carts' );
+            
             $this -> setCountProduct( $param[3], 
                                       ( $this -> getCountProduct( $param[3] ) - 1 ) 
                                     );

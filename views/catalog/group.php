@@ -119,7 +119,7 @@
                                      class="icon"
                                 />
                                 <span class="name">
-                                    <a href="http://localhost/?action=catalog&do=list&group=<?php echo $list['grouptitle'];?>">
+                                    <a href="http://localhost/?action=catalog&do=list&group=<?php echo $list['grouptitle'];?>&page=1">
                                         <?php echo $list['grouptitle'];?>
                                     </a>
                                 </span>

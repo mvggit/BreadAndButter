@@ -8,13 +8,12 @@ namespace Data\Catalog;
 
 use Service\Get;
 
-class PaginationCatalog {
-    use Get;
+class PaginationCatalog extends ViewCatalog{
     
     private $group;
     private $page = 0;
     
-    public $_db;    
+    public $_db;
     
     public function __construct( $db, $request ) {
         
@@ -34,8 +33,8 @@ class PaginationCatalog {
                . 'priceproduct as price';
         $from = 'product, storage, groupproduct';
         $where = 'storage.idgroupproduct = groupproduct.idgroupproduct '
-               . 'AND product.idproduct = storage.idproduct '
-               . !empty( $this -> group ) ? ' AND namegroupproduct = \'' . $this -> group . '\' ' : 'GROUP BY namegroupproduct';
+               . 'AND product.idproduct = storage.idproduct ';
+        $where .= !empty( $this -> group ) ? ' AND namegroupproduct = \'' . $this -> group . '\' ' : 'GROUP BY namegroupproduct';
         $orderby = 'title ASC';
         $limit = $this -> page * $limit . "," . $limit;
         

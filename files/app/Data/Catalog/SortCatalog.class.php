@@ -24,17 +24,25 @@ class SortCatalog extends ViewCatalog {
     }
 
     public function Catalog( ) {
+
+        if ( !empty( $this -> group ) ){
+            $field = 'product.idproduct as article,'
+                   . 'groupproduct.idgroupproduct as grouparticle,'
+                   . 'nameproduct as title,'
+                   . 'namegroupproduct as grouptitle, '
+                   . 'descproduct as description,'
+                   . 'priceproduct as price';
+        }
+        else {
+            $field = 'groupproduct.idgroupproduct as grouparticle,'
+                   . 'namegroupproduct as grouptitle';
+        }
         
-        $field = 'product.idproduct as article,'
-               . 'groupproduct.idgroupproduct as grouparticle,'
-               . 'nameproduct as title,'
-               . 'namegroupproduct as grouptitle, '
-               . 'descproduct as description,'
-               . 'priceproduct as price';
         $from = 'product, storage, groupproduct';
         $where = 'storage.idgroupproduct = groupproduct.idgroupproduct '
-               . 'AND product.idproduct = storage.idproduct '
-               . !empty( $this -> group ) ? ' AND namegroupproduct = \'' . $this -> group . '\' ' : 'GROUP BY namegroupproduct';
+               . 'AND product.idproduct = storage.idproduct ';
+        $where .= ( !empty( $this -> group ) ) ? ' AND namegroupproduct = \'' . $this -> group . '\' ' : 'GROUP BY namegroupproduct';
+        
         $orderby = 'grouptitle ASC';
         $limit = "";
         
