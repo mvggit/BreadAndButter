@@ -2,7 +2,6 @@
 
 /* 
  * Class AuthControl.
- * must be small refactoring
  */
 
 namespace Data\Control;
@@ -24,10 +23,7 @@ class Control {
         $this -> _db = $db;
         $this -> requestcontents = $request;
         
-        
         $this -> loadClass();
-        
-        
         
     }
 
@@ -51,7 +47,6 @@ class Control {
         }
         
         $view -> render(); 
-        
         
     }
     

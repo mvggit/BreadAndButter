@@ -7,10 +7,7 @@
 
 namespace Data\Catalog;
 
-use Service\Get;
-
 class SortCatalog extends ViewCatalog {
-    use Get;
     
     private $group;
     public $_db;    

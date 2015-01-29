@@ -6,8 +6,6 @@
 
 namespace Data\Catalog;
 
-use Service\Get;
-
 class PaginationCatalog extends ViewCatalog{
     
     private $group;
