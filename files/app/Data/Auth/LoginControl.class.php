@@ -27,12 +27,13 @@ class LoginControl {
 
     public function login( $form ){
         
-        $hash = md5($form['login'].$form['password']);
+        $hash = md5( $form['login'].$form['password'] );
             
-        if (Check::checkHash($hash) && Check::checkBlocked($hash)) {
+        if ( Check::checkHash( $hash ) && Check::checkBlocked( $hash ) ) {
 
-            Session::set('info', $hash);
-            Session::set('name', $form['login']);
+            Session::set( 'info', $hash );
+            Session::set( 'name', $form['login'] );
+            Session::set( 'uin', Get :: get('idauth', 'auth', 'hash = \'' . $hash . '\'')[0]['idauth'] );
 
             return true;
 

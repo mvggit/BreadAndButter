@@ -31,14 +31,15 @@ CREATE TABLE `carts` (
   `idproductincarts` int(11) DEFAULT NULL,
   `idstorageincarts` int(11) DEFAULT NULL,
   `countincarts` int(11) DEFAULT NULL,
-  `priceincarts` float DEFAULT NULL,
+  `priceincarts` float(2) DEFAULT NULL,
   `storedcarts` tinyint(1) DEFAULT NULL,
   `savedate` date DEFAULT NULL,
   PRIMARY KEY (`idcarts`),
   KEY `FK_fromstoragetocarts` (`idstorageincarts`),
   KEY `FK_uincarts` (`idauth`),
-  CONSTRAINT `FK_fromstoragetocarts` FOREIGN KEY (`idstorageincarts`) REFERENCES `storage` (`idstorage`)
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  CONSTRAINT `FK_fromstoragetocarts` FOREIGN KEY (`idstorageincarts`) REFERENCES `storage` (`idstorage`),
+  CONSTRAINT `FK_uincarts` FOREIGN KEY (`idauth`) REFERENCES `auth` (`idauth`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +48,7 @@ CREATE TABLE `carts` (
 
 LOCK TABLES `carts` WRITE;
 /*!40000 ALTER TABLE `carts` DISABLE KEYS */;
-INSERT INTO `carts` VALUES (3,1,'kaUk0v',3,3,1,5.4,1,'2013-12-22'),(6,1,'kaUk0v',1,1,1,5.5,1,'2013-12-22'),(7,1,'kaUk0v',4,4,1,5,1,'2013-12-22'),(9,1,'QaXglk',3,3,1,5.4,1,'2013-12-22'),(10,1,'QaXglk',7,7,3,9.7,1,'2013-12-22'),(29,1,'7CewKQ',5,9,1,3.89,1,'2013-12-22'),(31,1,'iAoQW3',3,3,1,5.4,1,'2013-12-22'),(32,1,'7CewKQ',6,10,1,1.2,1,'2013-12-22'),(33,1,'iAoQW3',5,5,1,3.89,1,'2013-12-22'),(34,1,'iAoQW3',2,2,1,5.7,1,'2013-12-22'),(35,1,'iAoQW3',7,7,1,9.7,1,'2013-12-22'),(36,1,'iAoQW3',4,4,1,5,1,'2013-12-22'),(37,1,'iAoQW3',1,1,1,5.5,1,'2013-12-22'),(39,1,'hPgL1B',4,4,1,5,1,'2013-12-22'),(40,1,'hPgL1B',3,3,1,5.4,1,'2013-12-22'),(41,1,'hPgL1B',1,1,1,5.5,1,'2013-12-22'),(42,1,'hPgL1B',6,6,1,1.2,1,'2013-12-22'),(43,1,'hPgL1B',7,7,1,9.7,1,'2013-12-22'),(44,1,'hPgL1B',2,2,1,5.7,1,'2013-12-22'),(45,1,'hPgL1B',5,5,1,3.89,1,'2013-12-22'),(46,1,'vhFNoI',NULL,NULL,NULL,NULL,NULL,NULL),(60,1,'7CewKQ',4,8,4,5,0,'2015-01-17'),(61,1,'7CewKQ',3,3,2,5.4,0,'2015-01-17');
+INSERT INTO `carts` VALUES (1,1,'7CewKQ',5,9,1,3.89,1,'2013-12-22'),(2,1,'7CewKQ',6,10,1,1.2,1,'2013-12-22'),(3,1,'7CewKQ',4,8,4,5.1,0,'2015-01-17'),(4,1,'7CewKQ',3,3,2,5.4,0,'2015-01-17');
 /*!40000 ALTER TABLE `carts` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -187,7 +187,7 @@
                                 </td>
                                 <td class="price">
                                     <?php
-                                        echo round($cartslist['price'], 2);
+                                        echo $cartslist['price'];
                                     ?>
                                 </td>
                             </tr>

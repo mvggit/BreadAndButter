@@ -29,7 +29,7 @@ CREATE TABLE `product` (
   `nameproduct` varchar(128) CHARACTER SET utf8 DEFAULT NULL,
   `descproduct` longtext CHARACTER SET utf8,
   `techdescproduct` longtext CHARACTER SET utf8,
-  `priceproduct` float DEFAULT NULL,
+  `priceproduct` float(2) DEFAULT NULL,
   PRIMARY KEY (`idproduct`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

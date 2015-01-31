@@ -65,6 +65,11 @@
                 
             }
             
+            .btn-input {
+                
+                margin: 20px 0 0 30px;
+            }
+            
         </style>
     </head>
     <body>
@@ -121,13 +126,12 @@
                     
                     <h2>Адрес доставки:</h2>
                     
-                    <table class="delivery">
+                    <?php
 
-                        <?php
-                        
-                            if ( !empty( $deliverylist = Session::get( 'delivery' ) ) ) :
-                        ?>
-                        
+                        if ( !empty( $deliverylist = Session::get( 'delivery' ) ) ) :
+                    ?>
+
+                    <table class="delivery">                                        
                         <tr>
                             <td class="description">
                                 <p>
@@ -176,6 +180,9 @@
                                 </p>
                             </td>
                         </tr>
+                    <?php
+                        if ( !empty( $deliverylist[0]['houseblock'] ) ):
+                    ?>
                         <tr>                            
                             <td class="description">
                                 <p>
@@ -188,6 +195,9 @@
                                 </p>
                             </td>
                         </tr>
+                    <?php
+                        endif;
+                    ?>
                         <tr>                            
                             <td class="description">
                                 <p>
@@ -200,15 +210,101 @@
                                 </p>
                             </td>
                         </tr>    
-                        <?php
-
-                            endif;
-                        ?>
-
-                    </table>      
-                    
+                    </table>
                     
                     <a href="http://localhost/" class="btn-tomain"><img src="/img/main/tomain_button.png" alt="" /></a>
+
+                    <?php
+
+                        else:
+                    ?>
+                    
+                    <form action="" method="POST" >
+                    
+                        <table class="delivery">
+
+                            <tr>
+                                <td class="description">
+                                    <p>
+                                        Индекс
+                                    </p>
+                                </td>
+                                <td class="descriptionvalue">
+                                    <p>
+                                        <input type="text" name="postalzip" />
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="description">
+                                    <p>
+                                        Город
+                                    </p>
+                                </td>
+                                <td class="descriptionvalue">
+                                    <p>
+                                        <input type="text" name="city" />
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="description">
+                                    <p>
+                                        Улица
+                                    </p>
+                                </td>
+                                <td class="descriptionvalue">
+                                    <p>
+                                        <input type="text" name="street" />
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="description">
+                                    <p>
+                                        Дом
+                                    </p>
+                                </td>
+                                <td class="descriptionvalue">
+                                    <p>
+                                        <input type="text" name="house" />
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>                            
+                                <td class="description">
+                                    <p>
+                                        Блок
+                                    </p>
+                                </td>
+                                <td class="descriptionvalue">
+                                    <p>
+                                        <input type="text" name="houseblock" />
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>                            
+                                <td class="description">
+                                    <p>
+                                        Квартира
+                                    </p>
+                                </td>
+                                <td class="descriptionvalue">
+                                    <p>
+                                        <input type="text" name="houseroom" />
+                                    </p>
+                                </td>
+                            </tr>                                    
+
+                        </table>
+
+                        <input class="btn-input" type="image" src="/img/main/tosave_button.png" />
+
+                    </form>
+
+                    <?php
+                        endif;
+                    ?>
                     
                 </div>
             </div>
