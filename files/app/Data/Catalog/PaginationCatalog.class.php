@@ -33,7 +33,7 @@ class PaginationCatalog extends ViewCatalog{
         $where = 'storage.idgroupproduct = groupproduct.idgroupproduct '
                . 'AND product.idproduct = storage.idproduct ';
         $where .= !empty( $this -> group ) ? ' AND namegroupproduct = \'' . $this -> group . '\' ' : 'GROUP BY namegroupproduct';
-        $orderby = 'title ASC';
+        $orderby = 'grouparticle, article, title ASC';
         $limit = $this -> page * $limit . "," . $limit;
         
         return $this ->makeView($field, $from, $where, $orderby, $limit);

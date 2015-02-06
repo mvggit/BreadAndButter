@@ -40,7 +40,7 @@ class SortCatalog extends ViewCatalog {
                . 'AND product.idproduct = storage.idproduct ';
         $where .= ( !empty( $this -> group ) ) ? ' AND namegroupproduct = \'' . $this -> group . '\' ' : 'GROUP BY namegroupproduct';
         
-        $orderby = 'grouptitle ASC';
+        $orderby = 'grouparticle, grouptitle ASC';
         $limit = "";
         
         return $this ->makeView($field, $from, $where, $orderby, $limit);
