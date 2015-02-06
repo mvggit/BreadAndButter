@@ -13,25 +13,28 @@ use Service\Update;
 
 use Data\Storage\Storage;
 
-class MoveFromCarts extends Storage{
+
+class MoveFromCarts extends Storage
+{
     use Delete;
     use Update;
     use Get;
     
     public $_db;
     
-    public function __construct( $db, $request ) {
-        
+    public function __construct( $db, $request )
+    {
         parent::__construct( $db );
         
         $this -> _db = $db;
         $this -> {"move" . $request[0]}( $request );
     }
+
     
-    public function moveOne( array $param ) {
-
-        if ( !$this -> isInStorage( $param[3] ) ){
-
+    public function moveOne( array $param )
+    {
+        if ( !$this -> isInStorage( $param[3] ) )
+        {
             return false;
         }
 
@@ -41,25 +44,24 @@ class MoveFromCarts extends Storage{
                                   ( $this ->getCountProduct( $param[3] ) + 1 ) 
                                 );
                 
-        if ( !$count ) {
-            
+        if ( !$count )
+        {
             $return = Delete::delete( 'carts', 'idauth = ' . $param[2] . ' AND idproductincarts = ' . $param[3] . ' AND identifiercarts = \'' . $param[1] . '\'' );
             
-        } else {
-
+        } 
+        else 
+        {
             $return = Update::set( 'carts', 
                                      array( 'countincarts' => $count ), 
                                      'idauth = '. $param[2] . ' AND idproductincarts = ' . $param[3] . ' AND identifiercarts = \'' . $param[1] . '\'' 
                                  );
-            
         }
         
         return $return;
-        
     }
 
-    public function moveCarts( array $param ) {
-        
+    public function moveCarts( array $param )
+    {
         return Delete::delete( 'carts', 'idauth = ' . $param[2] . ' AND identifiercarts = \'' . $param[1] . '\'' );
     }    
 

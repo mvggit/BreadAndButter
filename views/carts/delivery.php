@@ -197,6 +197,7 @@
                         </tr>
                     <?php
                         endif;
+                        if ( !empty( $deliverylist[0]['houseroom'] ) ):
                     ?>
                         <tr>                            
                             <td class="description">
@@ -210,6 +211,9 @@
                                 </p>
                             </td>
                         </tr>    
+                    <?php
+                        endif;
+                    ?>
                     </table>
                     
                     <a href="http://localhost/" class="btn-tomain"><img src="/img/main/tomain_button.png" alt="" /></a>

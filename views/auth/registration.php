@@ -179,7 +179,7 @@
                 
                 <div class="authorization">                    
                     <span class="link">
-                        <a class="underline" href="?action=auth&do=authorization">Войти</a>
+                        <a class="underline" href="?action=auth&do=login">Войти</a>
                         <br />
                         <a style="display: block; margin-top: 15px;" href="?action=auth&do=login"><img src="img/carousel/left.png" alt="" /></a>
                     </span>

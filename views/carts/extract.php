@@ -172,6 +172,11 @@
                             $odd = 0;
 
                             foreach ($cartslists as $cartslist):
+                                if ( empty( $cartslist['title'] ) && 
+                                     empty( $cartslist['count'] ) )
+                                {
+                                    continue;
+                                }
                         ?>
 
                             <tr class="<?php echo ($odd % 2) ? "gray" : "";?>">

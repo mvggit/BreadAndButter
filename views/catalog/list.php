@@ -30,12 +30,17 @@
                     $.ajax({
                         type: "GET",
                         url: "http://localhost",
+                        data: {action: 'carts', do: 'add', param: ['One', 
+                                <?php echo '\'' . Session::get('identifiercarts') . '\'';?>, 
+                                <?php echo '\'' . Session::get('uin') . '\'';?>, 
+                                obj.attr('id-product')
+                                ]},
                         success : function( data ) {
                             obj.css({ 
                                 "line-height": "1.95", 
                                 "font-size": "12pt"
                             });
-                            obj.html("10");
+                            obj.html(data);
                         }
                     });
                 } );
@@ -192,7 +197,7 @@
                             </span>
                             <span class="price">
                                 <?php echo $list['price'];?> грн
-                                <span class="add">
+                                <span class="add" id-product="<?php echo $list['article'];?>">
                                     +
                                 </span>
                             </span>

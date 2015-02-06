@@ -13,15 +13,16 @@ use Service\Update;
 
 use Data\Storage\Storage;
 
-class AddToCarts extends Storage {
+class AddToCarts extends Storage 
+{
     use Create;
     use Update;
     use Get;
     
     public $_db;
     
-    function __construct( $db, $request ) {
-
+    function __construct( $db, $request ) 
+    {
         parent::__construct( $db );        
 
         $this -> _db = $db;
@@ -29,9 +30,10 @@ class AddToCarts extends Storage {
 
     }
     
-    function addOne( array $param ) {
-
-        if ( !$this -> isInStorage( $param[3] ) ) {
+    function addOne( array $param )
+    {
+        if ( !$this -> isInStorage( $param[3] ) )
+        {
 
             return false;
         }
@@ -40,8 +42,8 @@ class AddToCarts extends Storage {
 
         //TODO: things to create query generator. 
         
-        if ( !$count ) {
-
+        if ( !$count )
+        {
             $this 
                 -> unsetparam()
                 -> setparam( 'idauth', $param[2] )
@@ -58,8 +60,9 @@ class AddToCarts extends Storage {
                                       ( $this -> getCountProduct( $param[3] ) - 1 ) 
                                     );
             
-        } else {
-
+        } 
+        else
+        {
             Update::set( 'carts', 
                          array( 'countincarts' => $count + 1 ), 
                          'idauth = '. $param[2] .' AND idproductincarts = '. $param[3] . ' AND identifiercarts = \''. $param[1] . '\'' 
@@ -68,12 +71,9 @@ class AddToCarts extends Storage {
             $this -> setCountProduct( $param[3], 
                                       ( $this -> getCountProduct( $param[3] ) - 1 ) 
                                     );
-            
         }
-
-        
     }
-
+    
 
 
 }

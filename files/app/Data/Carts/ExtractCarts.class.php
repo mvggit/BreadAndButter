@@ -9,20 +9,21 @@ namespace Data\Carts;
 
 use Service\Get;
 
-class ExtractCarts {
+class ExtractCarts
+{
     use Get;
     
     public $_db;
+
     
-    public function __construct( $db ) {
-        
+    public function __construct( $db )
+    {
         $this -> _db = $db;
     }
     
-    //Разные списки параметров в функциях.
     
-    public function extractOne( $identifiercarts ) {
-        
+    public function extractOne( $identifiercarts ) 
+    {
         return Get::get( '(select nameproduct from product where idproduct = idproductincarts) as title,'
                        . 'countincarts as count,'
                        . 'priceincarts as price'
@@ -33,8 +34,8 @@ class ExtractCarts {
                     );
     }
     
-    public function extractList( $identifiercarts, $limit = '' ) {
-        
+    public function extractList( $identifiercarts, $limit = '' )
+    {
         return Get::get( 'idproductincarts as article, '
                        . '(select nameproduct from product where idproduct = idproductincarts) as title,'
                        . 'countincarts as count,'

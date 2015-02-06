@@ -12,16 +12,19 @@ use Service \Get;
 use Data\Catalog\SortCatalog;
 use Data\Catalog\PaginationCatalog;
 
+
 class CatalogControl {
     use Get;
+    
     
     public $view;
     public $_db;
     
-    private $limit = 1;
+    private $limit = 10;
 
-    public function __construct( $db, $request = array()) {
-        
+    
+    public function __construct( $db, $request = array()) 
+    {
         $this -> _db = $db;
         
         $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $request['action'] ."/". $request['do'] .".php";
@@ -32,15 +35,17 @@ class CatalogControl {
         
     }
 
-    public function SortCatalog( $request ){
-        
+    
+    public function SortCatalog( $request )
+    {
         $catalog = new SortCatalog( $this -> _db, $request );
         Session::set( 'catalog', $catalog -> Catalog( ) );
         
     }
+
     
-    public function PaginationCatalog( $request ){
-        
+    public function PaginationCatalog( $request )
+    {
         $catalog = new PaginationCatalog( $this -> _db, $request );
         Session::set( 'paginationlimit', $this -> limit );
         Session::set( 'paginationcount', Get::get( 'count(*) as count', 

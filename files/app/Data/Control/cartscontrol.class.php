@@ -22,13 +22,15 @@ class CartsControl {
     public $view = array();
     public $cart = NULL;
     
-    public function __construct($db, $request) {
-        
+    public function __construct($db, $request) 
+    {
         $this->_db = $db;
         
-        if ($hash = Session::get('info')) {
-
-            $this -> cart = Get::get( 'identifiercarts', 'carts, auth', 'hash = \''.$hash.'\' AND auth.idauth = carts.idauth', $limit = 1)[0]['identifiercarts'];
+        if ($hash = Session::get('info')) 
+        {
+            $this -> cart = !Session::search('identifiercarts') 
+                               ? Get::get( 'identifiercarts', 'carts, auth', 'hash = \''.$hash.'\' AND auth.idauth = carts.idauth', $limit = 1)[0]['identifiercarts']
+                               : Session::get('identifiercarts');
 
         }
         
@@ -36,8 +38,8 @@ class CartsControl {
 
     }
 
-    private function ViewCart( $request ){
-        
+    private function ViewCart( $request )
+    {
         $catalog = ($request !== NULL) ? $request['action'] : 'null';
         $filename = ($request !== NULL) ? $request['do'] : 'null';
         
@@ -45,8 +47,8 @@ class CartsControl {
         
     }
     
-    protected function Add( $request ) {
-        
+    protected function Add( $request ) 
+    {
         new AddToCarts( $this->_db, $request['param'] );
         Session::set(
                 'countproducts', 
@@ -63,8 +65,8 @@ class CartsControl {
         
     }
     
-    protected function Move( $request ) {
-        
+    protected function Move( $request ) 
+    {
         new MoveFromCarts( $this->_db, $request['param'] );
         Session::set(
                 'countproducts', 
@@ -82,8 +84,8 @@ class CartsControl {
                 
     }
 
-    protected function Extract( $request ) {
-        
+    protected function Extract( $request ) 
+    {
         $extract = new ExtractCarts( $this->_db );
         Session::set( 'carts', $extract -> extractList( $this -> cart ) );
         
@@ -93,8 +95,8 @@ class CartsControl {
         
     }
 
-    protected function Delivery( $request ) {
-    
+    protected function Delivery( $request ) 
+    {
         $delivery = array();
         new DeliveryCarts( $this -> _db, $delivery, $this -> cart );
         Session::set( 'delivery', $delivery );
