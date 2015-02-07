@@ -8,10 +8,10 @@ namespace Service;
 
 trait Delete {
     
-    function delete( $table, $where = true ) {
-        
-        if ( empty( $this -> _db ) ) {
-            
+    function delete( $table, $where = true )
+    {
+        if ( empty( $this -> _db ) )
+        {
             throw new \Exception( 'Database exception: undefined database identifier' );
         }
         

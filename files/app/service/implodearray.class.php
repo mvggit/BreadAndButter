@@ -9,9 +9,8 @@
 namespace Service;
 
 
-trait ImplodeArray {
-    
-    
+trait ImplodeArray 
+{
     function explodeAssocArray( $array, &$string = array() ) 
     {
         foreach ($array as $key => $value) 

@@ -15,7 +15,8 @@ use Data\Carts\ExtractCarts;
 
 use Data\Carts\DeliveryCarts;
 
-class CartsControl {
+class CartsControl 
+{
     use Get;
     
     public $_db;

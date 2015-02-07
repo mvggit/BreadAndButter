@@ -7,19 +7,18 @@
 
 namespace View;
 
-class View {
-    
+class View
+{
     public $data;
     public $filename;
     
-    public function __construct($data = array()) {
-        
+    public function __construct($data = array())
+    {
         $this->data = $data;
-        
     }
     
-    private function makeView( ) {
-        
+    private function makeView( )
+    {
         $this->filename = 
                 !empty($this->data['filename']) 
                         ? 
@@ -32,22 +31,18 @@ class View {
         include_once $this->filename;
         
         return ob_get_clean();
-        
     }
     
-    public function render() {
-        
-        if ( empty($view = $this->makeView()) ) {
-            
+    public function render()
+    {
+        if ( empty($view = $this->makeView()) ) 
+        {
             throw new \Exception("Ошибка чтения шаблона");
-            
-        } else {
-            
+        } 
+        else 
+        {
             echo $view;
-                    
-        }
-        
-        
+        }        
     }    
     
 

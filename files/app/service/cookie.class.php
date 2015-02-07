@@ -6,7 +6,8 @@
 
 namespace Service;
 
-trait Cookie {
+trait Cookie 
+{
 
     /**
      * function get
@@ -15,8 +16,8 @@ trait Cookie {
      * @return boolean
      */
     
-    static function get( $cookie ) {
-
+    static function get( $cookie )
+    {
         return filter_input(INPUT_COOKIE, $cookie);
     }
 
@@ -28,8 +29,8 @@ trait Cookie {
      * @return boolean
      */
     
-    static function set( $name, $value ) {
-        
+    static function set( $name, $value )
+    {
         return setcookie ( $name , $value , $expire = time() * 3600 * 24 );
     }
 

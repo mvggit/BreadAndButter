@@ -7,12 +7,12 @@
 
 namespace Service;
 
-trait Get {
-    
-    function get( $field, $from, $where, $order = "true", $limit = "" ) {
-        
-        if ( empty( $this -> _db ) ) {
-            
+trait Get
+{
+    function get( $field, $from, $where, $order = "true", $limit = "" )
+    {
+        if ( empty( $this -> _db ) )
+        {
             throw new \Exception( 'Database exception: undefined database identifier' );
         }
         

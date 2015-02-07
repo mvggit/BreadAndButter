@@ -7,7 +7,8 @@
 namespace Data\Control;
 use View\View;
 
-class Control {
+class Control 
+{
     
     private $_db;
     private $requestcontents;
@@ -18,19 +19,18 @@ class Control {
      * @param $request link to get request param
      */
     
-    function __construct($db, $request) {
-        
+    function __construct($db, $request)
+    {
         $this -> _db = $db;
         $this -> requestcontents = $request;
         
         $this -> loadClass();
-        
     }
 
-    function loadClass() {
-        
-        if (!empty( $this -> requestcontents['action']) ) {
-            
+    function loadClass()
+    {
+        if (!empty( $this -> requestcontents['action']) )
+        {
             $class = 'Data\Control\\' . ucfirst( $this -> requestcontents['action'] ) . ucfirst( "control" );
             
             $data = ( (int) count( $this -> requestcontents ) > 1 )
@@ -38,16 +38,14 @@ class Control {
                         : new $class( $this -> _db );
             
             $view = new View( $data -> view );
-            
         }
-        else {
-            
+        else 
+        {
             $view = new View( );
             
         }
         
         $view -> render(); 
-        
     }
     
     

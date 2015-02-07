@@ -6,12 +6,12 @@
 
 namespace Service;
 
-trait Update {
-    
-    function set( $table, $params, $where ) {
-        
-        if ( empty( $this -> _db ) ) {
-            
+trait Update 
+{
+    function set( $table, $params, $where )
+    {
+        if ( empty( $this -> _db ) )
+        {
             throw new \Exception( 'Database exception: undefined database identifier' );
         }
         

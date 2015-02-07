@@ -6,23 +6,23 @@
 
 namespace Data\Catalog;
 
-class PaginationCatalog extends ViewCatalog{
+class PaginationCatalog extends ViewCatalog
+{
     
     private $group;
     private $page = 0;
     
     public $_db;
     
-    public function __construct( $db, $request ) {
-        
+    public function __construct( $db, $request ) 
+    {
         $this -> _db = $db;
         $this -> page = $request['page'] - 1;
         $this -> group = array_key_exists('group', $request) ? $request['group'] : '';        
-
     }
 
-    public function Catalog( $limit = 10 ) {
-        
+    public function Catalog( $limit = 10 ) 
+    {
         $field = 'product.idproduct as article,'
                . 'groupproduct.idgroupproduct as grouparticle,'
                . 'nameproduct as title,'

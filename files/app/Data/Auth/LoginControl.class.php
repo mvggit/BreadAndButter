@@ -15,7 +15,8 @@ use Service\Get;
 use Data\Carts\Carts;
 
 
-class LoginControl {
+class LoginControl 
+{
     use Check;
     use Get;
     
@@ -38,7 +39,7 @@ class LoginControl {
             Session::set( 'name', $form['login'] );
             Session::set( 'uin', Get :: get('idauth', 'auth', 'hash = \'' . $hash . '\'')[0]['idauth'] );
 
-            $carts = new Carts( $this -> _db );
+            $carts = new GetNameCarts( $this -> _db );
             $carts -> GetCarts();
         }
 

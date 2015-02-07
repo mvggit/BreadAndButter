@@ -10,19 +10,21 @@ use Service\Check;
 use Service\Post;
 
 
-class AuthControl {
+class AuthControl
+{
     use Check;
     use Post {Post::__construct as PostConstructor; }
     
     public $view = array();
     protected $_db;
     
-    function __construct($db, $request = array()) {
-        
+    function __construct($db, $request = array())
+    {
         $this -> PostConstructor();
         $this ->_db = $db;
         
-        if ($this->isSend()) {
+        if ($this->isSend())
+        {
         
             $class = 'Data\Auth\\' . ucfirst( $request['do'] ) . ucfirst( "control" );
             $auth = new $class( $db );
@@ -38,5 +40,6 @@ class AuthControl {
         
     }
 
+    
     
 }

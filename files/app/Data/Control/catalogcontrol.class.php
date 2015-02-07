@@ -13,7 +13,8 @@ use Data\Catalog\SortCatalog;
 use Data\Catalog\PaginationCatalog;
 
 
-class CatalogControl {
+class CatalogControl 
+{
     use Get;
     
     

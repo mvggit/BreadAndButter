@@ -7,22 +7,23 @@
 
 namespace Data\Catalog;
 
-class SortCatalog extends ViewCatalog {
-    
+class SortCatalog extends ViewCatalog 
+{
     private $group;
     public $_db;    
+
     
-    public function __construct( $db, $request ) {
-        
+    public function __construct( $db, $request ) 
+    {
         parent::__construct( $db );
         $this -> _db = $db;
         $this -> group = array_key_exists('group', $request) ? $request['group'] : '';
-
     }
 
-    public function Catalog( ) {
-
-        if ( !empty( $this -> group ) ){
+    public function Catalog( ) 
+    {
+        if ( !empty( $this -> group ) )
+        {
             $field = 'product.idproduct as article,'
                    . 'groupproduct.idgroupproduct as grouparticle,'
                    . 'nameproduct as title,'
@@ -30,7 +31,8 @@ class SortCatalog extends ViewCatalog {
                    . 'descproduct as description,'
                    . 'priceproduct as price';
         }
-        else {
+        else 
+        {
             $field = 'groupproduct.idgroupproduct as grouparticle,'
                    . 'namegroupproduct as grouptitle';
         }

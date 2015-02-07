@@ -8,12 +8,12 @@
 
 namespace Service;
 
-class Session {
-
+class Session 
+{
     protected static $session = array();
     
-    function __construct() {
-        
+    function __construct()
+    {
         ;
     }
     
@@ -22,8 +22,8 @@ class Session {
      * @param mixed name
      */
     
-    public static function get( $name ){
-
+    public static function get( $name )
+    {
         $variable = ( array_key_exists( $name, $_SESSION ) );
         return $variable ? $_SESSION[ $name ] : false;
     }
@@ -34,8 +34,8 @@ class Session {
      * @param mixed value
      */    
     
-    public static function set( $name, $value ) {
-        
+    public static function set( $name, $value )
+    {
         $_SESSION[ $name ] = $value;
     }
     
@@ -45,8 +45,8 @@ class Session {
      * return bool
      */
     
-    public static function search( $name ) {
-        
+    public static function search( $name )
+    {
         return array_key_exists( $name, $_SESSION );
     }
     
@@ -55,8 +55,8 @@ class Session {
      * @param type $name
      */
     
-    public static function destroy( $name ) {
-        
+    public static function destroy( $name )
+    {
         unset( $_SESSION[ $name ] );
     }
     

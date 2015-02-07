@@ -12,13 +12,12 @@ namespace Service;
  *
  * @author Максим
  */
-trait Post {
-    
+trait Post 
+{
     protected $post;
     
-    
-    function __construct() {
-        
+    function __construct()
+    {
         $this -> post = &$_POST;
     }
     
@@ -27,8 +26,8 @@ trait Post {
      * @return boolean
      */
 
-    public function isSend() {
-        
+    public function isSend()
+    {
         return ( !empty( $this -> post ) ) ? true : false;
     }
     
@@ -38,8 +37,8 @@ trait Post {
      * @return mixed $value
      */
 
-    public function __get( $name ){
-        
+    public function __get( $name )
+    {
         $value = filter_input( INPUT_POST, $name );
         return $value;
     }
