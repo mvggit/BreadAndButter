@@ -12,10 +12,12 @@ namespace Data\Control;
 class AboutControl 
 {    
     public $view = array();
+    public $_db;
     
-    function __construct($db, $object = 'about', $type = 'about') 
+    function __construct( $db, $request ) 
     {
-        $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $object ."/". $type .".php";        
+        //$this -> _db = $db;
+        $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/" . $request['action'] . "/" . $request['action'] . ".php";        
     }
 
     

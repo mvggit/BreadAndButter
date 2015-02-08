@@ -39,7 +39,7 @@ class MySQLi implements DataBaseInterface
         $sql .= (!empty($sql) && $orderby) ? " ORDER BY $orderby " : "";
         $sql .= (!empty($sql) && $limit) ? " LIMIT $limit" : "";
         
-        //echo $sql . "<br /><br />";
+        // echo $sql . "<br /><br />";
         
         return $sql;
     }

@@ -40,7 +40,7 @@ CREATE TABLE `auth` (
 
 LOCK TABLES `auth` WRITE;
 /*!40000 ALTER TABLE `auth` DISABLE KEYS */;
-INSERT INTO `auth` VALUES (1,'maximvg@gmail.com','123456789','d4ec5e186703161809b51ca323eaca10',0),(7,'Максим','пароль','0e222c526fedad822eabe53405c1b009',0),(8,'1','1','6512bd43d9caa6e02c990b0a82652dca',0),(9,'q','q','099b3b060154898840f0ebdfb46ec78f',0),(10,'w','w','ad57484016654da87125db86f4227ea3',0),(11,'r','R','70ff524831c82e03b16fd2d5cd670ecc',0),(12,'r','r','514f1b439f404f86f77090fa9edc96ce',0),(13,'i','i','7e98b8a17c0aad30ba64d47b74e2a6c1',0);
+INSERT INTO `auth` VALUES (1,'maximvg@gmail.com','123456789','d4ec5e186703161809b51ca323eaca10',0),(7,'Максим','пароль','0e222c526fedad822eabe53405c1b009',0),(8,'йй','йй','77f5482a130a8a4845701b1d6cf1b4a5',0),(9,'qqq','qqq','343b1c4a3ea721b2d640fc8700db0f36',0),(10,'qq','qq','3bad6af0fa4b8b330d162e19938ee981',0),(11,'ggg','ggg','9cafeef08db2dd477098a0293e71f90a',0),(12,'ooo','ooo','9982b2a7fceaaee2c8444b5086aee008',0),(13,'йййй','йййййй','917c6e6d3b40b7b2eba7d36ea47d148e',0);
 /*!40000 ALTER TABLE `auth` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-19 17:37:01
+-- Dump completed on 2015-02-08 22:30:07

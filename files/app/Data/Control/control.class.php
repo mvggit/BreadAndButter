@@ -29,22 +29,16 @@ class Control
 
     function loadClass()
     {
-        if (!empty( $this -> requestcontents['action']) )
+        if ( !empty( $this -> requestcontents['action']) )
         {
             $class = 'Data\Control\\' . ucfirst( $this -> requestcontents['action'] ) . ucfirst( "control" );
-            
-            $data = ( (int) count( $this -> requestcontents ) > 1 )
-                        ? new $class( $this -> _db, $this -> requestcontents )
-                        : new $class( $this -> _db );
-            
+            $data = new $class( $this -> _db, $this -> requestcontents );
             $view = new View( $data -> view );
         }
         else 
         {
             $view = new View( );
-            
         }
-        
         $view -> render(); 
     }
     

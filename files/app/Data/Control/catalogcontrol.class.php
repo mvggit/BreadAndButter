@@ -9,7 +9,7 @@ namespace Data\Control;
 use Service\Session;
 use Service \Get;
 
-use Data\Catalog\SortCatalog;
+use Data\Catalog\GetCatalog;
 use Data\Catalog\PaginationCatalog;
 
 
@@ -24,24 +24,22 @@ class CatalogControl
     private $limit = 10;
 
     
-    public function __construct( $db, $request = array()) 
+    public function __construct( $db, $request ) 
     {
         $this -> _db = $db;
         
         $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $request['action'] ."/". $request['do'] .".php";
-
-        ( array_key_exists( 'page', $request ) ) 
-            ? $this -> PaginationCatalog( $request )
-            : $this -> SortCatalog( $request );
         
+        ( array_search( 'list', $request ) ) 
+            ? $this -> PaginationCatalog( $request )
+            : $this -> GetCatalog( $request );
     }
 
     
-    public function SortCatalog( $request )
+    public function GetCatalog( $request )
     {
-        $catalog = new SortCatalog( $this -> _db, $request );
+        $catalog = new GetCatalog( $this -> _db, $request );
         Session::set( 'catalog', $catalog -> Catalog( ) );
-        
     }
 
     
@@ -58,7 +56,6 @@ class CatalogControl
                                                 )[0]['count']);
         Session::set( 'paginationpage', $request['page'] );
         Session::set( 'catalog', $catalog -> Catalog( $this -> limit ) );
-        
     }
     
 

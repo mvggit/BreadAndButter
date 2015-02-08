@@ -36,7 +36,7 @@ CREATE TABLE `delivery` (
   PRIMARY KEY (`iddelivery`),
   KEY `FK_delivery` (`iduin`),
   CONSTRAINT `FK_delivery` FOREIGN KEY (`iduin`) REFERENCES `uin` (`iduin`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -45,7 +45,7 @@ CREATE TABLE `delivery` (
 
 LOCK TABLES `delivery` WRITE;
 /*!40000 ALTER TABLE `delivery` DISABLE KEYS */;
-INSERT INTO `delivery` VALUES (1,1,51935,'Днепродзержинск','Глагольева',1,1,1);
+INSERT INTO `delivery` VALUES (1,1,51935,'Днепродзержинск','Глагольева',1,0,1),(2,7,1,'2','3',4,0,6),(3,10,51935,'Днепропетровск','Глаголева',20,0,80),(4,8,51935,'Днепропетровск','Глаголева',20,0,80),(5,12,51000,'qwerty','qwerty',1,0,0),(6,13,49000,'йцукен','зщшгнекуцй',9,0,0);
 /*!40000 ALTER TABLE `delivery` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -58,4 +58,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-19 17:36:59
+-- Dump completed on 2015-02-08 22:30:02

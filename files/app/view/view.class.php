@@ -24,7 +24,7 @@ class View
                         ? 
                 $this->data['filename'] 
                         : 
-                dirname(__FILE__) . "/../../../views/main/index.php";
+                dirname(__FILE__) . "/../../../views/main/404.php";
         
         ob_start();
         

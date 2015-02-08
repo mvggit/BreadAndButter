@@ -29,7 +29,7 @@ CREATE TABLE `product` (
   `nameproduct` varchar(128) CHARACTER SET utf8 DEFAULT NULL,
   `descproduct` longtext CHARACTER SET utf8,
   `techdescproduct` longtext CHARACTER SET utf8,
-  `priceproduct` float(2) DEFAULT NULL,
+  `priceproduct` float DEFAULT NULL,
   PRIMARY KEY (`idproduct`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-19 17:37:01
+-- Dump completed on 2015-02-08 22:30:05

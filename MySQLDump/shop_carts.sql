@@ -31,7 +31,7 @@ CREATE TABLE `carts` (
   `idproductincarts` int(11) DEFAULT NULL,
   `idstorageincarts` int(11) DEFAULT NULL,
   `countincarts` int(11) DEFAULT NULL,
-  `priceincarts` float(2) DEFAULT NULL,
+  `priceincarts` float DEFAULT NULL,
   `storedcarts` tinyint(1) DEFAULT NULL,
   `savedate` date DEFAULT NULL,
   PRIMARY KEY (`idcarts`),
@@ -39,7 +39,7 @@ CREATE TABLE `carts` (
   KEY `FK_uincarts` (`idauth`),
   CONSTRAINT `FK_fromstoragetocarts` FOREIGN KEY (`idstorageincarts`) REFERENCES `storage` (`idstorage`),
   CONSTRAINT `FK_uincarts` FOREIGN KEY (`idauth`) REFERENCES `auth` (`idauth`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +48,7 @@ CREATE TABLE `carts` (
 
 LOCK TABLES `carts` WRITE;
 /*!40000 ALTER TABLE `carts` DISABLE KEYS */;
-INSERT INTO `carts` VALUES (1,1,'7CewKQ',5,9,1,3.89,1,'2013-12-22'),(2,1,'7CewKQ',6,10,1,1.2,1,'2013-12-22'),(3,1,'7CewKQ',4,8,4,5.1,0,'2015-01-17'),(4,1,'7CewKQ',3,3,2,5.4,0,'2015-01-17');
+INSERT INTO `carts` VALUES (1,1,'7CewKQ',5,9,2,3.89,1,'2013-12-22'),(2,1,'7CewKQ',6,10,2,1.2,1,'2013-12-22'),(3,1,'7CewKQ',4,8,2,5.1,0,'2015-01-17'),(4,1,'7CewKQ',3,3,3,5.4,0,'2015-01-17'),(15,1,'7CewKQ',1,1,2,5.5,0,'2015-02-06'),(18,12,'EusMz7',19,19,4,7,0,'2015-02-06'),(19,12,'EusMz7',18,18,1,10,0,'2015-02-06'),(20,12,'EusMz7',7,11,1,9.7,0,'2015-02-06'),(21,7,'KlhzP4',NULL,NULL,NULL,NULL,0,'2015-02-06'),(22,7,'KlhzP4',19,19,15,7,0,'2015-02-06'),(23,7,'KlhzP4',18,18,10,10,0,'2015-02-06'),(24,7,'KlhzP4',4,8,7,5,0,'2015-02-06'),(25,7,'KlhzP4',6,10,3,1.2,0,'2015-02-06'),(26,7,'KlhzP4',5,9,5,3.89,0,'2015-02-06'),(30,1,'7CewKQ',19,19,2,7,0,'2015-02-06'),(31,1,'7CewKQ',18,18,3,10,0,'2015-02-06'),(32,1,'7CewKQ',2,2,1,5.7,0,'2015-02-06'),(33,7,'KlhzP4',1,1,1,5.5,0,'2015-02-06'),(34,7,'KlhzP4',3,3,1,5.4,0,'2015-02-06'),(35,7,'KlhzP4',2,2,1,5.7,0,'2015-02-06'),(39,1,'7CewKQ',7,11,3,9.7,0,'2015-02-06'),(40,13,'PkDoKe',NULL,NULL,NULL,NULL,0,'2015-02-06'),(41,13,'PkDoKe',19,19,1,7,0,'2015-02-06'),(42,13,'PkDoKe',18,18,1,10,0,'2015-02-06'),(43,1,'7CewKQ',15,20,2,3.89,0,'2015-02-06');
 /*!40000 ALTER TABLE `carts` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-19 17:37:00
+-- Dump completed on 2015-02-08 22:30:03

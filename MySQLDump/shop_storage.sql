@@ -34,7 +34,7 @@ CREATE TABLE `storage` (
   KEY `FK_storagegroupproduct` (`idgroupproduct`),
   CONSTRAINT `FK_productinstorage` FOREIGN KEY (`idproduct`) REFERENCES `product` (`idproduct`),
   CONSTRAINT `FK_storagegroupproduct` FOREIGN KEY (`idgroupproduct`) REFERENCES `groupproduct` (`idgroupproduct`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `storage` (
 
 LOCK TABLES `storage` WRITE;
 /*!40000 ALTER TABLE `storage` DISABLE KEYS */;
-INSERT INTO `storage` VALUES (1,1,3,98),(2,2,3,98),(3,3,3,105),(4,1,3,117),(5,1,3,97),(6,1,3,98),(7,1,3,91),(8,4,1,100),(9,5,1,100),(10,6,1,100),(11,7,2,100),(12,7,2,100),(13,7,2,100),(14,7,2,100),(15,7,2,100),(16,7,2,100),(17,7,2,100),(18,18,4,50),(19,19,4,50);
+INSERT INTO `storage` VALUES (1,1,3,88),(2,2,3,96),(3,3,3,88),(4,1,3,88),(5,1,3,88),(6,1,3,88),(7,1,3,88),(8,4,1,92),(9,5,1,94),(10,6,1,96),(11,7,2,96),(12,7,2,96),(13,7,2,96),(14,7,2,96),(15,7,2,96),(16,7,2,96),(17,7,2,96),(18,18,4,33),(19,19,4,26),(20,15,5,8);
 /*!40000 ALTER TABLE `storage` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-19 17:37:00
+-- Dump completed on 2015-02-08 22:30:04

@@ -50,9 +50,9 @@
                 
                 <nav class="navbar-menu">
                     <ul class="list-unstyled list-inline">
-                        <li><a href="?action=catalog&do=group" class="btn btn-border-right active">Ассортимент</a></li>
                         <li><a href="?action=carts&do=extract" class="btn btn-border-right active">Корзина</a></li>
-                        <li><a href="?action=about" class="btn active">О магазине</a></li>                    </ul>
+                        <li><a href="?action=about" class="btn active">О магазине</a></li>                    
+                    </ul>
                 </nav>
             </section>
         </header>

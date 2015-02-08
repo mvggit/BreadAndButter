@@ -41,7 +41,7 @@ CREATE TABLE `uin` (
 
 LOCK TABLES `uin` WRITE;
 /*!40000 ALTER TABLE `uin` DISABLE KEYS */;
-INSERT INTO `uin` VALUES (1,'Maxim','Максим','Витальевич','Гаврилов'),(7,'Максим','Максим','Витальевич','Гаврилов'),(8,'1','1','1','1'),(9,'q','q','q','q'),(10,'w','w','w','w'),(11,'R','R','R','R'),(12,'r','r','r','r'),(13,'i','i','i','i');
+INSERT INTO `uin` VALUES (1,'Maxim','Максим','Витальевич','Гаврилов'),(7,'Максим','Максим','Витальевич','Гаврилов'),(8,'ййй','йй','йй','йй'),(10,'q','q','q','Q'),(11,'gg','gg','gg','gg'),(12,'ooo','ooo','ooo','ooo'),(13,'й','й','й','й');
 /*!40000 ALTER TABLE `uin` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-19 17:37:02
+-- Dump completed on 2015-02-08 22:30:08

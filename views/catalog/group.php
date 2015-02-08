@@ -26,6 +26,7 @@
         <script src="js/bootstrap.min.js"></script>
         <script type="text/javascript">
             $( document ).ready(function() {
+                $("#myCarousel").carousel();
                 $("div.icon").click(function()
                 {
                     location.href = $( this ).find(".name > a").attr('href');
@@ -91,7 +92,6 @@
                 
                 <nav class="navbar-menu">
                     <ul class="list-unstyled list-inline">
-                        <li><a href="?action=catalog&do=group" class="btn btn-border-right active">Ассортимент</a></li>
                         <li><a href="?action=carts&do=extract" class="btn btn-border-right active">Корзина</a></li>
                         <li><a href="?action=about" class="btn active">О магазине</a></li>                    
                     </ul>
@@ -100,18 +100,55 @@
         </header>
         <main>
             <div class="container">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
 
-                <?php
+                        <?php
 
-                    $catalog = Session::get( 'catalog' ); 
-                    $cataloglists = is_array( $catalog )
-                        ? $catalog
-                        : array();
+                            $catalog = Session::get( 'catalog' ); 
+                            $cataloglists = is_array( $catalog )
+                                ? $catalog
+                                : array();
 
-                    foreach ($cataloglists as $key => $list):
+                            $active = 'active';
+                            
+                            foreach ($cataloglists as $key => $list):
+
+                        ?>
+            
+            
+                        <div class="item <?php echo $active; ?>">
+                            <img src="<?php echo "../img/product/" . $list['grouptitle'] ."/". $list['grouptitle'].".png";?>" 
+                                     alt="<?php echo $list['grouptitle'];?>"
+                                     class="icon"
+                                />
+                            <div class="carousel-caption">
+                                <h1><?php echo $list['grouptitle'];?></h1>
+                                <?php echo $list['description'];?>
+                                <span class="caption-button">
+                                    <a class="active" 
+                                       href="http://localhost/?action=catalog&do=list&group=<?php echo $list['grouptitle'];?>&page=1" role="button">
+                                        <img src="img/main/more_button.png" alt="" />
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+
+                        <?php
+                            $active = '';
                         
-                ?>
-                
+                            endforeach;
+                        ?>
+                        
+                    </div>
+                <!--    <a class="left carousel-control" href="#myCarousel" data-slide="prev"><img src="img/carousel/left.png" alt="" /></a> !-->
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next"><img src="img/carousel/right.png" alt="" /></a>
+                </div>
+            </div>
+            
+            
+            
+<!--            <div class="container">                
                         <div class="product">
                             <div class="icon">
                                 <img src="<?php echo "../img/product/" . $list['grouptitle'] ."/". $list['grouptitle'].".png";?>" 
@@ -124,18 +161,15 @@
                                     </a>
                                 </span>
                             </div>
-                        </div>
+                        </div>-->
                         
                <?php
                         
-                    endforeach;
-                    
-                    Session::destroy( 'cataloglist' );
-                    Session::destroy( 'cataloggroup' );
+                    Session::destroy( 'catalog' );
                     
                 ?>
 
-            </div>
+<!--            </div>-->
         </main>
         <footer>
             <ul class="list-unstyled">
