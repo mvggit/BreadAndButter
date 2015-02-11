@@ -24,7 +24,12 @@
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script type="text/javascript">
-            $( document ).ready( function(){
+            $( document ).ready( function()
+            {
+                $('a.catalog').on('click', function( event )
+                {
+                    event.preventDefault();
+                });
                 $('.add').on('click', function(){
                 var obj = $(this);
                     $.ajax({
@@ -190,7 +195,7 @@
                                 />
                             </span>
                             <span class="name">
-                                <a href="http://localhost/?action=catalog&do=list&group=<?php echo $list['grouptitle'];?>&product=<?php echo $list['title'];?>">
+                                <a href="" class="catalog">
                                     <?php echo $list['title'];?>
                                 </a>
                             </span>

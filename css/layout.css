@@ -12,9 +12,10 @@ body
     color: #a1522c;
 }
 
-a, a:hover
+a, a:hover, a:visited
 {
     color: #8e6137;
+    text-decoration: none;
 }
 
 
@@ -22,12 +23,14 @@ a, a:hover
 * Colors block
 */
 
-.color_light_brown, .color_light_brown:hover
+.color_light_brown, .color_light_brown:hover,
+a.color_light_brown, a.color_light_brown:hover
 {
     color: #d5b898;
 }
 
-.color_light_pink, .color_light_pink:hover
+.color_light_pink, .color_light_pink:hover,
+a.color_light_pink, a.color_light_pink:hover
 {
     color: #ffa69f;
 }
@@ -71,6 +74,7 @@ header
 
     top: 40px;
     right: 30px;
+    
 }
 
 .nav-bar .navbar_link
@@ -118,6 +122,13 @@ header
     border-radius: 0;
     
     color: #fff;
+}
+
+a.btn,
+a.btn:visited
+{
+    color: #fff;
+    text-decoration: none;
 }
 
 .btn:hover,
