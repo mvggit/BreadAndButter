@@ -32,11 +32,9 @@ class CartsControl
             $this -> cart = !Session::search('identifiercarts') 
                                ? Get::get( 'identifiercarts', 'carts, auth', 'hash = \''.$hash.'\' AND auth.idauth = carts.idauth', $limit = 1)[0]['identifiercarts']
                                : Session::get('identifiercarts');
-
         }
         
         $this -> $request['do']( $request );
-
     }
 
     private function ViewCart( $request )
@@ -45,7 +43,6 @@ class CartsControl
         $filename = ($request !== NULL) ? $request['do'] : 'null';
         
         return ($this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $catalog ."/". $filename .".php");
-        
     }
     
     protected function Add( $request ) 
@@ -63,7 +60,6 @@ class CartsControl
                 );
         
         $this -> ViewCart( NULL );
-        
     }
     
     protected function Move( $request ) 
@@ -82,7 +78,6 @@ class CartsControl
                 );
         
         $this -> ViewCart( NULL );
-                
     }
 
     protected function Extract( $request ) 
@@ -93,7 +88,6 @@ class CartsControl
         $this -> ViewCart( $request );
         
         return true;
-        
     }
 
     protected function Delivery( $request ) 
@@ -103,7 +97,6 @@ class CartsControl
         Session::set( 'delivery', $delivery );
         
         $this -> ViewCart( $request );
-        
     }
 
     

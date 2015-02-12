@@ -11,7 +11,6 @@ class Control
 {
     
     private $_db;
-    private $requestcontents;
     
     /*
      * Control->__construct
@@ -22,17 +21,15 @@ class Control
     function __construct($db, $request)
     {
         $this -> _db = $db;
-        $this -> requestcontents = $request;
-        
-        $this -> loadClass();
+        $this -> loadClass( $request );
     }
 
-    function loadClass()
+    function loadClass( $request )
     {
-        if ( !empty( $this -> requestcontents['action']) )
+        if ( array_key_exists( 'action', $request) )
         {
-            $class = 'Data\Control\\' . ucfirst( $this -> requestcontents['action'] ) . ucfirst( "control" );
-            $data = new $class( $this -> _db, $this -> requestcontents );
+            $class = 'Data\Control\\' . ucfirst( $request['action'] ) . ucfirst( "control" );
+            $data = new $class( $this -> _db, $request );
             $view = new View( $data -> view );
         }
         else 

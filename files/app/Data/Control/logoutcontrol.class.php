@@ -26,6 +26,6 @@ class logoutcontrol
         $this -> view = $catalog -> view;
     }
 
-    
+
 
 }
