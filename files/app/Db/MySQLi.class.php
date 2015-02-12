@@ -26,7 +26,9 @@ class MySQLi implements DataBaseInterface
     
     function connect( $host, $uname, $upass, $udbname ) 
     {
-        return $this->MySQLi = new \mysqli( $host, $uname, $upass, $udbname );
+        $this -> MySQLi = new \mysqli( $host, $uname, $upass, $udbname );
+        $this -> MySQLi -> set_charset( 'utf8' );
+        return $this -> MySQLi;
     }
     
     function select( $items, $from, $where, $orderby = 'id ASC', $limit = '100' )
@@ -99,7 +101,7 @@ class MySQLi implements DataBaseInterface
             throw new \Exception( $this->MySQLi->error."<br />" );
         }
         
-        return empty($last_insert_id = $this->MySQLi->insert_id) ? true : $last_insert_id;
+        return empty( $last_insert_id = $this -> MySQLi -> insert_id ) ? true : $last_insert_id;
     }
     
 

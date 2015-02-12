@@ -39,7 +39,7 @@ class Database
         return self::instance() -> $_method();
     }
     
-    public function MySQLi( $host = '127.0.0.1', $uname = 'root', $upass = '1111', $udbname = 'shop' ) 
+    public function MySQLi( $host = '127.0.0.1', $uname = 'root', $upass = 'root', $udbname = 'shop' ) 
     {
         return new MySQLi( $host, $uname, $upass, $udbname );
     }
