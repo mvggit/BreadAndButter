@@ -117,7 +117,7 @@
                 <div class="cart">
                     <span class="link">
                         <a class="underline" href="?action=carts&do=extract">Товары в корзине</a>
-                        <a style="display: block; margin-top: 15px;" href="?action=carts&do=extract"><img src="img/carousel/left.png" alt="" /></a>
+                        <a style="display: block; margin-top: 15px;" href="?action=carts&do=extract"><img src="img/carousel/right.png" alt="" /></a>
                     </span>
                 </div>
                 

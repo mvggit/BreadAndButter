@@ -35,6 +35,14 @@
                     $.ajax({
                         type: "GET",
                         url: "http://localhost",
+                        beforeSend: function( xhr, opt ){
+                        var isLogged = '<?php echo Session::get('uin');?>';
+                            if ( isLogged == '' )
+                            {
+                                alert('Пожалуйста войдите в систему');
+                                xhr.abort();
+                            }
+                        },
                         data: {action: 'carts', do: 'add', param: ['One', 
                                 <?php echo '\'' . Session::get('identifiercarts') . '\'';?>, 
                                 <?php echo '\'' . Session::get('uin') . '\'';?>, 

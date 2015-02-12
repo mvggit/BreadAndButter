@@ -41,7 +41,7 @@
                     <?php
                         if (empty(Session::get('info'))) :
                     ?>
-                    <a href="?action=auth&do=login" class=\"link color_light_brown\">Войти</a>
+                    <a href="?action=auth&do=login" class="link color_light_brown">Войти</a>
                     <span class="separator">&nbsp;|&nbsp;</span>
                     <a href="?action=auth&do=registration" class="link color_light_pink">Зарегистрироваться</a>
                     
@@ -59,7 +59,7 @@
                 <nav class="navbar-menu">
                     <ul class="list-unstyled list-inline">
                         <li><a href="?action=carts&do=extract" class="btn btn-border-right active">Корзина</a></li>
-                        <li><a href="/aboutproject" class="btn active">О магазине</a></li>
+                        <li><a href="?action=about" class="btn active">О магазине</a></li>
                     </ul>
                 </nav>
             </section>
