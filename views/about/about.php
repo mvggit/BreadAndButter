@@ -97,18 +97,13 @@
             <div class="container">
                 <div class="container-inner">
                     <h1>О магазине</h1>
-                    <p>Магазин Bread & Butter разработан как некоммерческий магазин с открытым кодом. 
-                       Целью разработки магазина Bread & Butter является демонстрация навыков в дизайне, 
-                       верстке, PHP программировании.</p>
-                    <p>Открытый код магазина Bread & Butter является примером качества кода который автор 
-                       магазина использует в коммерческом программировании.</p>
+                    <p>Магазин Bread & Butter &ndash; некоммерческий магазин с открытым кодом.</p>
                     <p>
-                        В разработке проекта использовалось:
-                    </p>
+                        В разработке использовалось:</p>
                     <ul>
-                        <li>PHP 5.5</li>
-                        <li>MySQL 5.x</li>
                         <li>Sybase PowerDesinger 10.x</li>
+                        <li>MySQL 5.x</li>
+                        <li>PHP 5.5</li>
                     </ul>
                     <a href="http://localhost/" class="btn-tomain"><img src="/img/main/tomain_button.png" alt="" /></a>
                 </div>
