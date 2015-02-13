@@ -9,7 +9,7 @@ namespace Data\Auth;
 use Service\Session;
 
 use Service\Check;
-use service\Create;
+use Service\Create;
 
 class RegistrationControl 
 {

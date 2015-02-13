@@ -35,7 +35,8 @@ class View
     
     public function render()
     {
-        if ( empty($view = $this->makeView()) ) 
+        $view = $this -> makeView();
+        if ( empty($view) ) 
         {
             throw new \Exception("Ошибка чтения шаблона");
         } 

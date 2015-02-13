@@ -156,7 +156,7 @@
             <section class="nav-bar">
                 <nav class="navbar_link">
                     <?php
-                        if (empty(Session::get('info'))) :
+                        if (!Session::get('info')) :
                     ?>
                     <a href="?action=auth&do=login" class="link color_light_brown">Войти</a>
                     <span class="separator">&nbsp;|&nbsp;</span>
