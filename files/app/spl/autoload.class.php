@@ -35,7 +35,7 @@ class Autoload
     private function autoload_classes( $class )
     {
         $class = str_replace("\\", "/", $class);
-
+        
         $doc_root = filter_input(INPUT_SERVER, 'DOCUMENT_ROOT');
         
         if (is_file($doc_root . '/files/' . $class . '.class.php'))
