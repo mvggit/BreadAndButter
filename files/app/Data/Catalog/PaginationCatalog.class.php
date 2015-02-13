@@ -27,7 +27,6 @@ class PaginationCatalog extends ViewCatalog
                . 'groupproduct.idgroupproduct as grouparticle,'
                . 'nameproduct as title,'
                . 'namegroupproduct as grouptitle, '
-               . 'descproduct as description,'
                . 'priceproduct as price';
         $from = 'product, storage, groupproduct';
         $where = 'storage.idgroupproduct = groupproduct.idgroupproduct '

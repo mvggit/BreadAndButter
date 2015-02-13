@@ -138,12 +138,24 @@
                 position: absolute;
                 display: block;
                 
-                top: 50%;
-                right: 3%;
-                width: 5%;
+                top: 60%;
                 height: 19%;
                 text-align: center;
             }
+            
+            .left
+            {
+                position: absolute;
+                left: 3%;
+                width: 5%;
+            }
+            
+            .right
+            {
+                position: absolute;
+                right: 3%;
+                width: 5%;
+            }            
         </style>
     </head>
     <body>
@@ -228,6 +240,15 @@
                             </a>
                <?php
                         endif;
+                    endif;
+                    if ( ( Session::get( 'paginationpage' ) - 1 ) > 0 ):
+                ?>
+                        <a class="left pagination-control" 
+                            href="http://localhost/?action=catalog&do=list&group=<?php echo $cataloglists[0]['grouptitle'];?>&page=<?php echo ( Session::get( 'paginationpage' ) - 1 );?>">
+                            <img src="img/carousel/left.png" alt="" />
+                        </a>
+
+                <?php
                     endif;
                     
                     Session::destroy( 'cataloglist' );

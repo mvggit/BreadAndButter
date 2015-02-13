@@ -21,7 +21,7 @@ class CatalogControl
     public $view;
     public $_db;
     
-    private $limit = 10;
+    private $limit = 9;
 
     
     public function __construct( $db, $request ) 
