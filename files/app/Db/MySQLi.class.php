@@ -10,10 +10,10 @@
  */
 
 namespace Db;
-use Db\DataBaseInterface;
+use Db\IDataBase;
 use Service\ImplodeArray;
 
-class MySQLi implements DataBaseInterface 
+class MySQLi implements IDataBase 
 {
     use ImplodeArray;
     

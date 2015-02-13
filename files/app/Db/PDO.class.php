@@ -8,10 +8,10 @@
  */
 
 namespace Db;
-use Db\DataBaseInterface;
+use Db\IDataBase;
 
 
-class PDO implements DataBaseInterface
+class PDO implements IDataBase
 {
     function __construct( $host, $uname, $upass, $udbname )
     {
