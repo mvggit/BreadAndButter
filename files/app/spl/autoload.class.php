@@ -47,7 +47,7 @@ class Autoload
     private function autoload_app_classes( $class )
     {        
         $class = str_replace("\\", "/", $class);
-
+        
         $doc_root = filter_input(INPUT_SERVER, 'DOCUMENT_ROOT');
 
         if (is_file($doc_root . '/files/app/' . $class . '.class.php'))
@@ -58,7 +58,7 @@ class Autoload
     
     private function autoload_service_classes( $class )
     {
-        str_replace("![_\\]!i", "/", $class);
+        $class = str_replace("\\", "/", $class);
         
         $doc_root = filter_input(INPUT_SERVER, 'DOCUMENT_ROOT');
 

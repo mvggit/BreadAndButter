@@ -100,8 +100,8 @@ class MySQLi implements IDataBase
         {
             throw new \Exception( $this->MySQLi->error."<br />" );
         }
-        $last_insert_id = $this -> MySQLi -> insert_id;
-        return empty( $last_insert_id ) ? true : $last_insert_id;
+        
+        return empty( $this -> MySQLi -> insert_id ) ? true : $this -> MySQLi -> ;
     }
     
 

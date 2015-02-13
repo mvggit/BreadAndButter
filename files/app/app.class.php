@@ -8,7 +8,7 @@ namespace Main;
 
 
 use Main\Autoload;
-use Db\Database;
+use Db\DataBase;
 use Data\Control\Control;
 use Request\Request;
 
@@ -28,8 +28,8 @@ final class App
         $_request = new Request();
         self::$_request = &$_request->handle();
         
-        Database::instance();
-        self::$_db = Database::connection();
+        DataBase::instance();
+        self::$_db = DataBase::connection();
     }
     
     public static function instance()
