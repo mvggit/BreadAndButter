@@ -34,7 +34,9 @@ class Control
         }
         else 
         {
+            //Костыль! который стоит убрать
             header("Location: ?action=catalog&do=group");
+            $view = new View(  );
         }
         $view -> render(); 
     }
