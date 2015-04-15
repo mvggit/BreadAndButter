@@ -11,4 +11,4 @@
   
   App::init();
   
-  echo microtime( true ) - $time;
+  echo "<br />", "Script time:", microtime( true ) - $time;
