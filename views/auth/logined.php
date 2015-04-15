@@ -31,18 +31,17 @@
             <section class="nav-bar">
                 <nav class="navbar_link">
                     <?php
-                        if (Session::get('info')) :
+                        if (!Session::get('info')) :
                     ?>
-                    <a href="?action=auth&do=login" class=\"link color_light_brown\">Войти</a>
-                    <span class="separator">&nbsp;|&nbsp;</span>
-                    <a href="?action=auth&do=registration" class="link color_light_pink">Зарегистрироваться</a>
-                    
+                            <a href="?action=auth&do=login" class=\"link color_light_brown\">Войти</a>
+                            <span class="separator">&nbsp;|&nbsp;</span>
+                            <a href="?action=auth&do=registration" class="link color_light_pink">Зарегистрироваться</a>
                     <?php
                         else:
                     ?>
-                    <span class="link color_light_brown"><?php echo Session::get('name')?></span>
-                    <span class="separator">&nbsp;|&nbsp;</span>
-                    <a href="?action=logout" class="link color_light_pink">Выйти</a>
+                            <span class="link color_light_brown"><?php echo Session::get('name')?></span>
+                            <span class="separator">&nbsp;|&nbsp;</span>
+                            <a href="?action=logout" class="link color_light_pink">Выйти</a>
                     <?php
                         endif;
                     ?>
@@ -62,13 +61,12 @@
                     <h3>
                         Все получилось, спасибо!
                     </h3>
-                    <a href="http://localhost/" class="btn-tomain"><img src="/img/main/tomain_button.png" alt="" /></a>
+                    <a href="/" class="btn-tomain"><img src="/img/main/tomain_button.png" alt="" /></a>
                 </div>
             </div>
         </main>
         <footer>
             <ul class="list-unstyled">
-                <li class="footer-text text-color">Телефон для справок:&nbsp;+38&nbsp;098&nbsp;743&nbsp;97&nbsp;83</li>
                 <li class="footer-text text-color">Email:&nbsp;<a href="mailto:maximvg@gmail.com" class="text-color">maximvg@gmail.com</a></li>
                 <li class="footer-text text-color">Skype:&nbsp;gavrylvovmv</li>
             </ul>

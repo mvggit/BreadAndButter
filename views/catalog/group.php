@@ -35,8 +35,7 @@
             }
             );
         </script>
-        <style type="text/css">
-            
+        <style type="text/css">            
             .product {
                 width: 200px;
                 height: 240px;
@@ -75,16 +74,15 @@
                     <?php
                         if (!Session::get('info')) :
                     ?>
-                    <a href="?action=auth&do=login" class="link color_light_brown">Войти</a>
-                    <span class="separator">&nbsp;|&nbsp;</span>
-                    <a href="?action=auth&do=registration" class="link color_light_pink">Зарегистрироваться</a>
-                    
+                            <a href="?action=auth&do=login" class="link color_light_brown">Войти</a>
+                            <span class="separator">&nbsp;|&nbsp;</span>
+                            <a href="?action=auth&do=registration" class="link color_light_pink">Зарегистрироваться</a>                    
                     <?php
                         else:
                     ?>
-                    <span class="link color_light_brown"><?php echo Session::get('name')?></span>
-                    <span class="separator">&nbsp;|&nbsp;</span>
-                    <a href="?action=logout" class="link color_light_pink">Выйти</a>
+                            <span class="link color_light_brown"><?php echo Session::get('name')?></span>
+                            <span class="separator">&nbsp;|&nbsp;</span>
+                            <a href="?action=logout" class="link color_light_pink">Выйти</a>
                     <?php
                         endif;
                     ?>
@@ -105,34 +103,27 @@
 
                         <?php
 
-                            $catalog = Session::get( 'catalog' ); 
-                            $cataloglists = is_array( $catalog )
-                                ? $catalog
-                                : array();
-
                             $active = 'active';
                             
-                            foreach ($cataloglists as $key => $list):
+                            foreach ( ( array )Session::get( 'catalog' ) as $key => $list):
 
                         ?>
-            
-            
-                        <div class="item <?php echo $active; ?>">
-                            <img src="<?php echo "../img/product/" . $list['grouptitle'] ."/". $list['grouptitle'].".png";?>" 
-                                     alt="<?php echo $list['grouptitle'];?>"
-                                     class="icon"
-                                />
-                            <div class="carousel-caption">
-                                <h1><?php echo $list['grouptitle'];?></h1>
-                                <?php echo $list['description'];?>
-                                <span class="caption-button">
-                                    <a class="active" 
-                                       href="http://localhost/?action=catalog&do=list&group=<?php echo $list['grouptitle'];?>&page=1" role="button">
-                                        <img src="img/main/more_button.png" alt="" />
-                                    </a>
-                                </span>
-                            </div>
-                        </div>
+                                <div class="item <?php echo $active; ?>">
+                                    <img src="<?php echo "img/product/" . $list['grouptitle'] ."/". $list['grouptitle'].".png";?>" 
+                                             alt="<?php echo $list['grouptitle'];?>"
+                                             class="icon"
+                                        />
+                                    <div class="carousel-caption">
+                                        <h1><?php echo $list['grouptitle'];?></h1>
+                                        <?php echo $list['description'];?>
+                                        <span class="caption-button">
+                                            <a class="active" 
+                                               href="?action=catalog&do=list&group=<?php echo $list['grouptitle'];?>&page=1" role="button">
+                                                <img src="img/main/more_button.png" alt="" />
+                                            </a>
+                                        </span>
+                                    </div>
+                                </div>
 
                         <?php
                             $active = '';
@@ -141,39 +132,12 @@
                         ?>
                         
                     </div>
-                <!--    <a class="left carousel-control" href="#myCarousel" data-slide="prev"><img src="img/carousel/left.png" alt="" /></a> !-->
                     <a class="right carousel-control" href="#myCarousel" data-slide="next"><img src="img/carousel/right.png" alt="" /></a>
                 </div>
             </div>
-            
-            
-            
-<!--            <div class="container">                
-                        <div class="product">
-                            <div class="icon">
-                                <img src="<?php echo "../img/product/" . $list['grouptitle'] ."/". $list['grouptitle'].".png";?>" 
-                                     alt="<?php echo $list['grouptitle'];?>"
-                                     class="icon"
-                                />
-                                <span class="name">
-                                    <a href="http://localhost/?action=catalog&do=list&group=<?php echo $list['grouptitle'];?>&page=1">
-                                        <?php echo $list['grouptitle'];?>
-                                    </a>
-                                </span>
-                            </div>
-                        </div>-->
-                        
-               <?php
-                        
-                    Session::destroy( 'catalog' );
-                    
-                ?>
-
-<!--            </div>-->
         </main>
         <footer>
             <ul class="list-unstyled">
-                <li class="footer-text text-color">Телефон для справок:&nbsp;+38&nbsp;098&nbsp;743&nbsp;97&nbsp;83</li>
                 <li class="footer-text text-color">Email:&nbsp;<a href="mailto:maximvg@gmail.com" class="text-color">maximvg@gmail.com</a></li>
                 <li class="footer-text text-color">Skype:&nbsp;gavrylvovmv</li>
             </ul>

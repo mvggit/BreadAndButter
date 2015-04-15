@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * App class it's a main class who load other's classes.
+ * App. Main class.
  */
 
 namespace Main;
@@ -54,7 +54,4 @@ final class App
             echo $e->getMessage();
         }
     }
-
-    
-    
 }

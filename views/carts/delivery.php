@@ -22,7 +22,6 @@
         <link rel="stylesheet" href="./css/bootstrap.css" />
         <link rel="stylesheet" href="./css/layout.css" />
         
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <style type="text/css">
             .photo {
                 
@@ -84,16 +83,15 @@
                     <?php
                         if (!Session::get('info')) :
                     ?>
-                    <a href="?action=auth&do=login" class=\"link color_light_brown\">Войти</a>
-                    <span class="separator">&nbsp;|&nbsp;</span>
-                    <a href="?action=auth&do=registration" class="link color_light_pink">Зарегистрироваться</a>
-                    
+                            <a href="?action=auth&do=login" class=\"link color_light_brown\">Войти</a>
+                            <span class="separator">&nbsp;|&nbsp;</span>
+                            <a href="?action=auth&do=registration" class="link color_light_pink">Зарегистрироваться</a>
                     <?php
                         else:
                     ?>
-                    <span class="link color_light_brown"><?php echo Session::get('name')?></span>
-                    <span class="separator">&nbsp;|&nbsp;</span>
-                    <a href="?action=logout" class="link color_light_pink">Выйти</a>
+                            <span class="link color_light_brown"><?php echo Session::get('name')?></span>
+                            <span class="separator">&nbsp;|&nbsp;</span>
+                            <a href="?action=logout" class="link color_light_pink">Выйти</a>
                     <?php
                         endif;
                     ?>
@@ -127,195 +125,189 @@
                     
                     <?php
 
-			$deliverylist = Session::get('delivery');
-                        if ( !empty($deliverylist) ) :
+                        if ( Session::get('delivery') ) :
                     ?>
+                            <table class="delivery">                                        
+                                <tr>
+                                    <td class="description">
+                                        <p>
+                                            Индекс
+                                        </p>
+                                    </td>
+                                    <td class="descriptionvalue">
+                                        <p>
+                                            <?php echo Session::get('delivery')[0]['postalzip']; ?>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="description">
+                                        <p>
+                                            Город
+                                        </p>
+                                    </td>
+                                    <td class="descriptionvalue">
+                                        <p>
+                                            <?php echo Session::get('delivery')[0]['city']; ?>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="description">
+                                        <p>
+                                            Улица
+                                        </p>
+                                    </td>
+                                    <td class="descriptionvalue">
+                                        <p>
+                                            <?php echo Session::get('delivery')[0]['street']; ?>
+                                        </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="description">
+                                        <p>
+                                            Дом
+                                        </p>
+                                    </td>
+                                    <td class="descriptionvalue">
+                                        <p>
+                                            <?php echo Session::get('delivery')[0]['house']; ?>
+                                        </p>
+                                    </td>
+                                </tr>
+                            <?php
+                                if ( !empty( Session::get('delivery')[0]['houseblock'] ) ):
+                            ?>
+                                <tr>                            
+                                    <td class="description">
+                                        <p>
+                                            Блок
+                                        </p>
+                                    </td>
+                                    <td class="descriptionvalue">
+                                        <p>
+                                            <?php echo Session::get('delivery')[0]['houseblock']; ?>
+                                        </p>
+                                    </td>
+                                </tr>
+                            <?php
+                                endif;
+                                if ( !empty( Session::get('delivery')[0]['houseroom'] ) ):
+                            ?>
+                                <tr>                            
+                                    <td class="description">
+                                        <p>
+                                            Квартира
+                                        </p>
+                                    </td>
+                                    <td class="descriptionvalue">
+                                        <p>
+                                            <?php echo Session::get('delivery')[0]['houseroom']; ?>
+                                        </p>
+                                    </td>
+                                </tr>    
+                            <?php
+                                endif;
+                            ?>
+                            </table>
 
-                    <table class="delivery">                                        
-                        <tr>
-                            <td class="description">
-                                <p>
-                                    Индекс
-                                </p>
-                            </td>
-                            <td class="descriptionvalue">
-                                <p>
-                                    <?php echo $deliverylist[0]['postalzip']; ?>
-                                </p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="description">
-                                <p>
-                                    Город
-                                </p>
-                            </td>
-                            <td class="descriptionvalue">
-                                <p>
-                                    <?php echo $deliverylist[0]['city']; ?>
-                                </p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="description">
-                                <p>
-                                    Улица
-                                </p>
-                            </td>
-                            <td class="descriptionvalue">
-                                <p>
-                                    <?php echo $deliverylist[0]['street']; ?>
-                                </p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="description">
-                                <p>
-                                    Дом
-                                </p>
-                            </td>
-                            <td class="descriptionvalue">
-                                <p>
-                                    <?php echo $deliverylist[0]['house']; ?>
-                                </p>
-                            </td>
-                        </tr>
-                    <?php
-                        if ( !empty( $deliverylist[0]['houseblock'] ) ):
-                    ?>
-                        <tr>                            
-                            <td class="description">
-                                <p>
-                                    Блок
-                                </p>
-                            </td>
-                            <td class="descriptionvalue">
-                                <p>
-                                    <?php echo $deliverylist[0]['houseblock']; ?>
-                                </p>
-                            </td>
-                        </tr>
-                    <?php
-                        endif;
-                        if ( !empty( $deliverylist[0]['houseroom'] ) ):
-                    ?>
-                        <tr>                            
-                            <td class="description">
-                                <p>
-                                    Квартира
-                                </p>
-                            </td>
-                            <td class="descriptionvalue">
-                                <p>
-                                    <?php echo $deliverylist[0]['houseroom']; ?>
-                                </p>
-                            </td>
-                        </tr>    
-                    <?php
-                        endif;
-                    ?>
-                    </table>
-                    
-                    <a href="http://localhost/" class="btn-tomain"><img src="/img/main/tomain_button.png" alt="" /></a>
-
+                            <a href="http://localhost/" class="btn-tomain"><img src="/img/main/tomain_button.png" alt="" /></a>
                     <?php
 
                         else:
                     ?>
-                    
-                    <form action="" method="POST" >
-                    
-                        <table class="delivery">
+                            <form action="" method="POST" >
 
-                            <tr>
-                                <td class="description">
-                                    <p>
-                                        Индекс
-                                    </p>
-                                </td>
-                                <td class="descriptionvalue">
-                                    <p>
-                                        <input type="text" name="postalzip" />
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="description">
-                                    <p>
-                                        Город
-                                    </p>
-                                </td>
-                                <td class="descriptionvalue">
-                                    <p>
-                                        <input type="text" name="city" />
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="description">
-                                    <p>
-                                        Улица
-                                    </p>
-                                </td>
-                                <td class="descriptionvalue">
-                                    <p>
-                                        <input type="text" name="street" />
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="description">
-                                    <p>
-                                        Дом
-                                    </p>
-                                </td>
-                                <td class="descriptionvalue">
-                                    <p>
-                                        <input type="text" name="house" />
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>                            
-                                <td class="description">
-                                    <p>
-                                        Блок
-                                    </p>
-                                </td>
-                                <td class="descriptionvalue">
-                                    <p>
-                                        <input type="text" name="houseblock" />
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>                            
-                                <td class="description">
-                                    <p>
-                                        Квартира
-                                    </p>
-                                </td>
-                                <td class="descriptionvalue">
-                                    <p>
-                                        <input type="text" name="houseroom" />
-                                    </p>
-                                </td>
-                            </tr>                                    
+                                <table class="delivery">
 
-                        </table>
+                                    <tr>
+                                        <td class="description">
+                                            <p>
+                                                Индекс
+                                            </p>
+                                        </td>
+                                        <td class="descriptionvalue">
+                                            <p>
+                                                <input type="text" name="postalzip" />
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="description">
+                                            <p>
+                                                Город
+                                            </p>
+                                        </td>
+                                        <td class="descriptionvalue">
+                                            <p>
+                                                <input type="text" name="city" />
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="description">
+                                            <p>
+                                                Улица
+                                            </p>
+                                        </td>
+                                        <td class="descriptionvalue">
+                                            <p>
+                                                <input type="text" name="street" />
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="description">
+                                            <p>
+                                                Дом
+                                            </p>
+                                        </td>
+                                        <td class="descriptionvalue">
+                                            <p>
+                                                <input type="text" name="house" />
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>                            
+                                        <td class="description">
+                                            <p>
+                                                Блок
+                                            </p>
+                                        </td>
+                                        <td class="descriptionvalue">
+                                            <p>
+                                                <input type="text" name="houseblock" />
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>                            
+                                        <td class="description">
+                                            <p>
+                                                Квартира
+                                            </p>
+                                        </td>
+                                        <td class="descriptionvalue">
+                                            <p>
+                                                <input type="text" name="houseroom" />
+                                            </p>
+                                        </td>
+                                    </tr>                                    
 
-                        <input class="btn-input" type="image" src="/img/main/tosave_button.png" />
+                                </table>
 
-                    </form>
+                                <input class="btn-input" type="image" src="/img/main/tosave_button.png" />
+
+                            </form>
 
                     <?php
                         endif;
                     ?>
-                    
                 </div>
             </div>
         </main>
         <footer>
             <ul class="list-unstyled">
-                <li class="footer-text text-color">Телефон для справок:&nbsp;+38&nbsp;098&nbsp;743&nbsp;97&nbsp;83</li>
                 <li class="footer-text text-color">Email:&nbsp;<a href="mailto:maximvg@gmail.com" class="text-color">maximvg@gmail.com</a></li>
                 <li class="footer-text text-color">Skype:&nbsp;gavrylvovmv</li>
             </ul>

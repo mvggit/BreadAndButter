@@ -22,7 +22,6 @@
         <link rel="stylesheet" href="./css/bootstrap.css" />
         <link rel="stylesheet" href="./css/layout.css" />
         
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <style type="text/css">
             .photo {
                 
@@ -67,7 +66,14 @@
                 border-bottom: solid 1px #ddd;
             }
             
+            table.cart td
+            {
+                line-height: 17pt;
+            }
+            
             .cart .title {
+                
+                font-size: 10pt;
                 
                 width: 50%;
                 text-indent: 10px;
@@ -77,6 +83,8 @@
             }
 
             .cart .count, .cart .price {
+                
+                font-size: 10pt;
                 
                 width: 25%;
                 text-align: center;
@@ -97,16 +105,15 @@
                     <?php
                         if ( !Session::get('info')) :
                     ?>
-                    <a href="?action=auth&do=login" class=\"link color_light_brown\">Войти</a>
-                    <span class="separator">&nbsp;|&nbsp;</span>
-                    <a href="?action=auth&do=registration" class="link color_light_pink">Зарегистрироваться</a>
-                    
+                            <a href="?action=auth&do=login" class=\"link color_light_brown\">Войти</a>
+                            <span class="separator">&nbsp;|&nbsp;</span>
+                            <a href="?action=auth&do=registration" class="link color_light_pink">Зарегистрироваться</a>
                     <?php
                         else:
                     ?>
-                    <span class="link color_light_brown"><?php echo Session::get('name')?></span>
-                    <span class="separator">&nbsp;|&nbsp;</span>
-                    <a href="?action=logout" class="link color_light_pink">Выйти</a>
+                            <span class="link color_light_brown"><?php echo Session::get('name')?></span>
+                            <span class="separator">&nbsp;|&nbsp;</span>
+                            <a href="?action=logout" class="link color_light_pink">Выйти</a>
                     <?php
                         endif;
                     ?>
@@ -160,17 +167,9 @@
 
                         <?php
 
-                            //TODO: create echo table use 
-                            //      variable $cartslist.
-
-                            $_cartslists = Session::get( 'carts' );
-                            $cartslists = empty($_cartslists) 
-                                    ? array() 
-                                    : $_cartslists;
-
                             $odd = 0;
 
-                            foreach ($cartslists as $cartslist):
+                            foreach ( ( array )Session::get( 'carts' ) as $cartslist ):
                                 if ( empty( $cartslist['title'] ) && 
                                      empty( $cartslist['count'] ) )
                                 {
@@ -212,7 +211,6 @@
         </main>
         <footer>
             <ul class="list-unstyled">
-                <li class="footer-text text-color">Телефон для справок:&nbsp;+38&nbsp;098&nbsp;743&nbsp;97&nbsp;83</li>
                 <li class="footer-text text-color">Email:&nbsp;<a href="mailto:maximvg@gmail.com" class="text-color">maximvg@gmail.com</a></li>
                 <li class="footer-text text-color">Skype:&nbsp;gavrylvovmv</li>
             </ul>

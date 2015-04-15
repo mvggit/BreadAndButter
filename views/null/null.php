@@ -2,8 +2,7 @@
 
     namespace Main;
     use Service\Session;
-    
-    $countproducts = Session::get( 'countproducts' );
-    echo empty($countproducts) 
+
+    echo empty( Session::get( 'countproducts' ) ) 
             ? ' ' 
-            : $countproducts;
+            : $Session::get( 'countproducts' );

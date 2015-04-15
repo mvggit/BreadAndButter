@@ -2,7 +2,6 @@
 
     namespace Main;
     use Service\Session;
-    
 ?>
 <!DOCTYPE html>
 <!--
@@ -60,8 +59,7 @@
             } );
         </script>
         
-        <style type="text/css">
-            
+        <style type="text/css">            
             .product {
                 width: 260px;
                 height: 125px;
@@ -170,16 +168,15 @@
                     <?php
                         if (!Session::get('info')) :
                     ?>
-                    <a href="?action=auth&do=login" class="link color_light_brown">Войти</a>
-                    <span class="separator">&nbsp;|&nbsp;</span>
-                    <a href="?action=auth&do=registration" class="link color_light_pink">Зарегистрироваться</a>
-                    
+                            <a href="?action=auth&do=login" class="link color_light_brown">Войти</a>
+                            <span class="separator">&nbsp;|&nbsp;</span>
+                            <a href="?action=auth&do=registration" class="link color_light_pink">Зарегистрироваться</a>
                     <?php
                         else:
                     ?>
-                    <span class="link color_light_brown"><?php echo Session::get('name')?></span>
-                    <span class="separator">&nbsp;|&nbsp;</span>
-                    <a href="?action=logout" class="link color_light_pink">Выйти</a>
+                            <span class="link color_light_brown"><?php echo Session::get('name')?></span>
+                            <span class="separator">&nbsp;|&nbsp;</span>
+                            <a href="?action=logout" class="link color_light_pink">Выйти</a>
                     <?php
                         endif;
                     ?>
@@ -195,21 +192,13 @@
         </header>
         <main>
             <div class="container">
-
                 <?php
-
-                    $catalog = Session::get( 'catalog' );
-                    $cataloglists = is_array( $catalog )
-                        ? $catalog
-                        : array();
-
-                    foreach ($cataloglists as $key => $list):
-                        
+                    $cataloglists = Session::get( 'catalog' );
+                    foreach ( ( array )$cataloglists as $key => $list):
                 ?>
-                
                         <div class="product">
                             <span class="icon">
-                                <img src="<?php echo "../img/product/".$list['grouptitle']."/".$list['title'].".png";?>" 
+                                <img src="<?php echo "img/product/".$list['grouptitle']."/".$list['title'].".png";?>" 
                                      alt="<?php echo $list['title'];?>"
                                      class="productimage"
                                 />
@@ -228,7 +217,6 @@
                         </div>
                         
                <?php
-                        
                     endforeach;
 
                     if ( Session::get( 'paginationlimit' ) * Session::get( 'paginationpage' ) < Session::get( 'paginationcount' ) ):
@@ -250,17 +238,12 @@
 
                 <?php
                     endif;
-                    
-                    Session::destroy( 'cataloglist' );
-                    Session::destroy( 'cataloggroup' );
-                    
                 ?>
                 
             </div>
         </main>
         <footer>
             <ul class="list-unstyled">
-                <li class="footer-text text-color">Телефон для справок:&nbsp;+38&nbsp;098&nbsp;743&nbsp;97&nbsp;83</li>
                 <li class="footer-text text-color">Email:&nbsp;<a href="mailto:maximvg@gmail.com" class="text-color">maximvg@gmail.com</a></li>
                 <li class="footer-text text-color">Skype:&nbsp;gavrylvovmv</li>
             </ul>
