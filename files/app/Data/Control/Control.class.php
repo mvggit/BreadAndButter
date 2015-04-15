@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * Class AuthControl.
+ * Class Control.
  */
 
 namespace Data\Control;
@@ -39,8 +39,5 @@ class Control
             $view = new View(  );
         }
         $view -> render(); 
-    }
-    
-    
-    
+    }  
 }

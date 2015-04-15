@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * Class Check.
+ * Check.
  */
 
 namespace Service;
@@ -17,7 +17,7 @@ trait Check
     public function checkBlocked( $hash = '' ) 
     {
         $blocked = Get :: get('blocked', 'auth', 'hash = \'' . $hash . '\'')[0]['blocked'];
-        return $blocked ? false : true;;
+        return ( bool )$blocked;
     }    
 
     

@@ -20,11 +20,9 @@ class View
     private function makeView( )
     {
         $this->filename = 
-                !empty($this->data['filename']) 
-                        ? 
-                $this->data['filename'] 
-                        : 
-                dirname(__FILE__) . "/../../../views/main/404.php";
+                empty( $this->data['filename'] ) 
+                        ? dirname(__FILE__) . "/../../../views/main/404.php"
+                        : $this->data['filename'];
         
         ob_start();
         
@@ -45,7 +43,4 @@ class View
             echo $view;
         }        
     }    
-    
-
-    
 }

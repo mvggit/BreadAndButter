@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * class MySQLi.
+ * MySQLi.
  * Connection to MySQL 
  * class and implements methods
  * to escape data from Db.
@@ -33,15 +33,11 @@ class MySQLi implements IDataBase
     
     function select( $items, $from, $where, $orderby = 'id ASC', $limit = '100' )
     {
-        //Test trash!!!
-        //echo "SELECT DISTINCT $items FROM $from WHERE $where ORDER BY $orderby LIMIT $limit";
-        
-        $sql = "";
-        $sql .= (!$items || !$from || !$where) ? "" : " SELECT DISTINCT $items FROM $from WHERE $where ";
-        $sql .= (!empty($sql) && $orderby) ? " ORDER BY $orderby " : "";
-        $sql .= (!empty($sql) && $limit) ? " LIMIT $limit" : "";
-        
-        // echo $sql . "<br /><br />";
+        $sql = ( !$items ) ? "" : " SELECT DISTINCT $items ";
+        $sql .= ( !empty($sql) && $where ) ? " FROM $from " : "";
+        $sql .= ( !empty($sql) && $where ) ? " WHERE $where " : "";
+        $sql .= ( !empty($sql) && $orderby ) ? " ORDER BY $orderby " : "";
+        $sql .= ( !empty($sql) && $limit ) ? " LIMIT $limit " : "";
         
         return $sql;
     }
@@ -91,19 +87,15 @@ class MySQLi implements IDataBase
     
     function run( $method )
     {
-        
-        // echo $method."<br />";
-        
         $this->MySQLi->query($method);
         
         if ($this->MySQLi->errno)
         {
             throw new \Exception( $this->MySQLi->error."<br />" );
         }
+        
         $last_insert_id = $this -> MySQLi -> insert_id;
+        
         return empty( $last_insert_id ) ? true : $last_insert_id;
     }
-    
-
-
 }

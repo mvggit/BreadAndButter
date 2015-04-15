@@ -26,7 +26,4 @@ class ViewCatalog
     {
         return Get::get( $field, $from, $where, $orderby, $limit );
     }
-
-
-
 }

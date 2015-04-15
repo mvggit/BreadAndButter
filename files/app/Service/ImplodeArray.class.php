@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Class ImplodeArray.
+ * ImplodeArray.
  * ImplodeArray implements
  * action implode array with 
  * returns string's.
@@ -40,7 +40,4 @@ trait ImplodeArray
         }
         
     }
-
-
-    
 }

@@ -1,8 +1,7 @@
 <?php
 
 /* 
- * Class Get.
- * think about this class
+ * Get.
  */
 
 namespace Service;
@@ -21,8 +20,5 @@ trait Get
         );
         
         return empty( $result ) ? false : $result;
-    }    
-
-    
-    
+    }      
 }

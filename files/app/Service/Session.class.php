@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Session class to implements
+ * Session. Implements
  * session operation
  * 
  */
@@ -12,11 +12,6 @@ class Session
 {
     protected static $session = array();
     
-    function __construct()
-    {
-        ;
-    }
-    
     /**
      * function get.
      * @param mixed name
@@ -24,8 +19,7 @@ class Session
     
     public static function get( $name )
     {
-        $variable = ( array_key_exists( $name, $_SESSION ) );
-        return $variable ? $_SESSION[ $name ] : false;
+        return ( array_key_exists( $name, $_SESSION ) ) ? $_SESSION[ $name ] : false;
     }
 
     /**

@@ -27,7 +27,7 @@ class CartsControl
     {
         $this->_db = $db;
         
-        if ($hash = Session::get('info')) 
+        if ( $hash = Session::get('info') ) 
         {
             $this -> cart = !Session::search('identifiercarts') 
                                ? Get::get( 'identifiercarts', 'carts, auth', 'hash = \''.$hash.'\' AND auth.idauth = carts.idauth', $limit = 1)[0]['identifiercarts']
@@ -98,7 +98,4 @@ class CartsControl
         
         $this -> ViewCart( $request );
     }
-
-    
-    
 }

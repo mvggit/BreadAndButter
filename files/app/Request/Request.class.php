@@ -10,17 +10,12 @@ class Request
 {
     /**
      * @method handle
-     * 
-     * dump request url and return array to Parent class;
-     * @return point to array();
+     * @return pointer to array();
      */
     
     function &handle()
     {
         $this->_request = &$_REQUEST;
         return $this->_request;
-    }
-
-
-    
+    }   
 }

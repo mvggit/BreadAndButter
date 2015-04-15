@@ -4,25 +4,15 @@
  * Main DataBase class.
  */
     
-//TODO read and undestend namespace;
-
-
 namespace Db;
 
 use Db\MySQLi;
-use Db\PDO;
 
 
 class DataBase 
 {
     private static $instance;
 
-    
-    private function __construct() 
-    {
-        ;
-    }
-    
     public static function instance() 
     {
         if (empty(self::$instance)) 
@@ -34,21 +24,13 @@ class DataBase
         
     }
     
-    public static function connection( $_method = 'MySQLi' ) 
+    public static function connection() 
     {
-        return self::instance() -> $_method();
+        return self::instance() -> MySQLi();
     }
     
     public function MySQLi( $host = '127.0.0.1', $uname = 'root', $upass = '1111', $udbname = 'shop' ) 
     {
         return new MySQLi( $host, $uname, $upass, $udbname );
     }
-    
-    public function PDO( $dsn = '', $uname = 'root', $upass = '1111', $options = '' ) 
-    {
-        return new PDO($dsn, $uname, $upass, $options);
-    }
-    
-    
-    
 }

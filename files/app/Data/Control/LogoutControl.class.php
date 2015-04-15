@@ -8,9 +8,7 @@
 namespace Data\Control;
 
 use Service\Session;
-/**
- * @author Максим
- */
+
 class logoutcontrol 
 {
     public $view;
@@ -25,7 +23,4 @@ class logoutcontrol
         $catalog = new CatalogControl( $db, array('action'=>'catalog', 'do'=>'group'));
         $this -> view = $catalog -> view;
     }
-
-
-
 }

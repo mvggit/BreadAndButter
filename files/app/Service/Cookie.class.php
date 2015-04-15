@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Cookie
+ * Cookie
  */
 
 namespace Service;
@@ -29,11 +29,8 @@ trait Cookie
      * @return boolean
      */
     
-    static function set( $name, $value )
+    static function set( $name, $value, $expire = FALSE )
     {
-        return setcookie ( $name , $value , $expire = time() * 3600 * 24 );
+        return setcookie ( $name , $value , $expire ? $expire : time() * 3600 * 24 );
     }
-
-    
-    
 }

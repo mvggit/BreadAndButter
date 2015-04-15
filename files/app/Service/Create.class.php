@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * Class Create.
+ * Create.
  */
 
 namespace Service;

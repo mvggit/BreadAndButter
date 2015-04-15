@@ -35,7 +35,7 @@
                         type: "GET",
                         url: "http://localhost",
                         beforeSend: function( xhr, opt ){
-                        var isLogged = '<?php echo Session::get('uin');?>';
+                        var isLogged = '<?php echo Session::get('info');?>';
                             if ( isLogged == '' )
                             {
                                 alert('Пожалуйста войдите в систему');
@@ -47,6 +47,10 @@
                                 <?php echo '\'' . Session::get('uin') . '\'';?>, 
                                 obj.attr('id-product')
                                 ]},
+                        error: function ( xhr, textStatus, errorThrown) {
+                            console.log( textStatus + ":" + errorThrown );
+                            xhr.abort();
+                        },
                         success : function( data ) {
                             obj.css({ 
                                 "line-height": "1.95", 

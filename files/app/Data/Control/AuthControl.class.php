@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * Class LoginControl.
+ * Class AuthControl.
  */
 
 namespace Data\Control;
@@ -36,7 +36,4 @@ class AuthControl
         
         $this -> view['filename'] = dirname(__FILE__) . "/../../../../views/". $request['action'] ."/". $request['do'] .".php";
     }
-
-    
-    
 }

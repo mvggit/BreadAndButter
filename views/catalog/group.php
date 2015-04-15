@@ -118,7 +118,7 @@
                                         <?php echo $list['description'];?>
                                         <span class="caption-button">
                                             <a class="active" 
-                                               href="?action=catalog&do=list&group=<?php echo $list['grouptitle'];?>&page=1" role="button">
+                                               href="?action=catalog&do=list&group=<?php echo urlencode( $list['grouptitle'] );?>&page=1" role="button">
                                                 <img src="img/main/more_button.png" alt="" />
                                             </a>
                                         </span>

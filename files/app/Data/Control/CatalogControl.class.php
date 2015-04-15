@@ -57,7 +57,4 @@ class CatalogControl
         Session::set( 'paginationpage', $request['page'] );
         Session::set( 'catalog', $catalog -> Catalog( $this -> limit ) );
     }
-    
-
-
 }

@@ -38,7 +38,4 @@ class PaginationCatalog extends ViewCatalog
         return $this ->makeView($field, $from, $where, $orderby, $limit);
         
     }
-
-
-
 }

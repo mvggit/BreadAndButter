@@ -1,7 +1,7 @@
 <?php
 
 /* 
- * Class Update.
+ * Update.
  */
 
 namespace Service;
@@ -17,7 +17,4 @@ trait Update
         
         return $this -> _db -> run( $this -> _db -> update( $table, $params, $where ) );
     }    
-
-    
-    
 }

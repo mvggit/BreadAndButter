@@ -20,12 +20,6 @@ class GetCatalog extends ViewCatalog
 
     public function Catalog( ) 
     {
-//        $field = 'product.idproduct as article,'
-//               . 'groupproduct.idgroupproduct as grouparticle,'
-//               . 'nameproduct as title,'
-//               . 'namegroupproduct as grouptitle, '
-//               . 'descproduct as description,'
-//               . 'priceproduct as price';
         $field = 'namegroupproduct as grouptitle, '
                . 'descgroupproduct as description';
         
@@ -38,7 +32,4 @@ class GetCatalog extends ViewCatalog
         return $this ->makeView($field, $from, $where, $orderby, $limit);
 
     }
-
-
-
 }

@@ -6,8 +6,7 @@ use Service\Get;
 use Service\Update;
 
 /**
- * Description of Storage
- *
+ * Storage
  * @author Максим
  */
 
@@ -40,8 +39,5 @@ class Storage
                          array( 'countproduct' => $countproduct ), 
                          'idproduct = ' . $idproduct 
                        );
-    }
-    
-    
-    
+    }   
 }

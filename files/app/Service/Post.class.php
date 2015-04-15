@@ -1,7 +1,7 @@
 <?php
 
 /*
- * trait post to check
+ * Trait post to check
  * superglobal array _POST
  */
 
@@ -28,7 +28,7 @@ trait Post
 
     public function isSend()
     {
-        return ( !empty( $this -> post ) ) ? true : false;
+        return ( bool )( !empty( $this -> post ) );
     }
     
     /**
@@ -39,10 +39,6 @@ trait Post
 
     public function __get( $name )
     {
-        $value = filter_input( INPUT_POST, $name );
-        return $value;
-    }
-    
-    
-    
+        return array_key_exists( $name, $this -> post ) ? $this -> post[ $name ] : FALSE;
+    } 
 }
