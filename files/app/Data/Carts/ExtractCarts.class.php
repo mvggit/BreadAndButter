@@ -24,11 +24,11 @@ class ExtractCarts
     
     public function extractOne( $identifiercarts ) 
     {
-        return Get::get( '(select nameproduct from product where idproduct = idproductincarts) as title,'
+        return $this -> get( '(select nameproduct from product where idproduct = idproductincarts) as title,'
                        . 'countincarts as count,'
                        . 'priceincarts as price'
                        , 'carts'
-                       , 'identifiercarts = \''.$identifiercarts.'\''
+                       , 'identifiercarts = \''. $this -> _db -> MySQLi -> real_escape_string($identifiercarts).'\''
                        , 'idproductincarts ASC'
                        , 1
                     );
@@ -36,12 +36,12 @@ class ExtractCarts
     
     public function extractList( $identifiercarts, $limit = '' )
     {
-        return Get::get( 'idproductincarts as article, '
+        return $this -> get( 'idproductincarts as article, '
                        . '(select nameproduct from product where idproduct = idproductincarts) as title,'
                        . 'countincarts as count,'
                        . 'priceincarts as price'
                        , 'carts'
-                       , 'identifiercarts = \''.$identifiercarts.'\''
+                       , 'identifiercarts = \''.$this -> _db -> MySQLi -> real_escape_string($identifiercarts).'\''
                        , 'idproductincarts ASC'
                        , $limit 
                     );

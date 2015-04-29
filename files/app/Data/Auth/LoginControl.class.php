@@ -33,11 +33,11 @@ class LoginControl
     {
         $hash = md5( $form['login'].$form['password'] );
             
-        if ( ( $checkhash = Check::checkHash( $hash ) ) && ( $checkblocked = Check::checkBlocked( $hash ) ) ) 
+        if ( ( $checkhash = $this -> checkHash( $hash ) ) && ( $checkblocked = !$this -> checkBlocked( $hash ) ) ) 
         {
             Session::set( 'info', $hash );
-            Session::set( 'name', $form['login'] );
-            Session::set( 'uin', Get :: get('idauth', 'auth', 'hash = \'' . $hash . '\'')[0]['idauth'] );
+            Session::set( 'name', $this -> _db -> MySQLi -> real_escape_string( $form['login'] ) );
+            Session::set( 'uin', $this -> get('idauth', 'auth', 'hash = \'' . $hash . '\'')[0]['idauth'] );
 
             $carts = new GetNameCarts( $this -> _db );
             $carts -> GetCarts();

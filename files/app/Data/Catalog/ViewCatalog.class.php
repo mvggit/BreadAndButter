@@ -24,6 +24,6 @@ class ViewCatalog
     
     protected function makeView( $field, $from, $where, $orderby, $limit )
     {
-        return Get::get( $field, $from, $where, $orderby, $limit );
+        return $this -> get( $field, $from, $where, $orderby, $limit );
     }
 }

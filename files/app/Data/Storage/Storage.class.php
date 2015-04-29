@@ -24,20 +24,20 @@ class Storage
     
     public function isInStorage( $idproduct ) 
     {
-        $id = Get::get( 'idproduct', 'storage', 'idproduct = '. $idproduct . ' AND countproduct > 0', $limit = 1 )[0]['idproduct'];
+        $id = $this -> get( 'idproduct', 'storage', 'idproduct = '. (int)$idproduct . ' AND countproduct > 0', $limit = 1 )[0]['idproduct'];
         return ( !empty( $id ) ) ? $id : false;
     }
     
     public function getCountProduct( $idproduct ) 
     {
-        return Get::get( 'countproduct', 'storage', 'idproduct = '. $idproduct, $limit = 1 )[0]['countproduct'];
+        return $this -> get( 'countproduct', 'storage', 'idproduct = '. (int)$idproduct, $limit = 1 )[0]['countproduct'];
     }
     
     public function setCountProduct( $idproduct, $countproduct ) 
     {
-        return Update::set( 'storage', 
-                         array( 'countproduct' => $countproduct ), 
-                         'idproduct = ' . $idproduct 
+        return $this -> set( 'storage', 
+                         array( 'countproduct' => (int)$countproduct ), 
+                         'idproduct = ' . (int)$idproduct 
                        );
     }   
 }

@@ -47,11 +47,11 @@ class CatalogControl
     {
         $catalog = new PaginationCatalog( $this -> _db, $request );
         Session::set( 'paginationlimit', $this -> limit );
-        Session::set( 'paginationcount', Get::get( 'count(*) as count', 
+        Session::set( 'paginationcount', $this -> get( 'count(*) as count', 
                                                    'product, storage, groupproduct',                        
                                                    'storage.idgroupproduct = groupproduct.idgroupproduct '
                                                  . ' AND product.idproduct = storage.idproduct '
-                                                 . ' AND namegroupproduct = \'' . $request['group'] . '\' ', 
+                                                 . ' AND namegroupproduct = \'' . $this -> _db -> MySQLi -> real_escape_string($request['group']) . '\' ', 
                                                    ''
                                                 )[0]['count']);
         Session::set( 'paginationpage', $request['page'] );

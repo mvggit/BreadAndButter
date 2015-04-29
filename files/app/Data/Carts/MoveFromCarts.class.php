@@ -33,27 +33,27 @@ class MoveFromCarts extends Storage
     
     public function moveOne( array $param )
     {
-        if ( !$this -> isInStorage( $param[3] ) )
+        if ( !$this -> isInStorage( (int)$param[3] ) )
         {
             return false;
         }
 
-        $count = ( $count = Get::get( 'countincarts', 'carts', 'idproductincarts = ' . $param[3] . ' AND identifiercarts = \'' . $param[1] . '\'', $limit = 1 )[0]['countincarts'] ) ? $count : 0;
+        $count = ( $count = $this -> get( 'countincarts', 'carts', 'idproductincarts = ' . (int)$param[3] . ' AND identifiercarts = \'' . $param[1] . '\'', $limit = 1 )[0]['countincarts'] ) ? $count : 0;
         $count -= 1;
-        $this -> setCountProduct( $param[3], 
-                                  ( $this ->getCountProduct( $param[3] ) + 1 ) 
+        $this -> setCountProduct( (int)$param[3], 
+                                  ( $this ->getCountProduct( (int)$param[3] ) + 1 ) 
                                 );
                 
         if ( !$count )
         {
-            $return = Delete::delete( 'carts', 'idauth = ' . $param[2] . ' AND idproductincarts = ' . $param[3] . ' AND identifiercarts = \'' . $param[1] . '\'' );
+            $return = $this -> delete( 'carts', 'idauth = ' . (int)$param[2] . ' AND idproductincarts = ' . (int)$param[3] . ' AND identifiercarts = \'' . $this -> _db -> MySQLi -> real_escape_string( $param[1] ) . '\'' );
             
         } 
         else 
         {
-            $return = Update::set( 'carts', 
-                                     array( 'countincarts' => $count ), 
-                                     'idauth = '. $param[2] . ' AND idproductincarts = ' . $param[3] . ' AND identifiercarts = \'' . $param[1] . '\'' 
+            $return = $this -> set( 'carts', 
+                                     array( 'countincarts' => (int)$count ), 
+                                     'idauth = '. (int)$param[2] . ' AND idproductincarts = ' . (int)$param[3] . ' AND identifiercarts = \'' . $this -> _db -> MySQLi -> real_escape_string( $param[1] ) . '\'' 
                                  );
         }
         
@@ -62,9 +62,6 @@ class MoveFromCarts extends Storage
 
     public function moveCarts( array $param )
     {
-        return Delete::delete( 'carts', 'idauth = ' . $param[2] . ' AND identifiercarts = \'' . $param[1] . '\'' );
-    }    
-
-    
-    
+        return $this -> delete( 'carts', 'idauth = ' . (int)$param[2] . ' AND identifiercarts = \'' . $this -> _db -> MySQLi -> real_escape_string( $param[1] ) . '\'' );
+    }
 }

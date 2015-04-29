@@ -34,7 +34,7 @@ class DeliveryCarts
             $this -> saveDeliveryInformation();
         }
         
-        $delivery = Get::get( 
+        $delivery = $this -> get( 
                         'postalzip,'
                       . 'city, '
                       . 'street, '

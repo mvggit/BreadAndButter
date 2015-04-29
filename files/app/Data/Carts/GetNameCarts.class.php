@@ -72,7 +72,7 @@ class GetNameCarts
     
     public function GetCarts()
     {
-        if ( ( $this -> cartsname = Get::get( 'identifiercarts', 'carts, auth', 'hash = \'' . Session::get('info') . '\' AND auth.idauth = carts.idauth', $limit = 1)[0]['identifiercarts'] ) ) 
+        if ( ( $this -> cartsname = $this -> get( 'identifiercarts', 'carts, auth', 'hash = \'' . Session::get('info') . '\' AND auth.idauth = carts.idauth', $limit = 1)[0]['identifiercarts'] ) ) 
         {
             Session::set( 'identifiercarts', $this -> cartsname );
         }

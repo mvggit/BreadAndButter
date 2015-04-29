@@ -31,7 +31,7 @@ class PaginationCatalog extends ViewCatalog
         $from = 'product, storage, groupproduct';
         $where = 'storage.idgroupproduct = groupproduct.idgroupproduct '
                . 'AND product.idproduct = storage.idproduct ';
-        $where .= !empty( $this -> group ) ? ' AND namegroupproduct = \'' . $this -> group . '\' ' : 'GROUP BY namegroupproduct';
+        $where .= !empty( $this -> group ) ? ' AND namegroupproduct = \'' . $this -> _db -> MySQLi -> real_escape_string( $this -> group ) . '\' ' : 'GROUP BY namegroupproduct';
         $orderby = 'grouparticle, article, title ASC';
         $limit = $this -> page * $limit . "," . $limit;
         

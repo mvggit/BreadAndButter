@@ -32,13 +32,13 @@ class AddToCarts extends Storage
     
     function addOne( array $param )
     {
-        if ( !$this -> isInStorage( $param[3] ) )
+        if ( !$this -> isInStorage( (int)$param[3] ) )
         {
 
             return false;
         }
         
-        $count = ($count = Get::get( 'countincarts', 'carts', 'idproductincarts = '. $param[3] . ' AND identifiercarts = \''. $param[1] . '\'', $limit = 1)[0]['countincarts']) ? $count : 0;
+        $count = ($count = $this -> get( 'countincarts', 'carts', 'idproductincarts = '. (int)$param[3] . ' AND identifiercarts = \''. $this -> _db -> MySQLi -> real_escape_string( $param[1] ) . '\'', $limit = 1)[0]['countincarts']) ? $count : 0;
 
         //TODO: things to create query generator. 
         
@@ -46,34 +46,31 @@ class AddToCarts extends Storage
         {
             $this 
                 -> unsetparam()
-                -> setparam( 'idauth', $param[2] )
-                -> setparam( 'identifiercarts', "'" . $param[1] . "'" )
-                -> setparam( 'idproductincarts', $param[3] )
-                -> setparam( 'idstorageincarts', Get::get( 'idstorage', 'storage', 'idproduct = '.$param[3], $limit = 1)[0]['idstorage'] )
+                -> setparam( 'idauth', (int)$param[2] )
+                -> setparam( 'identifiercarts', "'" . $this -> _db -> MySQLi -> real_escape_string( $param[1] ) . "'" )
+                -> setparam( 'idproductincarts', (int)$param[3] )
+                -> setparam( 'idstorageincarts', $this -> get( 'idstorage', 'storage', 'idproduct = '.(int)$param[3], $limit = 1)[0]['idstorage'] )
                 -> setparam( 'countincarts', $count + 1 )
-                -> setparam( 'priceincarts', Get::get( 'priceproduct', 'product', 'idproduct = '.$param[3], $limit = 1)[0]['priceproduct'] )
+                -> setparam( 'priceincarts', $this -> get( 'priceproduct', 'product', 'idproduct = '.(int)$param[3], $limit = 1)[0]['priceproduct'] )
                 -> setparam( 'storedcarts', '0' )
                 -> setparam( 'savedate', 'now()' )
                 -> create( 'carts' );
             
-            $this -> setCountProduct( $param[3], 
-                                      ( $this -> getCountProduct( $param[3] ) - 1 ) 
+            $this -> setCountProduct( (int)$param[3], 
+                                      ( $this -> getCountProduct( (int)$param[3] ) - 1 ) 
                                     );
             
         } 
         else
         {
-            Update::set( 'carts', 
+            $this -> set( 'carts', 
                          array( 'countincarts' => $count + 1 ), 
-                         'idauth = '. $param[2] .' AND idproductincarts = '. $param[3] . ' AND identifiercarts = \''. $param[1] . '\'' 
+                         'idauth = '. (int)$param[2] .' AND idproductincarts = '. (int)$param[3] . ' AND identifiercarts = \''. $this -> _db -> MySQLi -> real_escape_string( $param[1] ) . '\'' 
                        );
             
-            $this -> setCountProduct( $param[3], 
-                                      ( $this -> getCountProduct( $param[3] ) - 1 ) 
+            $this -> setCountProduct( (int)$param[3], 
+                                      ( $this -> getCountProduct( (int)$param[3] ) - 1 ) 
                                     );
         }
     }
-    
-
-
 }

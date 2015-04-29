@@ -39,6 +39,6 @@ trait Post
 
     public function __get( $name )
     {
-        return array_key_exists( $name, $this -> post ) ? $this -> post[ $name ] : FALSE;
+        return array_key_exists( $name, $this -> post ) ? $this -> _db -> MySQLi -> real_escape_string( $this -> post[ $name ] ) : FALSE;
     } 
 }

@@ -8,11 +8,13 @@ namespace Data\Auth;
 
 use Service\Session;
 
+use Service\Get;
 use Service\Check;
 use Service\Create;
 
 class RegistrationControl 
 {
+    use Get;
     use Check;
     use Create;
     
@@ -27,23 +29,23 @@ class RegistrationControl
     
     function registration( $form ) 
     {
-        if (!Check::checkHash( md5($form['login'].$form['password']) ) && !Session::get('info'))
+        if (!$this -> checkHash( md5($form['login'].$form['password']) ) && !Session::get('info'))
         {
             $id = $this
                     -> unsetparam()
-                    -> setparam( 'email', "'" . $form['login'] . "'")
-                    -> setparam( 'password', "'" . $form['password'] . "'")
+                    -> setparam( 'email', "'" . $this -> _db -> MySQLi -> real_escape_string( $form['login'] ) . "'")
+                    -> setparam( 'password', "'" . $this -> _db -> MySQLi -> real_escape_string( $form['password'] ) . "'")
                     -> setparam( 'hash', "'" . md5($form['login'].$form['password']) . "'")
                     -> setparam( 'blocked', (int)0)
                     -> create('auth');
 
             $uin = $this
                     -> unsetparam()
-                    -> setparam( 'iduin', "'" . $id . "'")
-                    -> setparam( 'nicname', "'" . $form['nic'] . "'")
-                    -> setparam( 'fname', "'" . $form['name'] . "'")
-                    -> setparam( 'sname', "'" . $form['so_name'] . "'")
-                    -> setparam( 'lname', "'" . $form['last_name'] . "'")
+                    -> setparam( 'iduin', "'" . (int)$id . "'")
+                    -> setparam( 'nicname', "'" . $this -> _db -> MySQLi -> real_escape_string( $form['nic'] ) . "'")
+                    -> setparam( 'fname', "'" . $this -> _db -> MySQLi -> real_escape_string( $form['name'] ) . "'")
+                    -> setparam( 'sname', "'" . $this -> _db -> MySQLi -> real_escape_string( $form['so_name'] ) . "'")
+                    -> setparam( 'lname', "'" . $this -> _db -> MySQLi -> real_escape_string( $form['last_name'] ) . "'")
                     -> create('uin');            
 
             return ( $id && $uin );
@@ -51,7 +53,4 @@ class RegistrationControl
 
         return false;
     }
-
- 
-    
 }

@@ -45,7 +45,7 @@ class MySQLi implements IDataBase
     function insert( $table, $items ) 
     {
         $string = array();
-        $this -> explodeAssocArray( $items, $string );
+        $this -> explodeAssocArray( $items, $string, $this -> MySQLi );
         
         return $sql = "INSERT INTO $table (". $string[0] .") VALUES (". $string[1] .")";
     }
@@ -55,14 +55,17 @@ class MySQLi implements IDataBase
     function update( $table, $items, $where = 1 ) 
     {
         $itemstoset = '';
-        $this->implplodeAssocArrayWithPattern($items, $itemstoset, '=', ' AND ');        
+        $this->implplodeAssocArrayWithPattern($items, $itemstoset, '=', ' AND ', $this -> MySQLi);        
         
-        return $sql = "UPDATE $table SET $itemstoset WHERE $where";
+        return $sql = "UPDATE $table "
+                    . "SET $itemstoset "
+                    . "WHERE $where";
     }
 
     function delete( $table, $where = 1 ) 
     {
-        return $sql = "DELETE FROM $table WHERE $where";
+        return $sql = "DELETE FROM $table "
+                    . "WHERE $where";
     }
     
     

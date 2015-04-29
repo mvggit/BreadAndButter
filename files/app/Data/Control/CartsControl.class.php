@@ -30,7 +30,7 @@ class CartsControl
         if ( $hash = Session::get('info') ) 
         {
             $this -> cart = !Session::search('identifiercarts') 
-                               ? Get::get( 'identifiercarts', 'carts, auth', 'hash = \''.$hash.'\' AND auth.idauth = carts.idauth', $limit = 1)[0]['identifiercarts']
+                               ? $this -> get( 'identifiercarts', 'carts, auth', 'hash = \''.$hash.'\' AND auth.idauth = carts.idauth', $limit = 1)[0]['identifiercarts']
                                : Session::get('identifiercarts');
         }
         
@@ -50,7 +50,7 @@ class CartsControl
         new AddToCarts( $this->_db, $request['param'] );
         Session::set(
                 'countproducts', 
-                Get::get( 
+                $this -> get( 
                         'countincarts', 
                         'carts', 
                         'idproductincarts = '. $request['param'][3] . ' '
@@ -67,7 +67,7 @@ class CartsControl
         new MoveFromCarts( $this->_db, $request['param'] );
         Session::set(
                 'countproducts', 
-                Get::get( 
+                $this -> get( 
                         'countincarts',
                         'carts', 
                         'idproductincarts = '. $request['param'][3] . ' '

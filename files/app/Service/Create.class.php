@@ -28,11 +28,7 @@ trait Create
     
     public function unsetparam()
     {
-        foreach( $this -> param as $i => $param )
-        {
-            unset( $this -> param[$i] );
-        }
-        
+        $this -> param = [];
         return $this;
     }
 

@@ -8,7 +8,7 @@ namespace Service;
 
 trait Get
 {
-    function get( $field, $from, $where, $order = "true", $limit = "" )
+    function get( $field, $from, $where, $order = "", $limit = "" )
     {
         if ( empty( $this -> _db ) )
         {
