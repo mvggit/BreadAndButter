@@ -3,5 +3,3 @@
     Sybase PowerDesinger 10.x
     MySQL 5.x
     PHP 5.5
-
-- посмотреть на шаблоны внимательно.
